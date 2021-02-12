@@ -1,0 +1,11 @@
+---
+BasedOnStyle: Google
+---
+Language: Cpp
+Cpp11BracedListStyle: true
+Standard: Cpp11
+CommentPragmas: "^ NOLINT"
+ColumnLimit: 80
+SortIncludes: false
+---
+
