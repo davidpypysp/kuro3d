@@ -19,6 +19,7 @@ namespace kuro {
 static void glfw_error_callback(int error, const char *description) {
   fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
+
 int gui_main() {
   glfwSetErrorCallback(glfw_error_callback);
   if (!glfwInit()) return 1;
@@ -44,6 +45,7 @@ int gui_main() {
   renderer.Cleanup();
   gui.Cleanup();
 
+  glfwTerminate();
   return 0;
 }
 }  // namespace kuro

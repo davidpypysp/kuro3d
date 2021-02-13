@@ -95,8 +95,6 @@ void Renderer::Draw() {
   glUseProgram(this->shader_program);
   glBindVertexArray(this->vao);
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-  // glfwPollEvents();
 }
 
 void Renderer::Cleanup() {

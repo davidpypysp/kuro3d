@@ -24,7 +24,7 @@ int Gui::Init() {
 #endif
 
   // Create window with graphics context
-  this->window_ = glfwCreateWindow(2800, 1600, "kuro3d", NULL, NULL);
+  this->window_ = glfwCreateWindow(3200, 1600, "kuro3d", NULL, NULL);
   if (this->window_ == NULL) return 1;
   glfwMakeContextCurrent(this->window_);
   glfwSwapInterval(1);  // Enable vsync
@@ -133,9 +133,6 @@ void Gui::Cleanup() {
   ImGui_ImplOpenGL3_Shutdown();
   ImGui_ImplGlfw_Shutdown();
   ImGui::DestroyContext();
-
-  glfwDestroyWindow(this->window_);
-  glfwTerminate();
 }
 
 }  // namespace kuro
