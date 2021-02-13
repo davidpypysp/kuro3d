@@ -6,6 +6,6 @@
 
 #include <iostream>
 
-#include "src/gui/imgui/gui.h"
+#include "src/gui/imgui/gui_main.h"
 
 int main(int, char **) { return kuro::gui_main(); }
