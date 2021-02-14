@@ -100,7 +100,7 @@ void Renderer::InitModel() {
   stbi_set_flip_vertically_on_load(true);
   glEnable(GL_DEPTH_TEST);
 
-  this->camera_ = new Camera(glm::vec3(0.0f, 0.0f, 1000.0f));
+  this->camera_ = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));
   this->shader_ = new Shader("model_loading.vert", "model_loading.frag");
   this->model_ = new Model("resources/backpack/backpack.obj");
 }
@@ -120,13 +120,13 @@ void Renderer::DrawModel() {
       glm::radians(camera_->Zoom), (float)this->width_ / (float)this->height_,
       0.1f, 100.0f);
   glm::mat4 view = camera_->GetViewMatrix();
+
   shader_->setMat4("projection", projection);
   shader_->setMat4("view", view);
 
   glm::mat4 model = glm::mat4(1.0f);
   model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
   model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-  std::cout << "model" << glm::to_string(model) << std::endl;
   shader_->setMat4("model", model);
   model_->Draw(*shader_);
 }

@@ -1,6 +1,4 @@
 #include "src/gui/imgui/gui_main.h"
-#include "src/gui/imgui/gui.h"
-#include "src/core/renderer/renderer.h"
 
 #include <stdio.h>
 // [Win32] Our example includes a copy of glfw3.lib pre-compiled with VS2010 to
@@ -20,8 +18,17 @@ static void glfw_error_callback(int error, const char *description) {
   fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-int gui_main() {
-  const int window_width = 3600, window_height = 1800;
+static void framebuffer_size_callback(GLFWwindow *window, int width,
+                                      int height) {
+  std::cout << "framebuffer size = "
+            << "width=" << width << "height=" << height << std::endl;
+  glViewport(0, 0, width, height);
+}
+
+GuiMain::GuiMain() {}
+
+int GuiMain::Run() {
+  const unsigned int window_width = 3600, window_height = 1800;
 
   glfwSetErrorCallback(glfw_error_callback);
   if (!glfwInit()) return 1;
@@ -35,22 +42,25 @@ int gui_main() {
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);  // Required on Mac
 #else
-  // GL 3.0 + GLSL 130
-  const char *glsl_version = "#version 130";
+  const char *glsl_version = "#version 330";
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+
-                                                                  // only glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // 3.0+ only
+  glfwWindowHint(
+      GLFW_OPENGL_PROFILE,
+      GLFW_OPENGL_CORE_PROFILE);  // 3.2+
+                                  // only
+                                  // glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,
+                                  // GL_TRUE); // 3.0+ only
 #endif
 
   // Create window with graphics context
-  GLFWwindow *window =
-      glfwCreateWindow(window_width, window_height, "kuro3d", NULL, NULL);
-  if (window == NULL) {
+  window_ = glfwCreateWindow(window_width, window_height, "kuro3d", NULL, NULL);
+  if (window_ == NULL) {
     return 1;
   }
-  glfwMakeContextCurrent(window);
+  glfwMakeContextCurrent(window_);
   glfwSwapInterval(1);  // Enable vsync
+  glfwSetFramebufferSizeCallback(window_, framebuffer_size_callback);
 
   // Initialize OpenGL loader
   bool err = gladLoadGL() == 0;
@@ -62,39 +72,46 @@ int gui_main() {
     return 1;
   }
 
-  std::cout << "init" << std::endl;
+  gui_ = std::make_unique<Gui>(window_, glsl_version);
+  renderer_ = std::make_unique<Renderer>(window_width, window_height);
 
-  Gui gui(window, glsl_version);
-
-  Renderer renderer(window_width, window_height);
-  renderer.Init();
-  std::cout << "ready" << std::endl;
+  Init();
 
   // Main loop
-  int cnt = 0;
-  while (!glfwWindowShouldClose(window)) {
+  while (!glfwWindowShouldClose(window_)) {
     glfwPollEvents();
     int display_w, display_h;
-    glfwGetFramebufferSize(window, &display_w, &display_h);
-    glViewport(0, 0, display_w, display_h);
+    glfwGetFramebufferSize(window_, &display_w, &display_h);
 
-    if (cnt < 1) {
-      glClearColor(0, 0, 0, 1);
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-      cnt++;
-      renderer.Draw();
-      gui.Draw();
-      std::cout << "w=" << display_w << " h=" << display_h << std::endl;
-    }
-    glfwSwapBuffers(window);
+    glClearColor(0, 0, 0, 1);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    Loop();
+
+    glfwSwapBuffers(window_);
   }
 
-  // Cleanup
-  renderer.Cleanup();
-  gui.Cleanup();
+  Cleanup();
 
   glfwTerminate();
   return 0;
+}
+
+void GuiMain::Init() {
+  std::cout << "init" << std::endl;
+  renderer_->Init();
+  std::cout << "ready" << std::endl;
+}
+
+void GuiMain::Loop() {
+  renderer_->Draw();
+  gui_->Draw();
+}
+
+void GuiMain::Cleanup() {
+  // Cleanup
+  renderer_->Cleanup();
+  gui_->Cleanup();
 }
 
 }  // namespace kuro

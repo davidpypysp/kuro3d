@@ -17,6 +17,7 @@ class Renderer {
  private:
   unsigned int width_;
   unsigned int height_;
+
   int shader_program;
   unsigned int vao;
   unsigned int vbo;
