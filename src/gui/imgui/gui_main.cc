@@ -21,7 +21,7 @@ static void glfw_error_callback(int error, const char *description) {
 }
 
 int gui_main() {
-  const int window_width = 3600, window_height = 2000;
+  const int window_width = 3600, window_height = 1800;
 
   glfwSetErrorCallback(glfw_error_callback);
   if (!glfwInit()) return 1;
@@ -38,9 +38,9 @@ int gui_main() {
   // GL 3.0 + GLSL 130
   const char *glsl_version = "#version 130";
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-  // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+
-  // only glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // 3.0+ only
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+
+                                                                  // only glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // 3.0+ only
 #endif
 
   // Create window with graphics context
@@ -62,23 +62,30 @@ int gui_main() {
     return 1;
   }
 
+  std::cout << "init" << std::endl;
+
   Gui gui(window, glsl_version);
 
   Renderer renderer(window_width, window_height);
   renderer.Init();
+  std::cout << "ready" << std::endl;
 
   // Main loop
+  int cnt = 0;
   while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
     int display_w, display_h;
     glfwGetFramebufferSize(window, &display_w, &display_h);
     glViewport(0, 0, display_w, display_h);
-    glClearColor(0, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
 
-    renderer.Draw();
-    gui.Draw();
-
+    if (cnt < 1) {
+      glClearColor(0, 0, 0, 1);
+      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      cnt++;
+      renderer.Draw();
+      gui.Draw();
+      std::cout << "w=" << display_w << " h=" << display_h << std::endl;
+    }
     glfwSwapBuffers(window);
   }
 

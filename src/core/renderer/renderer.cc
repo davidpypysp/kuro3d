@@ -4,13 +4,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 namespace kuro {
 
 Renderer::Renderer(unsigned int width, unsigned int height)
     : width_(width), height_(height) {}
 
-void Renderer::Init() { this->InitRectangle(); }
+void Renderer::Init() { this->InitModel(); }
 
 void Renderer::InitRectangle() {
   const char *vertexShaderSource =
@@ -99,11 +100,12 @@ void Renderer::InitModel() {
   stbi_set_flip_vertically_on_load(true);
   glEnable(GL_DEPTH_TEST);
 
+  this->camera_ = new Camera(glm::vec3(0.0f, 0.0f, 1000.0f));
   this->shader_ = new Shader("model_loading.vert", "model_loading.frag");
   this->model_ = new Model("resources/backpack/backpack.obj");
 }
 
-void Renderer::Draw() { this->DrawRectangle(); }
+void Renderer::Draw() { this->DrawModel(); }
 
 void Renderer::DrawRectangle() {
   glUseProgram(this->shader_program);
@@ -112,6 +114,8 @@ void Renderer::DrawRectangle() {
 }
 
 void Renderer::DrawModel() {
+  shader_->use();
+
   glm::mat4 projection = glm::perspective(
       glm::radians(camera_->Zoom), (float)this->width_ / (float)this->height_,
       0.1f, 100.0f);
@@ -122,6 +126,7 @@ void Renderer::DrawModel() {
   glm::mat4 model = glm::mat4(1.0f);
   model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
   model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+  std::cout << "model" << glm::to_string(model) << std::endl;
   shader_->setMat4("model", model);
   model_->Draw(*shader_);
 }

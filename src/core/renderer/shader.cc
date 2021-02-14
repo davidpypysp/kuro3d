@@ -76,7 +76,10 @@ Shader::Shader(const char *vertexPath, const char *fragmentPath,
   if (geometryPath != nullptr) glDeleteShader(geometry);
 }
 
-void Shader::use() { glUseProgram(ID); }
+void Shader::use() {
+  std::cout << "shader use id = " << ID << std::endl;
+  glUseProgram(ID);
+}
 
 void Shader::checkCompileErrors(GLuint shader, std::string type) {
   GLint success;
