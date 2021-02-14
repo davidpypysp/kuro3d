@@ -21,24 +21,65 @@ static void glfw_error_callback(int error, const char *description) {
 }
 
 int gui_main() {
+  const int window_width = 3600, window_height = 2000;
+
   glfwSetErrorCallback(glfw_error_callback);
   if (!glfwInit()) return 1;
 
-  Gui gui;
-  gui.Init();
+    // Decide GL+GLSL versions
+#if __APPLE__
+  // GL 3.2 + GLSL 150
+  const char *glsl_version = "#version 150";
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
+  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);  // Required on Mac
+#else
+  // GL 3.0 + GLSL 130
+  const char *glsl_version = "#version 130";
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
+  // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+
+  // only glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // 3.0+ only
+#endif
 
-  Renderer renderer;
+  // Create window with graphics context
+  GLFWwindow *window =
+      glfwCreateWindow(window_width, window_height, "kuro3d", NULL, NULL);
+  if (window == NULL) {
+    return 1;
+  }
+  glfwMakeContextCurrent(window);
+  glfwSwapInterval(1);  // Enable vsync
+
+  // Initialize OpenGL loader
+  bool err = gladLoadGL() == 0;
+
+  //     glbinding::initialize([](const char *name) { return
+  //     (glbinding::ProcAddress)glfwGetProcAddress(name); });
+  if (err) {
+    fprintf(stderr, "Failed to initialize OpenGL loader!\n");
+    return 1;
+  }
+
+  Gui gui(window, glsl_version);
+
+  Renderer renderer(window_width, window_height);
   renderer.Init();
 
   // Main loop
-  while (!glfwWindowShouldClose(gui.window())) {
+  while (!glfwWindowShouldClose(window)) {
     glfwPollEvents();
-    gui.PrepareDraw();
+    int display_w, display_h;
+    glfwGetFramebufferSize(window, &display_w, &display_h);
+    glViewport(0, 0, display_w, display_h);
+    glClearColor(0, 0, 0, 1);
+    glClear(GL_COLOR_BUFFER_BIT);
 
     renderer.Draw();
     gui.Draw();
 
-    glfwSwapBuffers(gui.window());
+    glfwSwapBuffers(window);
   }
 
   // Cleanup
@@ -48,4 +89,5 @@ int gui_main() {
   glfwTerminate();
   return 0;
 }
+
 }  // namespace kuro

@@ -12,17 +12,13 @@ namespace kuro {
 
 class Gui {
  public:
-  Gui();
-  int Init();
-  void PrepareDraw();
+  Gui(GLFWwindow* window, const char* glsl_version);
   void Draw();
   void Cleanup();
 
-  GLFWwindow* window() { return window_; }
-
+ private:
   GLFWwindow* window_;
 
- private:
   bool show_demo_window_ = true;
   bool show_another_window_ = false;
   ImVec4 clear_color_ = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);

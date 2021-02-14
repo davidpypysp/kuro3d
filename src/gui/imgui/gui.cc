@@ -3,46 +3,12 @@
 #include <iostream>
 
 namespace kuro {
-Gui::Gui() {}
 
-int Gui::Init() {
-  // Decide GL+GLSL versions
-#if __APPLE__
-  // GL 3.2 + GLSL 150
-  const char *glsl_version = "#version 150";
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-  glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+ only
-  glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);  // Required on Mac
-#else
-  // GL 3.0 + GLSL 130
-  const char *glsl_version = "#version 130";
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
-  // glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  // 3.2+
-  // only glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // 3.0+ only
-#endif
-
-  // Create window with graphics context
-  this->window_ = glfwCreateWindow(3200, 1600, "kuro3d", NULL, NULL);
-  if (this->window_ == NULL) return 1;
-  glfwMakeContextCurrent(this->window_);
-  glfwSwapInterval(1);  // Enable vsync
-
-  // Initialize OpenGL loader
-  bool err = gladLoadGL() == 0;
-
-  //     glbinding::initialize([](const char *name) { return
-  //     (glbinding::ProcAddress)glfwGetProcAddress(name); });
-  if (err) {
-    fprintf(stderr, "Failed to initialize OpenGL loader!\n");
-    return 1;
-  }
-
+Gui::Gui(GLFWwindow* window, const char* glsl_version) {
   // Setup Dear ImGui context
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
-  ImGuiIO &io = ImGui::GetIO();
+  ImGuiIO& io = ImGui::GetIO();
 
   (void)io;
   io.FontGlobalScale = 2.5f;
@@ -55,17 +21,9 @@ int Gui::Init() {
   // ImGui::StyleColorsClassic();
 
   // Setup Platform/Renderer bindings
-  ImGui_ImplGlfw_InitForOpenGL(this->window_, true);
+  this->window_ = window;
+  ImGui_ImplGlfw_InitForOpenGL(window, true);
   ImGui_ImplOpenGL3_Init(glsl_version);
-}
-
-void Gui::PrepareDraw() {
-  int display_w, display_h;
-  glfwGetFramebufferSize(this->window_, &display_w, &display_h);
-  glViewport(0, 0, display_w, display_h);
-  glClearColor(this->clear_color_.x, this->clear_color_.y, this->clear_color_.z,
-               this->clear_color_.w);
-  glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void Gui::Draw() {
@@ -99,7 +57,7 @@ void Gui::Draw() {
                        1.0f);  // Edit 1 float using a slider from 0.0f to 1.0f
     ImGui::ColorEdit3(
         "clear color",
-        (float *)&this->clear_color_);  // Edit 3 floats representing a color
+        (float*)&this->clear_color_);  // Edit 3 floats representing a color
 
     if (ImGui::Button("Button"))  // Buttons return true when clicked (most
                                   // widgets return true when edited/activated)

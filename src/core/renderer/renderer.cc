@@ -3,12 +3,16 @@
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 
 namespace kuro {
 
-Renderer::Renderer() {}
+Renderer::Renderer(unsigned int width, unsigned int height)
+    : width_(width), height_(height) {}
 
-void Renderer::Init() {
+void Renderer::Init() { this->InitRectangle(); }
+
+void Renderer::InitRectangle() {
   const char *vertexShaderSource =
       "#version 330 core\n"
       "layout (location = 0) in vec3 aPos;\n"
@@ -91,10 +95,35 @@ void Renderer::Init() {
   glBindVertexArray(0);
 }
 
-void Renderer::Draw() {
+void Renderer::InitModel() {
+  stbi_set_flip_vertically_on_load(true);
+  glEnable(GL_DEPTH_TEST);
+
+  this->shader_ = new Shader("model_loading.vert", "model_loading.frag");
+  this->model_ = new Model("resources/backpack/backpack.obj");
+}
+
+void Renderer::Draw() { this->DrawRectangle(); }
+
+void Renderer::DrawRectangle() {
   glUseProgram(this->shader_program);
   glBindVertexArray(this->vao);
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void Renderer::DrawModel() {
+  glm::mat4 projection = glm::perspective(
+      glm::radians(camera_->Zoom), (float)this->width_ / (float)this->height_,
+      0.1f, 100.0f);
+  glm::mat4 view = camera_->GetViewMatrix();
+  shader_->setMat4("projection", projection);
+  shader_->setMat4("view", view);
+
+  glm::mat4 model = glm::mat4(1.0f);
+  model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+  model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+  shader_->setMat4("model", model);
+  model_->Draw(*shader_);
 }
 
 void Renderer::Cleanup() {
