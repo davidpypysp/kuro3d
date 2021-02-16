@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "cmake .. && make -j",
+            "command": "cmake -DCMAKE_BUILD_TYPE=Debug .. && make -j",
             "options": {
                 "cwd": "${workspaceFolder}/build"
             },
