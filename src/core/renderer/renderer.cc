@@ -114,20 +114,20 @@ void Renderer::DrawRectangle() {
 }
 
 void Renderer::DrawModel() {
-  shader_->use();
+  shader_->Use();
 
   glm::mat4 projection = glm::perspective(
-      glm::radians(camera_->Zoom), (float)this->width_ / (float)this->height_,
+      glm::radians(camera_->zoom()), (float)this->width_ / (float)this->height_,
       0.1f, 100.0f);
   glm::mat4 view = camera_->GetViewMatrix();
 
-  shader_->setMat4("projection", projection);
-  shader_->setMat4("view", view);
+  shader_->SetMat4("projection", projection);
+  shader_->SetMat4("view", view);
 
   glm::mat4 model = glm::mat4(1.0f);
   model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
   model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
-  shader_->setMat4("model", model);
+  shader_->SetMat4("model", model);
   model_->Draw(*shader_);
 }
 
