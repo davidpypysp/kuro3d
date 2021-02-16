@@ -2,17 +2,18 @@
 
 namespace kuro {
 
-Model::Model(std::string const &path, bool gamma) : gammaCorrection(gamma) {
-  loadModel(path);
+Model::Model(const std::string &path, const bool gamma)
+    : gamma_correction_(gamma) {
+  LoadModel(path);
 }
 
-void Model::Draw(Shader &shader) {
-  for (unsigned int i = 0; i < meshes.size(); i++) {
-    meshes[i].Draw(shader);
+void Model::Draw(const Shader &shader) {
+  for (unsigned int i = 0; i < meshes_.size(); i++) {
+    meshes_[i].Draw(shader);
   }
 }
 
-void Model::loadModel(std::string const &path) {
+void Model::LoadModel(const std::string &path) {
   Assimp::Importer importer;
   const aiScene *scene = importer.ReadFile(
       path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
@@ -22,21 +23,21 @@ void Model::loadModel(std::string const &path) {
       !scene->mRootNode) {
     std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
   }
-  directory = path.substr(0, path.find_last_of('/'));
-  processNode(scene->mRootNode, scene);
+  directory_ = path.substr(0, path.find_last_of('/'));
+  ProcessNode(scene->mRootNode, scene);
 }
 
-void Model::processNode(aiNode *node, const aiScene *scene) {
+void Model::ProcessNode(aiNode *node, const aiScene *scene) {
   for (unsigned int i = 0; i < node->mNumMeshes; i++) {
     aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
-    meshes.push_back(processMesh(mesh, scene));
+    meshes_.push_back(ProcessMesh(mesh, scene));
   }
   for (unsigned int i = 0; i < node->mNumChildren; i++) {
-    processNode(node->mChildren[i], scene);
+    ProcessNode(node->mChildren[i], scene);
   }
 }
 
-Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
+Mesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
   std::vector<Texture> textures;
@@ -47,31 +48,31 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
     vector.x = mesh->mVertices[i].x;
     vector.y = mesh->mVertices[i].y;
     vector.z = mesh->mVertices[i].z;
-    vertex.Position = vector;
+    vertex.position = vector;
 
     if (mesh->HasNormals()) {
       vector.x = mesh->mNormals[i].x;
       vector.y = mesh->mNormals[i].y;
       vector.z = mesh->mNormals[i].z;
-      vertex.Normal = vector;
+      vertex.normal = vector;
     }
     if (mesh->mTextureCoords[0]) {
       glm::vec2 vec;
       vec.x = mesh->mTextureCoords[0][i].x;
       vec.y = mesh->mTextureCoords[0][i].y;
-      vertex.TexCoords = vec;
+      vertex.tex_coords = vec;
 
       vector.x = mesh->mTangents[i].x;
       vector.y = mesh->mTangents[i].y;
       vector.z = mesh->mTangents[i].z;
-      vertex.Tangent = vector;
+      vertex.tangent = vector;
 
       vector.x = mesh->mBitangents[i].x;
       vector.y = mesh->mBitangents[i].y;
       vector.z = mesh->mBitangents[i].z;
-      vertex.Bitangent = vector;
+      vertex.bitangent = vector;
     } else
-      vertex.TexCoords = glm::vec2(0.0f, 0.0f);
+      vertex.tex_coords = glm::vec2(0.0f, 0.0f);
     vertices.push_back(vertex);
   }
 
@@ -84,46 +85,46 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene) {
 
   aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
   std::vector<Texture> diffuseMaps =
-      loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+      LoadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
   textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
 
-  std::vector<Texture> specularMaps = loadMaterialTextures(
+  std::vector<Texture> specularMaps = LoadMaterialTextures(
       material, aiTextureType_SPECULAR, "texture_specular");
   textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
   std::vector<Texture> normalMaps =
-      loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+      LoadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
   textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
   std::vector<Texture> heightMaps =
-      loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
+      LoadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
   textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
   return Mesh(vertices, indices, textures);
 }
 
-std::vector<Texture> Model::loadMaterialTextures(aiMaterial *mat,
+std::vector<Texture> Model::LoadMaterialTextures(aiMaterial *mat,
                                                  aiTextureType type,
-                                                 std::string typeName) {
+                                                 const std::string &typeName) {
   std::vector<Texture> textures;
   for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
     aiString str;
     mat->GetTexture(type, i, &str);
     bool skip = false;
-    for (unsigned int j = 0; j < textures_loaded.size(); j++) {
-      if (std::strcmp(textures_loaded[j].path.data(), str.C_Str()) == 0) {
-        textures.push_back(textures_loaded[j]);
+    for (unsigned int j = 0; j < textures_loaded_.size(); j++) {
+      if (std::strcmp(textures_loaded_[j].path.data(), str.C_Str()) == 0) {
+        textures.push_back(textures_loaded_[j]);
         skip = true;
         break;
       }
     }
     if (!skip) {
       Texture texture;
-      texture.id = TextureFromFile(str.C_Str(), this->directory);
+      texture.id = TextureFromFile(str.C_Str(), this->directory_);
       texture.type = typeName;
       texture.path = str.C_Str();
       textures.push_back(texture);
-      textures_loaded.push_back(texture);
+      textures_loaded_.push_back(texture);
     }
   }
   return textures;

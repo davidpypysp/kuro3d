@@ -4,12 +4,13 @@
 #include "src/core/renderer/shader.h"
 #include "src/core/renderer/model.h"
 #include "src/core/renderer/camera.h"
+#include <memory>
 
 namespace kuro {
 
 class Renderer {
  public:
-  Renderer(unsigned int width, unsigned int height);
+  Renderer(const unsigned int width, const unsigned int height);
   void Init();
   void Draw();
   void Cleanup();
@@ -23,9 +24,9 @@ class Renderer {
   unsigned int vbo;
   unsigned int ebo;
 
-  Camera *camera_;
-  Shader *shader_;
-  Model *model_;
+  std::shared_ptr<Camera> camera_;
+  std::unique_ptr<Shader> shader_;
+  std::unique_ptr<Model> model_;
 
   void InitRectangle();
   void InitModel();

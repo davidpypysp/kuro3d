@@ -13,7 +13,6 @@ namespace kuro {
 
 class Shader {
  public:
-  unsigned int id_;
   unsigned int id() const { return id_; }
 
   Shader(const char *vertex_path, const char *fragment_path,
@@ -72,6 +71,7 @@ class Shader {
   }
 
  private:
+  unsigned int id_;
   // utility function for checking shader compilation/linking errors.
   // ------------------------------------------------------------------------
   void CheckCompileErrors(GLuint shader, std::string type);

@@ -8,11 +8,11 @@
 namespace kuro {
 
 struct Vertex {
-  glm::vec3 Position;
-  glm::vec3 Normal;
-  glm::vec2 TexCoords;
-  glm::vec3 Tangent;
-  glm::vec3 Bitangent;
+  glm::vec3 position;
+  glm::vec3 normal;
+  glm::vec2 tex_coords;
+  glm::vec3 tangent;
+  glm::vec3 bitangent;
 };
 
 struct Texture {
@@ -23,19 +23,21 @@ struct Texture {
 
 class Mesh {
  public:
-  std::vector<Vertex> vertices;
-  std::vector<unsigned int> indices;
-  std::vector<Texture> textures;
-  unsigned int VAO;
+  Mesh(const std::vector<Vertex> &vertices,
+       const std::vector<unsigned int> &indices,
+       const std::vector<Texture> &textures);
 
-  Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices,
-       std::vector<Texture> textures);
-
-  void Draw(Shader &shader);
+  void Draw(const Shader &shader);
 
  private:
-  unsigned int VBO, EBO;
-  void setupMesh();
+  std::vector<Vertex> vertices_;
+  std::vector<unsigned int> indices_;
+  std::vector<Texture> textures_;
+  unsigned int vao_;
+  unsigned int vbo_;
+  unsigned int ebo_;
+
+  void SetupMesh();
 };
 }  // namespace kuro
 

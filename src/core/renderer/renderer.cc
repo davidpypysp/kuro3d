@@ -8,7 +8,7 @@
 
 namespace kuro {
 
-Renderer::Renderer(unsigned int width, unsigned int height)
+Renderer::Renderer(const unsigned int width, const unsigned int height)
     : width_(width), height_(height) {}
 
 void Renderer::Init() { this->InitModel(); }
@@ -100,9 +100,10 @@ void Renderer::InitModel() {
   stbi_set_flip_vertically_on_load(true);
   glEnable(GL_DEPTH_TEST);
 
-  this->camera_ = new Camera(glm::vec3(0.0f, 0.0f, 3.0f));
-  this->shader_ = new Shader("model_loading.vert", "model_loading.frag");
-  this->model_ = new Model("resources/backpack/backpack.obj");
+  this->camera_ = std::make_shared<Camera>(glm::vec3(0.0, 0.0, 3.0));
+  this->shader_ =
+      std::make_unique<Shader>("model_loading.vert", "model_loading.frag");
+  this->model_ = std::make_unique<Model>("resources/backpack/backpack.obj");
 }
 
 void Renderer::Draw() { this->DrawModel(); }
@@ -124,9 +125,9 @@ void Renderer::DrawModel() {
   shader_->SetMat4("projection", projection);
   shader_->SetMat4("view", view);
 
-  glm::mat4 model = glm::mat4(1.0f);
-  model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-  model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));
+  glm::mat4 model = glm::mat4(1.0);
+  model = glm::translate(model, glm::vec3(0.0, 0.0, 0.0));
+  model = glm::scale(model, glm::vec3(1.0, 1.0, 1.0));
   shader_->SetMat4("model", model);
   model_->Draw(*shader_);
 }
