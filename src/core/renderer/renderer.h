@@ -3,7 +3,7 @@
 
 #include "src/core/renderer/shader.h"
 #include "src/core/renderer/model.h"
-#include "src/core/renderer/camera.h"
+#include "src/core/scene/camera.h"
 #include <memory>
 
 namespace kuro {

@@ -1,6 +1,8 @@
 #ifndef KURO_CORE_RENDERER_CAMERA_H_
 #define KURO_CORE_RENDERER_CAMERA_H_
 
+#include "src/core/scene/scene_node.h"
+
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -22,10 +24,9 @@ const float default_zoom = 45.0;
 
 // An abstract camera class that processes input and calculates the
 // corresponding Euler Angles, Vectors and Matrices for use in OpenGL
-class Camera {
+class Camera : public SceneNode {
  public:
   // camera Attributes
-  glm::vec3 position_;
   glm::vec3 front_;
   glm::vec3 up_;
   glm::vec3 right_;

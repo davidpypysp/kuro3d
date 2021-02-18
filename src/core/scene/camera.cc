@@ -1,4 +1,4 @@
-#include "src/core/renderer/camera.h"
+#include "src/core/scene/camera.h"
 
 namespace kuro {
 
@@ -56,7 +56,7 @@ void Camera::ProcessMouseMovement(const float x_offset, const float y_offset,
 
   // make sure that when pitch is out of bounds, screen doesn't get flipped
   if (constrain_pitch) {
-    if (pitch_ > 89.0f) pitch_ = 89.0;
+    if (pitch_ > 89.0) pitch_ = 89.0;
     if (pitch_ < -89.0) pitch_ = -89.0;
   }
 
