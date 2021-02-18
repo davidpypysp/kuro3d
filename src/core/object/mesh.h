@@ -1,5 +1,5 @@
-#ifndef KURO_CORE_RENDERER_MESH_H_
-#define KURO_CORE_RENDERER_MESH_H_
+#ifndef KURO_CORE_OBJECT_MESH_H_
+#define KURO_CORE_OBJECT_MESH_H_
 
 #include "src/core/renderer/shader.h"
 #include <glm/glm.hpp>

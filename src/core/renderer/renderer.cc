@@ -11,7 +11,7 @@ namespace kuro {
 Renderer::Renderer(const unsigned int width, const unsigned int height)
     : width_(width), height_(height) {}
 
-void Renderer::Init() { this->InitModel(); }
+void Renderer::Init() { this->InitScene(); }
 
 void Renderer::InitRectangle() {
   const char *vertexShaderSource =
@@ -102,11 +102,21 @@ void Renderer::InitModel() {
 
   this->camera_ = std::make_shared<Camera>(glm::vec3(0.0, 0.0, 3.0));
   this->shader_ =
-      std::make_unique<Shader>("model_loading.vert", "model_loading.frag");
+      std::make_shared<Shader>("model_loading.vert", "model_loading.frag");
   this->model_ = std::make_unique<Model>("resources/backpack/backpack.obj");
 }
 
-void Renderer::Draw() { this->DrawModel(); }
+void Renderer::InitScene() {
+  stbi_set_flip_vertically_on_load(true);
+  glEnable(GL_DEPTH_TEST);
+
+  this->scene_manager_ = std::make_unique<SceneManager>();
+  this->scene_manager_->InitDefaultScene();
+  this->shader_ =
+      std::make_shared<Shader>("model_loading.vert", "model_loading.frag");
+}
+
+void Renderer::Draw() { this->scene_manager_->Draw(shader_); }
 
 void Renderer::DrawRectangle() {
   glUseProgram(this->shader_program);

@@ -2,8 +2,9 @@
 #define KURO_CORE_RENDERER_RENDERER_H_
 
 #include "src/core/renderer/shader.h"
-#include "src/core/renderer/model.h"
+#include "src/core/object/model.h"
 #include "src/core/scene/camera.h"
+#include "src/core/scene/scene_manager.h"
 #include <memory>
 
 namespace kuro {
@@ -25,11 +26,13 @@ class Renderer {
   unsigned int ebo;
 
   std::shared_ptr<Camera> camera_;
-  std::unique_ptr<Shader> shader_;
+  std::shared_ptr<Shader> shader_;
   std::unique_ptr<Model> model_;
+  std::unique_ptr<SceneManager> scene_manager_;
 
   void InitRectangle();
   void InitModel();
+  void InitScene();
   void DrawRectangle();
   void DrawModel();
 };

@@ -1,4 +1,4 @@
-#include "src/core/renderer/mesh.h"
+#include "src/core/object/mesh.h"
 
 namespace kuro {
 

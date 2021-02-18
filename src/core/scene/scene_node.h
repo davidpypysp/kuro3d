@@ -1,7 +1,7 @@
 #ifndef KURO_CORE_SCENE_SCENE_NODE_H_
 #define KURO_CORE_SCENE_SCENE_NODE_H_
 
-#include "src/core/scene/scene_object.h"
+#include "src/core/object/base_object.h"
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -16,10 +16,20 @@ namespace kuro {
 class SceneNode {
  public:
   SceneNode();
+  std::shared_ptr<SceneNode> AddChildNode();
+  void AddChildNode(std::shared_ptr<SceneNode> scene_node);
+
+  void set_object(std::shared_ptr<BaseObject> object) { object_ = object; }
+  std::shared_ptr<BaseObject> object() { return object_; }
+  std::vector<std::shared_ptr<SceneNode>>& scene_nodes() {
+    return scene_nodes_;
+  }
+
+  glm::vec3 position() const { return position_; }
+  glm::vec3 rotation() const { return rotation_; }
+  glm::vec3 scale() const { return scale_; }
 
  protected:
-  std::shared_ptr<SceneNode> AddChildNode();
-
   std::string id_;
   std::string name_;
   glm::vec3 position_;
@@ -28,7 +38,7 @@ class SceneNode {
 
   std::vector<std::shared_ptr<SceneNode>> scene_nodes_;
 
-  std::shared_ptr<SceneObject> scene_object_;
+  std::shared_ptr<BaseObject> object_ = nullptr;
 };
 
 }  // namespace kuro

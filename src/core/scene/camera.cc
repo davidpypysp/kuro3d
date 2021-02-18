@@ -31,6 +31,10 @@ Camera::Camera(const float pos_x, const float pos_y, const float pos_z,
   UpdateCameraVectors();
 }
 
+glm::mat4 Camera::GetPerspectiveMatrix(const float ratio) {
+  return glm::perspective(glm::radians(zoom_), ratio, 0.1f, 100.0f);
+}
+
 glm::mat4 Camera::GetViewMatrix() {
   return glm::lookAt(position_, position_ + front_, up_);
 }

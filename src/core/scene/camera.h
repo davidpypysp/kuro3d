@@ -1,5 +1,5 @@
-#ifndef KURO_CORE_RENDERER_CAMERA_H_
-#define KURO_CORE_RENDERER_CAMERA_H_
+#ifndef KURO_CORE_SCENE_CAMERA_H_
+#define KURO_CORE_SCENE_CAMERA_H_
 
 #include "src/core/scene/scene_node.h"
 
@@ -49,6 +49,8 @@ class Camera : public SceneNode {
   Camera(const float pos_x, const float pos_y, const float pos_z,
          const float up_x, const float up_y, const float up_z, const float yaw,
          const float pitch);
+
+  glm::mat4 GetPerspectiveMatrix(const float ratio);
 
   // returns the view matrix calculated using Euler Angles and the LookAt Matrix
   glm::mat4 GetViewMatrix();
