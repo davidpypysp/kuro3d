@@ -1,4 +1,4 @@
-#include "src/core/object/model.h"
+#include "src/core/elements/model.h"
 
 namespace kuro {
 

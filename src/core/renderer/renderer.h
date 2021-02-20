@@ -2,7 +2,7 @@
 #define KURO_CORE_RENDERER_RENDERER_H_
 
 #include "src/core/renderer/shader.h"
-#include "src/core/object/model.h"
+#include "src/core/elements/model.h"
 #include "src/core/scene/camera.h"
 #include "src/core/scene/scene_manager.h"
 #include <memory>

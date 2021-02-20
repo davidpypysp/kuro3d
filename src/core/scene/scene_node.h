@@ -1,7 +1,7 @@
 #ifndef KURO_CORE_SCENE_SCENE_NODE_H_
 #define KURO_CORE_SCENE_SCENE_NODE_H_
 
-#include "src/core/object/base_object.h"
+#include "src/core/elements/atom.h"
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -19,8 +19,8 @@ class SceneNode {
   std::shared_ptr<SceneNode> AddChildNode();
   void AddChildNode(std::shared_ptr<SceneNode> scene_node);
 
-  void set_object(std::shared_ptr<BaseObject> object) { object_ = object; }
-  std::shared_ptr<BaseObject> object() { return object_; }
+  void set_object(std::shared_ptr<Atom> object) { object_ = object; }
+  std::shared_ptr<Atom> object() { return object_; }
   std::vector<std::shared_ptr<SceneNode>>& scene_nodes() {
     return scene_nodes_;
   }
@@ -38,7 +38,7 @@ class SceneNode {
 
   std::vector<std::shared_ptr<SceneNode>> scene_nodes_;
 
-  std::shared_ptr<BaseObject> object_ = nullptr;
+  std::shared_ptr<Atom> object_ = nullptr;
 };
 
 }  // namespace kuro

@@ -1,8 +1,8 @@
-#ifndef KURO_CORE_OBJECT_MODEL_H_
-#define KURO_CORE_OBJECT_MODEL_H_
+#ifndef KURO_CORE_ELEMENTS_MODEL_H_
+#define KURO_CORE_ELEMENTS_MODEL_H_
 
-#include "src/core/object/mesh.h"
-#include "src/core/object/base_object.h"
+#include "src/core/elements/mesh.h"
+#include "src/core/elements/atom.h"
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
@@ -54,7 +54,7 @@ static unsigned int TextureFromFile(const char *path,
   return texture_id;
 }
 
-class Model : public BaseObject {
+class Model : public Atom {
  public:
   Model(const std::string &path, const bool gamma = false);
 

@@ -1,7 +1,8 @@
-#ifndef KURO_CORE_OBJECT_MESH_H_
-#define KURO_CORE_OBJECT_MESH_H_
+#ifndef KURO_CORE_ELEMENTS_MESH_H_
+#define KURO_CORE_ELEMENTS_MESH_H_
 
 #include "src/core/renderer/shader.h"
+#include "src/core/elements/atom.h"
 #include <glm/glm.hpp>
 #include <vector>
 
@@ -21,7 +22,7 @@ struct Texture {
   std::string path;
 };
 
-class Mesh {
+class Mesh : public Atom {
  public:
   Mesh(const std::vector<Vertex> &vertices,
        const std::vector<unsigned int> &indices,
