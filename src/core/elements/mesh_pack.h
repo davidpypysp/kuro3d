@@ -1,8 +1,8 @@
-#ifndef KURO_CORE_ELEMENTS_MESH_H_
-#define KURO_CORE_ELEMENTS_MESH_H_
+#ifndef KURO_CORE_ELEMENTS_MESH_PACK_H_
+#define KURO_CORE_ELEMENTS_MESH_PACK_H_
 
 #include "src/core/renderer/shader.h"
-#include "src/core/elements/atom.h"
+#include "src/core/elements/visual_pack.h"
 #include <glm/glm.hpp>
 #include <vector>
 
@@ -22,11 +22,11 @@ struct Texture {
   std::string path;
 };
 
-class Mesh : public Atom {
+class MeshPack : public VisualPack {
  public:
-  Mesh(const std::vector<Vertex> &vertices,
-       const std::vector<unsigned int> &indices,
-       const std::vector<Texture> &textures);
+  MeshPack(const std::vector<Vertex> &vertices,
+           const std::vector<unsigned int> &indices,
+           const std::vector<Texture> &textures);
 
   void Draw(const Shader &shader);
 
@@ -42,4 +42,4 @@ class Mesh : public Atom {
 };
 }  // namespace kuro
 
-#endif
+#endif  // KURO_CORE_ELEMENTS_MESH_PACK_H_

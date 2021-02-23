@@ -3,7 +3,7 @@
 
 #include "src/core/renderer/shader.h"
 #include "src/core/elements/model.h"
-#include "src/core/scene/camera.h"
+#include "src/core/elements/camera.h"
 #include "src/core/scene/scene_manager.h"
 #include <memory>
 

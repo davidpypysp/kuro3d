@@ -2,9 +2,9 @@
 
 namespace kuro {
 
-Mesh::Mesh(const std::vector<Vertex> &vertices,
-           const std::vector<unsigned int> &indices,
-           const std::vector<Texture> &textures) {
+MeshPack::MeshPack(const std::vector<Vertex> &vertices,
+                   const std::vector<unsigned int> &indices,
+                   const std::vector<Texture> &textures) {
   this->vertices_ = vertices;
   this->indices_ = indices;
   this->textures_ = textures;
@@ -12,7 +12,7 @@ Mesh::Mesh(const std::vector<Vertex> &vertices,
   this->SetupMesh();
 }
 
-void Mesh::Draw(const Shader &shader) {
+void MeshPack::Draw(const Shader &shader) {
   unsigned int diffuse_num = 1;
   unsigned int specular_num = 1;
   unsigned int normal_num = 1;
@@ -42,7 +42,7 @@ void Mesh::Draw(const Shader &shader) {
   glActiveTexture(GL_TEXTURE0);
 }
 
-void Mesh::SetupMesh() {
+void MeshPack::SetupMesh() {
   glGenVertexArrays(1, &vao_);
   glGenBuffers(1, &vbo_);
   glGenBuffers(1, &ebo_);

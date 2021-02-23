@@ -1,19 +1,19 @@
-#include "src/core/elements/model.h"
+#include "src/core/elements/model_pack.h"
 
 namespace kuro {
 
-Model::Model(const std::string &path, const bool gamma)
+ModelPack::ModelPack(const std::string &path, const bool gamma)
     : gamma_correction_(gamma) {
   LoadModel(path);
 }
 
-void Model::Draw(const Shader &shader) {
+void ModelPack::Draw(const Shader &shader) {
   for (unsigned int i = 0; i < meshes_.size(); i++) {
     meshes_[i].Draw(shader);
   }
 }
 
-void Model::LoadModel(const std::string &path) {
+void ModelPack::LoadModel(const std::string &path) {
   Assimp::Importer importer;
   const aiScene *scene = importer.ReadFile(
       path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
@@ -27,7 +27,7 @@ void Model::LoadModel(const std::string &path) {
   ProcessNode(scene->mRootNode, scene);
 }
 
-void Model::ProcessNode(aiNode *node, const aiScene *scene) {
+void ModelPack::ProcessNode(aiNode *node, const aiScene *scene) {
   for (unsigned int i = 0; i < node->mNumMeshes; i++) {
     aiMesh *mesh = scene->mMeshes[node->mMeshes[i]];
     meshes_.push_back(ProcessMesh(mesh, scene));
@@ -37,7 +37,7 @@ void Model::ProcessNode(aiNode *node, const aiScene *scene) {
   }
 }
 
-Mesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
+Mesh ModelPack::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
   std::vector<Texture> textures;
@@ -103,9 +103,8 @@ Mesh Model::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
   return Mesh(vertices, indices, textures);
 }
 
-std::vector<Texture> Model::LoadMaterialTextures(aiMaterial *mat,
-                                                 aiTextureType type,
-                                                 const std::string &typeName) {
+std::vector<Texture> ModelPack::LoadMaterialTextures(
+    aiMaterial *mat, aiTextureType type, const std::string &typeName) {
   std::vector<Texture> textures;
   for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
     aiString str;

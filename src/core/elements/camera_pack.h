@@ -1,7 +1,7 @@
-#ifndef KURO_CORE_SCENE_CAMERA_H_
-#define KURO_CORE_SCENE_CAMERA_H_
+#ifndef KURO_CORE_ELEMENTS_CAMERA_PACK_H_
+#define KURO_CORE_ELEMENTS_CAMERA_PACK_H_
 
-#include "src/core/scene/scene_node.h"
+#include "src/core/elements/atom.h"
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -24,16 +24,18 @@ const float default_zoom = 45.0;
 
 // An abstract camera class that processes input and calculates the
 // corresponding Euler Angles, Vectors and Matrices for use in OpenGL
-class Camera : public SceneNode {
+class CameraPack : public VisualPack {
  public:
   // camera Attributes
   glm::vec3 front_;
   glm::vec3 up_;
   glm::vec3 right_;
   glm::vec3 world_up_;
+
   // euler Angles
   float yaw_;
   float pitch_;
+
   // camera options
   float movement_speed_;
   float mouse_sensitivity_;
@@ -42,13 +44,8 @@ class Camera : public SceneNode {
   float zoom() const { return zoom_; }
 
   // constructor with vectors
-  Camera(const glm::vec3 &position = glm::vec3(0.0, 0.0, 0.0),
-         const glm::vec3 &up = glm::vec3(0.0, 1.0, 0.0),
-         const float yaw = default_yaw, const float pitch = default_pitch);
-  // constructor with scalar values
-  Camera(const float pos_x, const float pos_y, const float pos_z,
-         const float up_x, const float up_y, const float up_z, const float yaw,
-         const float pitch);
+  CameraPack(const glm::vec3 &up = glm::vec3(0.0, 1.0, 0.0),
+             const float yaw = default_yaw, const float pitch = default_pitch);
 
   glm::mat4 GetPerspectiveMatrix(const float ratio);
 
@@ -58,12 +55,13 @@ class Camera : public SceneNode {
   // processes input received from any keyboard-like input system. Accepts input
   // parameter in the form of camera defined ENUM (to abstract it from windowing
   // systems)
-  void ProcessKeyboard(const CameraMovement direction, const float delta_time);
+  // void ProcessKeyboard(const CameraMovement direction, const float
+  // delta_time);
 
-  // processes input received from a mouse input system. Expects the offset
-  // value in both the x and y direction.
-  void ProcessMouseMovement(const float x_offset, const float y_offset,
-                            GLboolean constrain_pitch = true);
+  // // processes input received from a mouse input system. Expects the offset
+  // // value in both the x and y direction.
+  // void ProcessMouseMovement(const float x_offset, const float y_offset,
+  //                           GLboolean constrain_pitch = true);
 
   // processes input received from a mouse scroll-wheel event. Only requires
   // input on the vertical wheel-axis
@@ -76,4 +74,4 @@ class Camera : public SceneNode {
 
 };  // namespace kuro
 
-#endif
+#endif  // KURO_CORE_ELEMENTS_CAMERA_PACK_H_

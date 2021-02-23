@@ -4,14 +4,23 @@ namespace kuro {
 
 SceneNode::SceneNode() {}
 
-std::shared_ptr<SceneNode> SceneNode::AddChildNode() {
-  auto scene_node = std::make_shared<SceneNode>();
-  scene_nodes_.push_back(scene_node);
-  return scene_node;
+SceneNode::SceneNode(const std::string name) : NodeBase(name) {}
+
+void SceneNode::BindPack(std::shared_ptr<Pack> pack) {
+  this->packs_.push_back(pack);
 }
 
-void SceneNode::AddChildNode(std::shared_ptr<SceneNode> scene_node) {
-  scene_nodes_.push_back(scene_node);
+void SceneNode::UnbindPack(std::shared_ptr<Pack> pack) {}
+
+PackList& SceneNode::GetPacks() { return packs_; }
+
+template <class SN>
+std::shared_ptr<SN> SceneNode::CreateChildSceneNode(const std::string& name) {
+  assert(scene_manager_);
+
+  auto child_node = this->scene_manager_->CreateSceneNode<SN>(name);
+  child_node->set_parent(shared_from_this());
+  return child_node;
 }
 
 }  // namespace kuro
