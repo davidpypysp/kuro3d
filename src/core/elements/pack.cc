@@ -4,4 +4,6 @@ namespace kuro {
 
 Pack::Pack() {}
 
+Pack::~Pack() {}
+
 }  // namespace kuro

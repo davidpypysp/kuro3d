@@ -6,11 +6,7 @@ NodeBase::NodeBase() {}
 
 NodeBase::NodeBase(const std::string& name) : name_(name) {}
 
-std::shared_ptr<NodeBase> NodeBase::CreateChild(const std::string& name) {
-  auto node = std::make_shared<NodeBase>(name);
-  AddChild(node);
-  return node;
-}
+NodeBase::~NodeBase() {}
 
 void NodeBase::AddChild(std::shared_ptr<NodeBase> node) {
   node->set_parent(shared_from_this());

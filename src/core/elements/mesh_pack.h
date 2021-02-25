@@ -1,5 +1,5 @@
-#ifndef KURO_CORE_ELEMENTS_MESH_PACK_H_
-#define KURO_CORE_ELEMENTS_MESH_PACK_H_
+#ifndef SRC_CORE_ELEMENTS_MESH_PACK_H_
+#define SRC_CORE_ELEMENTS_MESH_PACK_H_
 
 #include "src/core/renderer/shader.h"
 #include "src/core/elements/visual_pack.h"
@@ -42,4 +42,4 @@ class MeshPack : public VisualPack {
 };
 }  // namespace kuro
 
-#endif  // KURO_CORE_ELEMENTS_MESH_PACK_H_
+#endif  // SRC_CORE_ELEMENTS_MESH_PACK_H_

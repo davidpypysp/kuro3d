@@ -1,8 +1,7 @@
 #include "src/core/scene/scene_node.h"
+#include "src/core/scene/scene_manager.h"
 
 namespace kuro {
-
-SceneNode::SceneNode() {}
 
 SceneNode::SceneNode(const std::string name) : NodeBase(name) {}
 
@@ -14,13 +13,9 @@ void SceneNode::UnbindPack(std::shared_ptr<Pack> pack) {}
 
 PackList& SceneNode::GetPacks() { return packs_; }
 
-template <class SN>
-std::shared_ptr<SN> SceneNode::CreateChildSceneNode(const std::string& name) {
-  assert(scene_manager_);
-
-  auto child_node = this->scene_manager_->CreateSceneNode<SN>(name);
-  child_node->set_parent(shared_from_this());
-  return child_node;
+void SceneNode::AddChildSceneNode(std::shared_ptr<SceneNode> scene_node) {
+  AddChild(scene_node);
+  scene_manager_->AddSceneNode(scene_node);
 }
 
 }  // namespace kuro

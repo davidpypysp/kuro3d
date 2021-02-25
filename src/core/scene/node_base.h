@@ -1,20 +1,23 @@
-#ifndef KURO_CORE_SCENE_NODE_BASE_H_
-#define KURO_CORE_SCENE_NODE_BASE_H_
+#ifndef SRC_CORE_SCENE_NODE_BASE_H_
+#define SRC_CORE_SCENE_NODE_BASE_H_
 
+#include <string>
 #include <vector>
 #include <memory>
 
 namespace kuro {
 
-class NodeBase : std::enable_shared_from_this<NodeBase> {
+class NodeBase : public std::enable_shared_from_this<NodeBase> {
  public:
   NodeBase();
-  NodeBase(const std::string& name);
+  explicit NodeBase(const std::string& name);
+  virtual ~NodeBase();
 
-  std::shared_ptr<NodeBase> CreateChild(const std::string& name);
   void AddChild(std::shared_ptr<NodeBase> node);
   void RemoveChild(std::shared_ptr<NodeBase> node);
   void set_parent(std::shared_ptr<NodeBase> parent) { this->parent_ = parent; }
+
+  std::vector<std::shared_ptr<NodeBase>>& child_nodes() { return child_nodes_; }
 
  protected:
   std::string name_;
@@ -24,4 +27,4 @@ class NodeBase : std::enable_shared_from_this<NodeBase> {
 
 }  // namespace kuro
 
-#endif  // KURO_CORE_SCENE_NODE_BASE_H_
+#endif  // SRC_CORE_SCENE_NODE_BASE_H_

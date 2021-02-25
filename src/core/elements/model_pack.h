@@ -1,7 +1,7 @@
-#ifndef KURO_CORE_ELEMENTS_MODEL_PACK_H_
-#define KURO_CORE_ELEMENTS_MODEL_PACK_H_
+#ifndef SRC_CORE_ELEMENTS_MODEL_PACK_H_
+#define SRC_CORE_ELEMENTS_MODEL_PACK_H_
 
-#include "src/core/elements/mesh.h"
+#include "src/core/elements/mesh_pack.h"
 #include "src/core/elements/visual_pack.h"
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
@@ -62,7 +62,7 @@ class ModelPack : public VisualPack {
 
  private:
   std::vector<Texture> textures_loaded_;
-  std::vector<Mesh> meshes_;
+  std::vector<MeshPack> meshes_;
   std::string directory_;
   bool gamma_correction_;
 
@@ -70,7 +70,7 @@ class ModelPack : public VisualPack {
 
   void ProcessNode(aiNode *node, const aiScene *scene);
 
-  Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene);
+  MeshPack ProcessMesh(aiMesh *mesh, const aiScene *scene);
 
   std::vector<Texture> LoadMaterialTextures(aiMaterial *mat, aiTextureType type,
                                             const std::string &typeName);
@@ -78,4 +78,4 @@ class ModelPack : public VisualPack {
 
 }  // namespace kuro
 
-#endif  // KURO_CORE_RENDERER_MODEL_PACK_H_
+#endif  // SRC_CORE_RENDERER_MODEL_PACK_H_

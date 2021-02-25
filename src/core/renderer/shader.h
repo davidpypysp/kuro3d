@@ -1,5 +1,5 @@
-#ifndef KURO_CORE_RENDERER_SHADER_H_
-#define KURO_CORE_RENDERER_SHADER_H_
+#ifndef SRC_CORE_RENDERER_SHADER_H_
+#define SRC_CORE_RENDERER_SHADER_H_
 
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -79,4 +79,4 @@ class Shader {
 
 }  // namespace kuro
 
-#endif  // KURO_CORE_RENDERER_SHADER_H_
+#endif  // SRC_CORE_RENDERER_SHADER_H_

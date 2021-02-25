@@ -1,4 +1,4 @@
-#include "src/core/elements/camera.h"
+#include "src/core/elements/camera_pack.h"
 
 namespace kuro {
 

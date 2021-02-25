@@ -3,4 +3,8 @@
 namespace kuro {
 VisualPack::VisualPack() {}
 
+VisualPack::~VisualPack() {}
+
+void VisualPack::Draw(const Shader &shader) {}
+
 }  // namespace kuro

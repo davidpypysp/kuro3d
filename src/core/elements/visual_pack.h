@@ -1,5 +1,5 @@
-#ifndef KURO_CORE_ELEMENTS_VISUAL_PACK_H_
-#define KURO_CORE_ELEMENTS_VISUAL_PACK_H_
+#ifndef SRC_CORE_ELEMENTS_VISUAL_PACK_H_
+#define SRC_CORE_ELEMENTS_VISUAL_PACK_H_
 
 #include "src/core/elements/pack.h"
 
@@ -9,10 +9,11 @@ namespace kuro {
 class VisualPack : public Pack {
  public:
   VisualPack();
+  ~VisualPack();
 
   virtual void Draw(const Shader &shader);
 };
 
 }  // namespace kuro
 
-#endif  // KURO_CORE_ELEMENTS_VISUAL_PACK_H_
+#endif  // SRC_CORE_ELEMENTS_VISUAL_PACK_H_

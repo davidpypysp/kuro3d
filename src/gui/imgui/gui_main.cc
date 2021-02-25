@@ -73,7 +73,7 @@ int GuiMain::Run() {
   }
 
   gui_ = std::make_unique<Gui>(window_, glsl_version);
-  renderer_ = std::make_unique<Renderer>(window_width, window_height);
+  renderer_ = std::make_shared<Renderer>(window_width, window_height);
 
   Init();
 

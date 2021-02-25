@@ -1,5 +1,5 @@
-#ifndef KURO_GUI_IMGUI_GUI_H_
-#define KURO_GUI_IMGUI_GUI_H_
+#ifndef SRC_GUI_IMGUI_GUI_H_
+#define SRC_GUI_IMGUI_GUI_H_
 
 #include <glad/glad.h>  // Initialize with gladLoadGL()
 #include <GLFW/glfw3.h>
@@ -26,4 +26,4 @@ class Gui {
 
 }  // namespace kuro
 
-#endif  // KURO_GUI_IMGUI_GUI_H_
+#endif  // SRC_GUI_IMGUI_GUI_H_

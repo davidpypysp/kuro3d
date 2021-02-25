@@ -1,13 +1,16 @@
 set(EXE_NAME kuro3d)
 
+include_directories(${CMAKE_SOURCE_DIR})
+
+file(GLOB_RECURSE PROJECT_HEADERS
+    ${CMAKE_SOURCE_DIR}/src/*.h
+)
 file(GLOB_RECURSE PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/src/*.cc
 )
 
+add_executable(${EXE_NAME} ${PROJECT_HEADERS} ${PROJECT_SOURCES})
 
-add_executable(${EXE_NAME} ${PROJECT_SOURCES})
-
-include_directories(${CMAKE_SOURCE_DIR})
 
 target_link_libraries(${EXE_NAME}
     ${IMGUI_LIBRARIES}

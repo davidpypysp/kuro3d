@@ -37,7 +37,7 @@ void ModelPack::ProcessNode(aiNode *node, const aiScene *scene) {
   }
 }
 
-Mesh ModelPack::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
+MeshPack ModelPack::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
   std::vector<Texture> textures;
@@ -100,7 +100,7 @@ Mesh ModelPack::ProcessMesh(aiMesh *mesh, const aiScene *scene) {
       LoadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
   textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
-  return Mesh(vertices, indices, textures);
+  return MeshPack(vertices, indices, textures);
 }
 
 std::vector<Texture> ModelPack::LoadMaterialTextures(

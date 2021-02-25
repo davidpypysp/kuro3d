@@ -1,13 +1,12 @@
-#ifndef KURO_CORE_ELEMENTS_CAMERA_PACK_H_
-#define KURO_CORE_ELEMENTS_CAMERA_PACK_H_
-
-#include "src/core/elements/atom.h"
+#ifndef SRC_CORE_ELEMENTS_CAMERA_PACK_H_
+#define SRC_CORE_ELEMENTS_CAMERA_PACK_H_
 
 #include <glad/glad.h>
+#include <vector>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include <vector>
+#include "src/core/elements/pack.h"
 
 namespace kuro {
 
@@ -24,7 +23,7 @@ const float default_zoom = 45.0;
 
 // An abstract camera class that processes input and calculates the
 // corresponding Euler Angles, Vectors and Matrices for use in OpenGL
-class CameraPack : public VisualPack {
+class CameraPack : public Pack {
  public:
   // camera Attributes
   glm::vec3 front_;
@@ -50,7 +49,7 @@ class CameraPack : public VisualPack {
   glm::mat4 GetPerspectiveMatrix(const float ratio);
 
   // returns the view matrix calculated using Euler Angles and the LookAt Matrix
-  glm::mat4 GetViewMatrix();
+  glm::mat4 GetViewMatrix(const glm::vec3 &position);
 
   // processes input received from any keyboard-like input system. Accepts input
   // parameter in the form of camera defined ENUM (to abstract it from windowing
@@ -74,4 +73,4 @@ class CameraPack : public VisualPack {
 
 };  // namespace kuro
 
-#endif  // KURO_CORE_ELEMENTS_CAMERA_PACK_H_
+#endif  // SRC_CORE_ELEMENTS_CAMERA_PACK_H_
