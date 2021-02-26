@@ -6,11 +6,20 @@
 
 namespace kuro {
 
+class SceneNode;
+
 // the basic unit of all elements
 class Pack {
  public:
   Pack();
   virtual ~Pack();
+
+  void set_scene_node(std::shared_ptr<SceneNode> scene_node) {
+    scene_node_ = scene_node;
+  }
+
+ private:
+  std::shared_ptr<SceneNode> scene_node_;
 };
 
 }  // namespace kuro

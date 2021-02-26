@@ -9,18 +9,18 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "src/core/elements/pack.h"
 #include "src/core/scene/node_base.h"
 
 namespace kuro {
 
 class SceneManager;
+class Pack;
 
 typedef std::vector<std::shared_ptr<Pack>> PackList;
 
 class SceneNode : public NodeBase {
  public:
-  explicit SceneNode(const std::string name);
+  explicit SceneNode(const std::string& name);
 
   void BindPack(std::shared_ptr<Pack> pack);
   void UnbindPack(std::shared_ptr<Pack> pack);
