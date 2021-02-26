@@ -16,6 +16,14 @@ class CameraAtom : public Atom, public SceneNode {
 
   static std::shared_ptr<CameraAtom> Create(const std::string& name);
 
+  void set_camera_pack(std::shared_ptr<CameraPack> camera_pack) {
+    camera_pack_ = camera_pack;
+  }
+
+  std::shared_ptr<CameraPack> camera_pack() { return camera_pack_; }
+
+  void DrawSceneNode(SceneNode& scene_node, Shader& shader);
+
  protected:
   std::shared_ptr<CameraPack> camera_pack_;
 };

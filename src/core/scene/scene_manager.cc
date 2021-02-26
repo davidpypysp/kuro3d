@@ -1,6 +1,6 @@
 #include "src/core/scene/scene_manager.h"
 #include "src/core/elements/model_pack.h"
-#include "src/core/scene/camera_node.h"
+#include "src/core/atoms/camera_atom.h"
 
 namespace kuro {
 
@@ -11,10 +11,9 @@ void SceneManager::CreateDefaultScene() {
   AddSceneNode(this->root_node_);
 
   // default camera
-  auto camera_node = std::make_shared<CameraNode>("camera");
-  AddSceneNode(camera_node);
-  camera_node->set_position(glm::vec3(0, 0, 3));
-  current_camera_node_ = camera_node;
+  current_camera_ = CameraAtom::Create("default_camera");
+  AddSceneNode(current_camera_);
+  current_camera_->set_position(glm::vec3(0, 0, 3));
 
   // example model
   auto model_pack =
@@ -31,7 +30,7 @@ void SceneManager::Draw(std::shared_ptr<Shader> shader) {
 
 void SceneManager::DrawNodeTree(std::shared_ptr<SceneNode> scene_node,
                                 std::shared_ptr<Shader> shader) {
-  this->current_camera_node_->DrawSceneNode(scene_node, shader);
+  current_camera_->DrawSceneNode(*scene_node, *shader);
   for (auto child_node : scene_node->child_nodes()) {
     DrawNodeTree(child_node, shader);
   }
