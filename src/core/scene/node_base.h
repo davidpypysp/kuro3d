@@ -7,22 +7,22 @@
 
 namespace kuro {
 
-class NodeBase : public std::enable_shared_from_this<NodeBase> {
+template <class T>
+class NodeBase : public std::enable_shared_from_this<T> {
  public:
-  NodeBase();
-  explicit NodeBase(const std::string& name);
-  virtual ~NodeBase();
+  explicit NodeBase(const std::string& name) : name_(name) {}
+  virtual ~NodeBase() {}
 
-  void AddChild(std::shared_ptr<NodeBase> node);
-  void RemoveChild(std::shared_ptr<NodeBase> node);
-  void set_parent(std::shared_ptr<NodeBase> parent) { this->parent_ = parent; }
+  void AddChild(std::shared_ptr<T> node) { child_nodes_.push_back(node); }
+  void RemoveChild(std::shared_ptr<T> node) {}
+  void set_parent(std::shared_ptr<T> parent) { this->parent_ = parent; }
 
-  std::vector<std::shared_ptr<NodeBase>>& child_nodes() { return child_nodes_; }
+  std::vector<std::shared_ptr<T>>& child_nodes() { return child_nodes_; }
 
  protected:
   std::string name_;
-  std::vector<std::shared_ptr<NodeBase>> child_nodes_;
-  std::shared_ptr<NodeBase> parent_;
+  std::vector<std::shared_ptr<T>> child_nodes_;
+  std::shared_ptr<T> parent_;
 };
 
 }  // namespace kuro

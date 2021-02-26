@@ -18,7 +18,7 @@ class Pack;
 
 typedef std::vector<std::shared_ptr<Pack>> PackList;
 
-class SceneNode : public NodeBase {
+class SceneNode : public NodeBase<SceneNode> {
  public:
   explicit SceneNode(const std::string& name);
 

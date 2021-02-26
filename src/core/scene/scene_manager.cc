@@ -33,7 +33,7 @@ void SceneManager::DrawNodeTree(std::shared_ptr<SceneNode> scene_node,
                                 std::shared_ptr<Shader> shader) {
   this->current_camera_node_->DrawSceneNode(scene_node, shader);
   for (auto child_node : scene_node->child_nodes()) {
-    DrawNodeTree(std::static_pointer_cast<SceneNode>(child_node), shader);
+    DrawNodeTree(child_node, shader);
   }
 }
 
