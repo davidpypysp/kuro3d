@@ -3,8 +3,7 @@
 
 namespace kuro {
 
-CameraAtom::CameraAtom(const std::string& name)
-    : Atom(name), SceneNode("scene_node_" + name) {}
+CameraAtom::CameraAtom(const std::string& name) : SceneAtom(name) {}
 
 std::shared_ptr<CameraAtom> CameraAtom::Create(const std::string& name) {
   auto camera_atom = std::make_shared<CameraAtom>(name);

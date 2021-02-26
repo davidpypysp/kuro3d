@@ -4,13 +4,12 @@
 #include <string>
 #include <memory>
 
-#include "src/core/atoms/atom.h"
-#include "src/core/scene/scene_node.h"
+#include "src/core/atoms/scene_atom.h"
 #include "src/core/elements/camera_pack.h"
 
 namespace kuro {
 
-class CameraAtom : public Atom, public SceneNode {
+class CameraAtom : public SceneAtom {
  public:
   explicit CameraAtom(const std::string& name);
 

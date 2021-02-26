@@ -1,10 +1,12 @@
 #ifndef SRC_CORE_ELEMENTS_MESH_PACK_H_
 #define SRC_CORE_ELEMENTS_MESH_PACK_H_
 
+#include <vector>
+#include <string>
+#include <glm/glm.hpp>
+
 #include "src/core/renderer/shader.h"
 #include "src/core/elements/visual_pack.h"
-#include <glm/glm.hpp>
-#include <vector>
 
 namespace kuro {
 

@@ -9,12 +9,9 @@
 
 namespace kuro {
 
-class SceneAtom : public Atom {
+class SceneAtom : public Atom, public SceneNode {
  public:
   explicit SceneAtom(const std::string& name);
-
- protected:
-  std::shared_ptr<SceneNode> scene_node_;
 };
 
 }  // namespace kuro

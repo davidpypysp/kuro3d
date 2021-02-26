@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_SCENE_NODE_BASE_H_
-#define SRC_CORE_SCENE_NODE_BASE_H_
+#ifndef SRC_UTILS_NODE_BASE_H_
+#define SRC_UTILS_NODE_BASE_H_
 
 #include <string>
 #include <vector>
@@ -27,4 +27,4 @@ class NodeBase : public std::enable_shared_from_this<T> {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_SCENE_NODE_BASE_H_
+#endif  // SRC_UTILS_NODE_BASE_H_

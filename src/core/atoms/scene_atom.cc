@@ -2,8 +2,6 @@
 
 namespace kuro {
 
-SceneAtom::SceneAtom(const std::string &name)
-    : Atom(name),
-      scene_node_(std::make_shared<SceneNode>("scene_node_" + name)) {}
+SceneAtom::SceneAtom(const std::string &name) : Atom(), SceneNode(name) {}
 
 }  // namespace kuro

@@ -9,7 +9,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "src/core/scene/node_base.h"
+#include "src/utils/node_base.h"
 
 namespace kuro {
 

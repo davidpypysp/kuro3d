@@ -7,10 +7,9 @@ namespace kuro {
 
 class Atom {
  public:
-  explicit Atom(const std::string& name);
+  explicit Atom();
 
  protected:
-  std::string name_;
 };
 
 }  // namespace kuro

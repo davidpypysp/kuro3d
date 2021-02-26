@@ -2,6 +2,6 @@
 
 namespace kuro {
 
-Atom::Atom(const std::string &name) : name_(name) {}
+Atom::Atom() {}
 
 }  // namespace kuro
