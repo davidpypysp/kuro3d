@@ -4,6 +4,8 @@
 
 namespace kuro {
 
+Gui* Gui::instance_ = nullptr;
+
 Gui::Gui(GLFWwindow* window, const char* glsl_version) {
   // Setup Dear ImGui context
   IMGUI_CHECKVERSION();
@@ -25,6 +27,12 @@ Gui::Gui(GLFWwindow* window, const char* glsl_version) {
   ImGui_ImplGlfw_InitForOpenGL(window, true);
   ImGui_ImplOpenGL3_Init(glsl_version);
 }
+
+void Gui::Init(GLFWwindow* window, const char* glsl_version) {
+  instance_ = new Gui(window, glsl_version);
+}
+
+Gui* Gui::Instance() { return instance_; }
 
 void Gui::Draw() {
   // Start the Dear ImGui frame

@@ -1,24 +1,28 @@
 #ifndef SRC_GUI_IMGUI_GUI_MAIN_H_
 #define SRC_GUI_IMGUI_GUI_MAIN_H_
 
-#include "src/gui/imgui/gui.h"
-#include "src/core/renderer/renderer.h"
 #include <iostream>
 #include <memory>
+
+#include "src/gui/imgui/gui.h"
+#include "src/core/engine.h"
 
 namespace kuro {
 
 class GuiMain {
  public:
   GuiMain();
+  static GuiMain* Instance();
+
   int Run();
-  void Init();
   void Loop();
   void Cleanup();
 
- private:
-  std::unique_ptr<Gui> gui_;
-  std::shared_ptr<Renderer> renderer_;
+  static void FrameBufferSizeCallback(GLFWwindow* window, int width,
+                                      int height);
+
+ protected:
+  static GuiMain* instance_;
   GLFWwindow* window_;
 };
 

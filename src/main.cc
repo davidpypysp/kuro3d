@@ -9,6 +9,6 @@
 #include "src/gui/imgui/gui_main.h"
 
 int main(int, char **) {
-  kuro::GuiMain gui_main;
-  return gui_main.Run();
+  kuro::GuiMain::Instance()->Run();
+  return 0;
 }

@@ -1,5 +1,6 @@
 #include "src/core/atoms/camera_atom.h"
 #include "src/core/elements/visual_pack.h"
+#include "src/core/engine.h"
 
 namespace kuro {
 
@@ -17,7 +18,8 @@ void CameraAtom::DrawSceneNode(SceneNode& scene_node, Shader& shader) {
   if (scene_node.GetPacks().size() == 0) {
     return;
   }
-  const float kRatio = 2;
+  const float kRatio =
+      Engine::Instance()->window_width() / Engine::Instance()->window_height();
   glm::mat4 projection = camera_pack_->GetPerspectiveMatrix(kRatio);
   glm::mat4 view = camera_pack_->GetViewMatrix(position_);
 

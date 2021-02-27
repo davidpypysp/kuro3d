@@ -2,26 +2,21 @@
 #define SRC_CORE_RENDERER_RENDERER_H_
 
 #include <memory>
+#include <stb_image.h>
 #include "src/core/renderer/shader.h"
-#include "src/core/elements/model_pack.h"
-#include "src/core/elements/camera_pack.h"
-#include "src/core/scene/scene_manager.h"
 
 namespace kuro {
 
 class Renderer {
  public:
-  Renderer(const unsigned int width, const unsigned int height);
+  Renderer();
   void Init();
-  void Draw();
   void Cleanup();
 
- private:
-  unsigned int width_;
-  unsigned int height_;
+  std::shared_ptr<Shader> shader() { return shader_; }
 
+ private:
   std::shared_ptr<Shader> shader_;
-  std::shared_ptr<SceneManager> scene_manager_;
 };
 
 }  // namespace kuro

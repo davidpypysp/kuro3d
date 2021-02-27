@@ -18,14 +18,16 @@ static void glfw_error_callback(int error, const char *description) {
   fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-static void framebuffer_size_callback(GLFWwindow *window, int width,
-                                      int height) {
-  std::cout << "framebuffer size = "
-            << "width=" << width << "height=" << height << std::endl;
-  glViewport(0, 0, width, height);
-}
+GuiMain *GuiMain::instance_ = nullptr;
 
 GuiMain::GuiMain() {}
+
+GuiMain *GuiMain::Instance() {
+  if (!instance_) {
+    instance_ = new GuiMain();
+  }
+  return instance_;
+}
 
 int GuiMain::Run() {
   const unsigned int window_width = 3600, window_height = 1800;
@@ -60,7 +62,7 @@ int GuiMain::Run() {
   }
   glfwMakeContextCurrent(window_);
   glfwSwapInterval(1);  // Enable vsync
-  glfwSetFramebufferSizeCallback(window_, framebuffer_size_callback);
+  glfwSetFramebufferSizeCallback(window_, FrameBufferSizeCallback);
 
   // Initialize OpenGL loader
   bool err = gladLoadGL() == 0;
@@ -72,16 +74,13 @@ int GuiMain::Run() {
     return 1;
   }
 
-  gui_ = std::make_unique<Gui>(window_, glsl_version);
-  renderer_ = std::make_shared<Renderer>(window_width, window_height);
-
-  Init();
+  Engine::Init();
+  Engine::Instance()->SetWindowSize(window_width, window_height);
+  Gui::Init(window_, glsl_version);
 
   // Main loop
   while (!glfwWindowShouldClose(window_)) {
     glfwPollEvents();
-    int display_w, display_h;
-    glfwGetFramebufferSize(window_, &display_w, &display_h);
 
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -97,21 +96,23 @@ int GuiMain::Run() {
   return 0;
 }
 
-void GuiMain::Init() {
-  std::cout << "init" << std::endl;
-  renderer_->Init();
-  std::cout << "ready" << std::endl;
-}
-
 void GuiMain::Loop() {
-  renderer_->Draw();
-  gui_->Draw();
+  Engine::Instance()->Draw();
+  Gui::Instance()->Draw();
 }
 
 void GuiMain::Cleanup() {
   // Cleanup
-  renderer_->Cleanup();
-  gui_->Cleanup();
+  Engine::Instance()->Cleanup();
+  Gui::Instance()->Cleanup();
+}
+
+void GuiMain::FrameBufferSizeCallback(GLFWwindow *window, int width,
+                                      int height) {
+  std::cout << "framebuffer size = "
+            << "width=" << width << "height=" << height << std::endl;
+  Engine::Instance()->SetWindowSize(width, height);
+  glViewport(0, 0, width, height);
 }
 
 }  // namespace kuro
