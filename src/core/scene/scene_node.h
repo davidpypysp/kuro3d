@@ -22,6 +22,8 @@ class SceneNode : public NodeBase<SceneNode> {
  public:
   explicit SceneNode(const std::string& name);
 
+  static std::shared_ptr<SceneNode> Create(const std::string& name);
+
   void BindPack(std::shared_ptr<Pack> pack);
   void UnbindPack(std::shared_ptr<Pack> pack);
   PackList& GetPacks();
@@ -44,6 +46,7 @@ class SceneNode : public NodeBase<SceneNode> {
   glm::vec3 scale() const { return scale_; }
   void set_scale(const glm::vec3& scale) { scale_ = scale; }
 
+  std::shared_ptr<SceneManager> scene_manager() { return scene_manager_; }
   void set_scene_manager(std::shared_ptr<SceneManager> scene_manager) {
     scene_manager_ = scene_manager;
   }

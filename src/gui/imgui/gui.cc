@@ -43,7 +43,9 @@ void Gui::Draw() {
   // 1. Show the big demo window (Most of the sample code is in
   // ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear
   // ImGui!).
-  if (this->show_demo_window_) ImGui::ShowDemoWindow(&this->show_demo_window_);
+  if (this->show_demo_window_) {
+    ImGui::ShowDemoWindow(&this->show_demo_window_);
+  }
 
   // 2. Show a simple window that we create ourselves. We use a Begin/End pair
   // to created a named window.
@@ -95,7 +97,7 @@ void Gui::Draw() {
   ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void Gui::Cleanup() {
+Gui::~Gui() {
   ImGui_ImplOpenGL3_Shutdown();
   ImGui_ImplGlfw_Shutdown();
   ImGui::DestroyContext();

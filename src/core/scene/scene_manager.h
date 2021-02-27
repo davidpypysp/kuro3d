@@ -6,10 +6,10 @@
 #include <string>
 
 #include "src/core/renderer/shader.h"
+#include "src/core/scene/scene_node.h"
 
 namespace kuro {
 
-class SceneNode;
 class CameraAtom;
 
 typedef std::vector<std::shared_ptr<SceneNode>> SceneNodeList;
@@ -22,8 +22,17 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
 
   void AddSceneNode(std::shared_ptr<SceneNode> scene_node);
 
-  // template <class T = SceneNode>
-  // std::shared_ptr<T> CreateSceneNode(const std::string &name);
+  template <class T = SceneNode>
+  std::shared_ptr<T> CreateSceneNode(
+      const std::string &name,
+      const std::shared_ptr<SceneNode> parent = nullptr) {
+    auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
+    scene_node->set_scene_manager(shared_from_this());
+    if (parent && parent->scene_manager() == shared_from_this()) {
+      parent->AddChildSceneNode(scene_node);
+    }
+    return std::static_pointer_cast<T>(scene_node);
+  }
 
  protected:
   void DrawNodeTree(std::shared_ptr<SceneNode> scene_node,

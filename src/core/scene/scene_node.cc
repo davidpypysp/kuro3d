@@ -6,6 +6,11 @@ namespace kuro {
 
 SceneNode::SceneNode(const std::string& name) : NodeBase(name) {}
 
+std::shared_ptr<SceneNode> SceneNode::Create(const std::string& name) {
+  auto scene_node = std::make_shared<SceneNode>(name);
+  return scene_node;
+}
+
 void SceneNode::BindPack(std::shared_ptr<Pack> pack) {
   this->packs_.push_back(pack);
   pack->set_scene_node(shared_from_this());

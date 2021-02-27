@@ -76,8 +76,8 @@ int GuiMain::Run() {
 
   Engine::Init();
   Engine::Instance()->SetWindowSize(window_width, window_height);
-  Gui::Init(window_, glsl_version);
-
+  Gui::Init(window_, glsl_version)
+;
   // Main loop
   while (!glfwWindowShouldClose(window_)) {
     glfwPollEvents();
@@ -90,8 +90,6 @@ int GuiMain::Run() {
     glfwSwapBuffers(window_);
   }
 
-  Cleanup();
-
   glfwTerminate();
   return 0;
 }
@@ -101,11 +99,7 @@ void GuiMain::Loop() {
   Gui::Instance()->Draw();
 }
 
-void GuiMain::Cleanup() {
-  // Cleanup
-  Engine::Instance()->Cleanup();
-  Gui::Instance()->Cleanup();
-}
+GuiMain::~GuiMain() {}
 
 void GuiMain::FrameBufferSizeCallback(GLFWwindow *window, int width,
                                       int height) {

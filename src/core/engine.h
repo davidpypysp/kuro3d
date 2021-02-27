@@ -24,7 +24,6 @@ class Engine {
   unsigned int window_height() const { return window_height_; }
 
   void Draw();
-  void Cleanup();
 
  protected:
   static Engine* instance_;

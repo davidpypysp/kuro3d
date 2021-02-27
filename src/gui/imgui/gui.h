@@ -13,6 +13,7 @@ namespace kuro {
 class Gui {
  public:
   Gui(GLFWwindow* window, const char* glsl_version);
+  ~Gui();
   static void Init(GLFWwindow* window, const char* glsl_version);
   static Gui* Instance();
 

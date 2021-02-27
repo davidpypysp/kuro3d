@@ -7,20 +7,17 @@ namespace kuro {
 SceneManager::SceneManager() {}
 
 void SceneManager::CreateDefaultScene() {
-  this->root_node_ = std::make_shared<SceneNode>("root");
-  AddSceneNode(this->root_node_);
+  this->root_node_ = CreateSceneNode<SceneNode>("root");
 
   // default camera
-  current_camera_ = CameraAtom::Create("default_camera");
-  AddSceneNode(current_camera_);
+  current_camera_ = CreateSceneNode<CameraAtom>("default_camera", root_node_);
   current_camera_->set_position(glm::vec3(0, 0, 3));
 
   // example model
+  auto example_node = CreateSceneNode<SceneNode>("example_model", root_node_);
   auto model_pack =
       std::make_shared<ModelPack>("resources/backpack/backpack.obj");
-  auto example_node = std::make_shared<SceneNode>("example_model");
   example_node->BindPack(model_pack);
-  this->root_node_->AddChildSceneNode(example_node);
 }
 
 void SceneManager::Draw(std::shared_ptr<Shader> shader) {
@@ -39,11 +36,5 @@ void SceneManager::DrawNodeTree(std::shared_ptr<SceneNode> scene_node,
 void SceneManager::AddSceneNode(std::shared_ptr<SceneNode> scene_node) {
   scene_node->set_scene_manager(shared_from_this());
 }
-
-// template <class T>
-// std::shared_ptr<T> SceneManager::CreateSceneNode(const std::string &name) {
-//   std::shared_ptr<SceneNode> t = std::make_shared<T>(name);
-//   return std::static_pointer_cast<T>(t);
-// }
 
 }  // namespace kuro

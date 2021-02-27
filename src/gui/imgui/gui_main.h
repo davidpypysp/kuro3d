@@ -12,6 +12,7 @@ namespace kuro {
 class GuiMain {
  public:
   GuiMain();
+  ~GuiMain();
   static GuiMain* Instance();
 
   int Run();

@@ -51,21 +51,6 @@ class CameraPack : public Pack {
   // returns the view matrix calculated using Euler Angles and the LookAt Matrix
   glm::mat4 GetViewMatrix(const glm::vec3 &position);
 
-  // processes input received from any keyboard-like input system. Accepts input
-  // parameter in the form of camera defined ENUM (to abstract it from windowing
-  // systems)
-  // void ProcessKeyboard(const CameraMovement direction, const float
-  // delta_time);
-
-  // // processes input received from a mouse input system. Expects the offset
-  // // value in both the x and y direction.
-  // void ProcessMouseMovement(const float x_offset, const float y_offset,
-  //                           GLboolean constrain_pitch = true);
-
-  // processes input received from a mouse scroll-wheel event. Only requires
-  // input on the vertical wheel-axis
-  void ProcessMouseScroll(const float y_offset);
-
  private:
   // calculates the front vector from the Camera's (updated) Euler Angles
   void UpdateCameraVectors();

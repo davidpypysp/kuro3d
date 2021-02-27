@@ -10,8 +10,8 @@ namespace kuro {
 class Renderer {
  public:
   Renderer();
+  ~Renderer();
   void Init();
-  void Cleanup();
 
   std::shared_ptr<Shader> shader() { return shader_; }
 

@@ -13,11 +13,11 @@ Renderer::Renderer() {
       std::make_shared<Shader>("model_loading.vert", "model_loading.frag");
 }
 
+Renderer::~Renderer() {}
+
 void Renderer::Init() {
   stbi_set_flip_vertically_on_load(true);
   glEnable(GL_DEPTH_TEST);
 }
-
-void Renderer::Cleanup() {}
 
 }  // namespace kuro

@@ -27,6 +27,4 @@ void Engine::SetWindowSize(const unsigned int width,
 
 void Engine::Draw() { scene_manager_->Draw(renderer_->shader()); }
 
-void Engine::Cleanup() { renderer_->Cleanup(); }
-
 }  // namespace kuro
