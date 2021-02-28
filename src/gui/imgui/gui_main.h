@@ -9,6 +9,8 @@
 
 namespace kuro {
 
+namespace gui {
+
 class GuiMain {
  public:
   GuiMain();
@@ -26,6 +28,8 @@ class GuiMain {
   static GuiMain* instance_;
   GLFWwindow* window_;
 };
+
+}  // namespace gui
 
 }  // namespace kuro
 

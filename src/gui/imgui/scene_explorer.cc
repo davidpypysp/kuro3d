@@ -1,22 +1,19 @@
-#include "src/gui/imgui/scene_viewer.h"
+#include "src/gui/imgui/scene_explorer.h"
 
 namespace kuro {
 namespace gui {
 
-SceneViewer::SceneViewer() {}
+SceneExplorer::SceneExplorer(const std::string &name) : Window(name) {}
 
-void SceneViewer::Render() {
+void SceneExplorer::Render() {
   static float f = 0.0f;
   static int counter = 0;
 
   bool show_demo_window = true;
   bool show_another_window = true;
 
-  ImGui::Begin("Hello, world!");  // Create a window called "Hello, world!"
-                                  // and append into it.
-
-  ImGui::Text("This is some useful text.");  // Display some text (you can
-                                             // use a format strings too)
+  ImGui::Text("scene_view");  // Display some text (you can
+                              // use a format strings too)
   ImGui::Checkbox("Demo Window",
                   &show_demo_window);  // Edit bools storing our window
                                        // open/close state
@@ -33,7 +30,6 @@ void SceneViewer::Render() {
 
   ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
               1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-  ImGui::End();
 }
 
 }  // namespace gui

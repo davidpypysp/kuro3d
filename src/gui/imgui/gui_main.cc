@@ -14,6 +14,8 @@
 
 namespace kuro {
 
+namespace gui {
+
 static void glfw_error_callback(int error, const char *description) {
   fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
@@ -76,8 +78,7 @@ int GuiMain::Run() {
 
   Engine::Init();
   Engine::Instance()->SetWindowSize(window_width, window_height);
-  Gui::Init(window_, glsl_version)
-;
+  Gui::Init(window_, glsl_version);
   // Main loop
   while (!glfwWindowShouldClose(window_)) {
     glfwPollEvents();
@@ -108,5 +109,7 @@ void GuiMain::FrameBufferSizeCallback(GLFWwindow *window, int width,
   Engine::Instance()->SetWindowSize(width, height);
   glViewport(0, 0, width, height);
 }
+
+}  // namespace gui
 
 }  // namespace kuro
