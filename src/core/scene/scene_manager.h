@@ -27,6 +27,7 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
       const std::string &name,
       const std::shared_ptr<SceneNode> parent = nullptr) {
     auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
+    scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
     if (parent && parent->scene_manager() == shared_from_this()) {
       parent->AddChildSceneNode(scene_node);
@@ -41,6 +42,7 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   SceneNodeList scene_nodes_;
   std::shared_ptr<SceneNode> root_node_;
   std::shared_ptr<CameraAtom> current_camera_;
+  uint32_t scene_node_id_max_ = 0;
 };
 
 }  // namespace kuro

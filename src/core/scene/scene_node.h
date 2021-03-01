@@ -30,12 +30,7 @@ class SceneNode : public NodeBase<SceneNode> {
 
   void AddChildSceneNode(std::shared_ptr<SceneNode> scene_node);
 
-  template <class T>
-  std::shared_ptr<T> CreateChildNode(const std::string& name) {
-    std::shared_ptr<SceneNode> node = std::make_shared<T>(name);
-    AddChild(node);
-    return std::static_pointer_cast<T>(node);
-  }
+  void set_id(const uint32_t id) { id_ = id; }
 
   glm::vec3 position() const { return position_; }
   void set_position(const glm::vec3& position) { position_ = position; }
@@ -52,6 +47,8 @@ class SceneNode : public NodeBase<SceneNode> {
   }
 
  protected:
+  uint32_t id_;
+
   // transformation
   glm::vec3 position_;
   glm::vec3 rotation_;

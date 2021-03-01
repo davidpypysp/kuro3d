@@ -14,7 +14,9 @@ class NodeBase : public std::enable_shared_from_this<T> {
   virtual ~NodeBase() {}
 
   void AddChild(std::shared_ptr<T> node) { child_nodes_.push_back(node); }
+
   void RemoveChild(std::shared_ptr<T> node) {}
+
   void set_parent(std::shared_ptr<T> parent) { this->parent_ = parent; }
 
   std::vector<std::shared_ptr<T>>& child_nodes() { return child_nodes_; }
