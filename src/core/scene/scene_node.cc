@@ -11,6 +11,10 @@ std::shared_ptr<SceneNode> SceneNode::Create(const std::string& name) {
   return scene_node;
 }
 
+float* SceneNode::PositionPtr() { return &position_[0]; }
+float* SceneNode::RotationPtr() { return &rotation_[0]; }
+float* SceneNode::ScalePtr() { return &scale_[0]; }
+
 void SceneNode::BindPack(std::shared_ptr<Pack> pack) {
   this->packs_.push_back(pack);
   pack->set_scene_node(shared_from_this());

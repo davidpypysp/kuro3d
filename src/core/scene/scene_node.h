@@ -20,7 +20,7 @@ typedef std::vector<std::shared_ptr<Pack>> PackList;
 
 class SceneNode : public NodeBase<SceneNode> {
  public:
-  explicit SceneNode(const std::string& name);
+  SceneNode(const std::string& name);
 
   static std::shared_ptr<SceneNode> Create(const std::string& name);
 
@@ -35,11 +35,15 @@ class SceneNode : public NodeBase<SceneNode> {
   glm::vec3 position() const { return position_; }
   void set_position(const glm::vec3& position) { position_ = position; }
 
-  glm::vec3 rotation() const { return rotation_; }
+  glm::vec3 rotation() { return rotation_; }
   void set_rotation(const glm::vec3& rotation) { rotation_ = rotation; }
 
-  glm::vec3 scale() const { return scale_; }
+  glm::vec3 scale() { return scale_; }
   void set_scale(const glm::vec3& scale) { scale_ = scale; }
+
+  float* PositionPtr();
+  float* RotationPtr();
+  float* ScalePtr();
 
   std::shared_ptr<SceneManager> scene_manager() { return scene_manager_; }
   void set_scene_manager(std::shared_ptr<SceneManager> scene_manager) {
@@ -52,7 +56,7 @@ class SceneNode : public NodeBase<SceneNode> {
   // transformation
   glm::vec3 position_;
   glm::vec3 rotation_;
-  glm::vec3 scale_;
+  glm::vec3 scale_ = {1.0, 1.0, 1.0};
 
   std::shared_ptr<SceneManager> scene_manager_;
 

@@ -30,7 +30,7 @@ void CameraAtom::DrawSceneNode(SceneNode& scene_node, Shader& shader) {
     if (auto visual_pack = std::dynamic_pointer_cast<VisualPack>(pack)) {
       glm::mat4 model = glm::mat4(1.0);
       model = glm::translate(model, scene_node.position());
-      // model = glm::scale(model, scene_node->scale());
+      model = glm::scale(model, scene_node.scale());
       shader.SetMat4("model", model);
       visual_pack->Draw(shader);
     }

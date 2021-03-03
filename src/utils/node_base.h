@@ -13,6 +13,8 @@ class NodeBase : public std::enable_shared_from_this<T> {
   explicit NodeBase(const std::string& name) : name_(name) {}
   virtual ~NodeBase() {}
 
+  std::string name() const { return name_; }
+
   void AddChild(std::shared_ptr<T> node) { child_nodes_.push_back(node); }
 
   void RemoveChild(std::shared_ptr<T> node) {}

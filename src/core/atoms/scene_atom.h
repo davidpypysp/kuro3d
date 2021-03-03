@@ -11,7 +11,7 @@ namespace kuro {
 
 class SceneAtom : public Atom, public SceneNode {
  public:
-  explicit SceneAtom(const std::string& name);
+  SceneAtom(const std::string& name);
 };
 
 }  // namespace kuro

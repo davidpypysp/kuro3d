@@ -19,7 +19,8 @@ void Gui::Init(GLFWwindow* window, const char* glsl_version) {
 Gui* Gui::Instance() { return instance_; }
 
 void Gui::InitWindows() {
-  scene_explorer_ = AddWindow<SceneExplorer>("scene_explorer");
+  scene_explorer_ = AddWindow<SceneExplorer>("Scene Explorer");
+  object_inspector_ = AddWindow<ObjectInspector>("Object Inspector");
 }
 
 }  // namespace gui

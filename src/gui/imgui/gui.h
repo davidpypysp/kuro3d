@@ -6,6 +6,7 @@
 
 #include "src/gui/imgui/gui_base.h"
 #include "src/gui/imgui/scene_explorer.h"
+#include "src/gui/imgui/object_inspector.h"
 
 namespace kuro {
 
@@ -23,12 +24,22 @@ class Gui : public GuiBase {
     return instance_->AddWindow<T>(name);
   }
 
+  void set_selected_scene_node(std::shared_ptr<SceneNode> scene_node) {
+    selected_scene_node_ = scene_node;
+  }
+  std::shared_ptr<SceneNode> selected_scene_node() {
+    return selected_scene_node_;
+  }
+
  protected:
   static Gui* instance_;
 
   void InitWindows();
 
   std::shared_ptr<SceneExplorer> scene_explorer_;
+  std::shared_ptr<ObjectInspector> object_inspector_;
+
+  std::shared_ptr<SceneNode> selected_scene_node_;
 };
 
 }  // namespace gui

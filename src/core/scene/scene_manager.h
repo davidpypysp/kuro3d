@@ -21,14 +21,23 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   void Draw(std::shared_ptr<Shader> shader);
 
   void AddSceneNode(std::shared_ptr<SceneNode> scene_node);
+  std::shared_ptr<SceneNode> root_node() { return root_node_; }
 
   template <class T = SceneNode>
   std::shared_ptr<T> CreateSceneNode(
       const std::string &name,
-      const std::shared_ptr<SceneNode> parent = nullptr) {
+      const std::shared_ptr<SceneNode> parent = nullptr,
+      const glm::vec3 &position = glm::vec3(0.0, 0.0, 0.0),
+      const glm::vec3 &rotation = glm::vec3(0.0, 0.0, 0.0),
+      const glm::vec3 &scale = glm::vec3(1.0, 1.0, 1.0)) {
     auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
     scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
+
+    scene_node->set_position(position);
+    scene_node->set_rotation(rotation);
+    scene_node->set_scale(scale);
+
     if (parent && parent->scene_manager() == shared_from_this()) {
       parent->AddChildSceneNode(scene_node);
     }
