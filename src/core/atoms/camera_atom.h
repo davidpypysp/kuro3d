@@ -13,6 +13,8 @@ class CameraAtom : public SceneAtom {
  public:
   explicit CameraAtom(const std::string& name);
 
+  // const char* Type() const { return "CameraAtom"; }
+
   static std::shared_ptr<CameraAtom> Create(const std::string& name);
 
   void set_camera_pack(std::shared_ptr<CameraPack> camera_pack) {

@@ -1,6 +1,7 @@
 set(IMGUI_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/third_party/imgui)
 file(GLOB IMGUI_SOURCES
     ${IMGUI_INCLUDE_DIR}/*.cpp
+    ${IMGUI_INCLUDE_DIR}/misc/cpp/*.cpp
     ${IMGUI_INCLUDE_DIR}/backends/imgui_impl_opengl3.cpp
     ${IMGUI_INCLUDE_DIR}/backends/imgui_impl_glfw.cpp
 )

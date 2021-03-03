@@ -24,6 +24,8 @@ class SceneNode : public NodeBase<SceneNode> {
 
   static std::shared_ptr<SceneNode> Create(const std::string& name);
 
+  virtual const char* Type() const { return "SceneNode"; }
+
   void BindPack(std::shared_ptr<Pack> pack);
   void UnbindPack(std::shared_ptr<Pack> pack);
   PackList& GetPacks();

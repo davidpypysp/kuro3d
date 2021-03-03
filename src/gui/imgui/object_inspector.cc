@@ -1,4 +1,4 @@
-#include <glm/gtc/type_ptr.hpp>
+
 #include "src/gui/imgui/object_inspector.h"
 #include "src/gui/imgui/gui.h"
 
@@ -14,8 +14,8 @@ void ObjectInspector::Render() {
     return;
   }
 
-  char *name = const_cast<char *>(scene_node->name().c_str());
-  ImGui::InputText("Name", name, 200);
+  ImGui::InputText("Name", &scene_node->name());
+  ImGui::LabelText("Type", scene_node->Type());
   ImGui::SliderFloat3("Position", scene_node->PositionPtr(), -10.0, 10.0);
   ImGui::SliderFloat3("Rotation", scene_node->RotationPtr(), -10.0, 10.0);
   ImGui::SliderFloat3("Scale", scene_node->ScalePtr(), 0.1, 2.0);

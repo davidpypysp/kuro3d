@@ -12,6 +12,10 @@ namespace kuro {
 class SceneAtom : public Atom, public SceneNode {
  public:
   SceneAtom(const std::string& name);
+
+  const char* Type() const { return "SceneAtom"; }
+
+ protected:
 };
 
 }  // namespace kuro
