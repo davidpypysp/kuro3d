@@ -2,8 +2,8 @@
 #define SRC_CORE_RENDERER_RENDERER_H_
 
 #include <memory>
-#include <stb_image.h>
 #include "src/core/renderer/shader.h"
+#include "src/core/renderer/gl_render_api.h"
 
 namespace kuro {
 
@@ -17,6 +17,7 @@ class Renderer {
 
  private:
   std::shared_ptr<Shader> shader_;
+  std::shared_ptr<RenderAPI> render_api_;
 };
 
 }  // namespace kuro
