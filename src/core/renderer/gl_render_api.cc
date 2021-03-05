@@ -34,6 +34,12 @@ void CheckCompileErrors(GLuint shader, std::string type) {
   }
 }
 
+GLint GetShaderParam(std::shared_ptr<ShaderProgram> program,
+                     const std::string &param) {
+  auto glsl_program = std::static_pointer_cast<GLSLShaderProgram>(program);
+  return glGetUniformLocation(glsl_program->id, param.c_str());
+}
+
 GLRenderAPI::GLRenderAPI() : RenderAPI() {}
 
 void GLRenderAPI::Init() { glEnable(GL_DEPTH_TEST); }
@@ -123,6 +129,17 @@ std::shared_ptr<ShaderProgram> GLRenderAPI::CreateShaderProgram(
 void GLRenderAPI::EnableShaderProgram(std::shared_ptr<ShaderProgram> program) {
   auto glsl_program = std::static_pointer_cast<GLSLShaderProgram>(program);
   glUseProgram(glsl_program->id);
+}
+
+void GLRenderAPI::SetShaderIntParam(std::shared_ptr<ShaderProgram> program,
+                                    const std::string &name, const int value) {
+  glUniform1i(GetShaderParam(program, name), value);
+}
+
+void GLRenderAPI::SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
+                                     const std::string &name,
+                                     const glm::mat4 &mat) {
+  glUniformMatrix4fv(GetShaderParam(program, name), 1, GL_FALSE, &mat[0][0]);
 }
 
 }  // namespace kuro

@@ -19,6 +19,10 @@ class GLRenderAPI : public RenderAPI {
                                                      const char *fragment_path,
                                                      const char *geometry_path);
   void EnableShaderProgram(std::shared_ptr<ShaderProgram> program);
+  void SetShaderIntParam(std::shared_ptr<ShaderProgram> program,
+                         const std::string &name, const int value);
+  void SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
+                          const std::string &name, const glm::mat4 &mat);
 };
 
 }  // namespace kuro

@@ -1,8 +1,8 @@
 #ifndef SRC_CORE_ELEMENTS_MODEL_PACK_H_
 #define SRC_CORE_ELEMENTS_MODEL_PACK_H_
 
-#include "src/core/elements/mesh_pack.h"
-#include "src/core/elements/visual_pack.h"
+#include <iostream>
+#include <glad/glad.h>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
@@ -10,6 +10,8 @@
 // To use stb_image, add this in *one* C++ source file.
 //     #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
+#include "src/core/elements/mesh_pack.h"
+#include "src/core/elements/visual_pack.h"
 
 namespace kuro {
 
@@ -58,7 +60,7 @@ class ModelPack : public VisualPack {
  public:
   ModelPack(const std::string &path, const bool gamma = false);
 
-  void Draw(const Shader &shader);
+  void Draw(Shader &shader);
 
  private:
   std::vector<Texture> textures_loaded_;

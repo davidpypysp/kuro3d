@@ -5,6 +5,6 @@ VisualPack::VisualPack() {}
 
 VisualPack::~VisualPack() {}
 
-void VisualPack::Draw(const Shader &shader) {}
+void VisualPack::Draw(Shader &shader) {}
 
 }  // namespace kuro

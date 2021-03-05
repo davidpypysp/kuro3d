@@ -11,7 +11,7 @@ class VisualPack : public Pack {
   VisualPack();
   ~VisualPack();
 
-  virtual void Draw(const Shader &shader);
+  virtual void Draw(Shader &shader);
 };
 
 }  // namespace kuro

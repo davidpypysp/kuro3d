@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "src/core/renderer/renderer.h"
+#include "src/core/renderer/render_api.h"
 #include "src/core/scene/scene_manager.h"
 
 namespace kuro {
@@ -15,6 +16,7 @@ class Engine {
 
   static void Init();
   static Engine* Instance();
+  static std::shared_ptr<RenderAPI> GetRenderAPI();
 
   std::shared_ptr<SceneManager> scene_manager() { return scene_manager_; }
   std::shared_ptr<Renderer> renderer() { return renderer_; }
@@ -30,6 +32,7 @@ class Engine {
   unsigned int window_width_;
   unsigned int window_height_;
   std::shared_ptr<Renderer> renderer_;
+  std::shared_ptr<RenderAPI> render_api_;
   std::shared_ptr<SceneManager> scene_manager_;
 };
 

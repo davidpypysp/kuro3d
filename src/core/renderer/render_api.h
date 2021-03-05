@@ -2,6 +2,7 @@
 #define SRC_CORE_RENDERER_RENDER_API_H_
 
 #include <memory>
+#include <glm/glm.hpp>
 
 namespace kuro {
 
@@ -18,6 +19,13 @@ class RenderAPI {
       const char *geometry_path = nullptr) = 0;
 
   virtual void EnableShaderProgram(std::shared_ptr<ShaderProgram> program) = 0;
+
+  virtual void SetShaderIntParam(std::shared_ptr<ShaderProgram> program,
+                                 const std::string &name, const int value) = 0;
+
+  virtual void SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
+                                  const std::string &name,
+                                  const glm::mat4 &mat) = 0;
 
   virtual void CreateMeshInstance() = 0;
 };

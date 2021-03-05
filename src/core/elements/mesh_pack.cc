@@ -1,4 +1,6 @@
 #include "src/core/elements/mesh_pack.h"
+#include <glad/glad.h>
+#include <iostream>
 
 namespace kuro {
 
@@ -12,7 +14,7 @@ MeshPack::MeshPack(const std::vector<Vertex> &vertices,
   this->SetupMesh();
 }
 
-void MeshPack::Draw(const Shader &shader) {
+void MeshPack::Draw(Shader &shader) {
   unsigned int diffuse_num = 1;
   unsigned int specular_num = 1;
   unsigned int normal_num = 1;
@@ -31,7 +33,8 @@ void MeshPack::Draw(const Shader &shader) {
     } else if (name == "texture_height") {
       number = std::to_string(height_num++);
     }
-    glUniform1i(glGetUniformLocation(shader.id(), (name + number).c_str()), i);
+
+    shader.SetInt(name + number, i);
     glBindTexture(GL_TEXTURE_2D, textures_[i].id);
   }
 

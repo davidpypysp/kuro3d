@@ -30,7 +30,7 @@ class MeshPack : public VisualPack {
            const std::vector<unsigned int> &indices,
            const std::vector<Texture> &textures);
 
-  void Draw(const Shader &shader);
+  void Draw(Shader &shader);
 
  private:
   std::vector<Vertex> vertices_;

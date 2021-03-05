@@ -7,7 +7,7 @@ ModelPack::ModelPack(const std::string &path, const bool gamma)
   LoadModel(path);
 }
 
-void ModelPack::Draw(const Shader &shader) {
+void ModelPack::Draw(Shader &shader) {
   for (unsigned int i = 0; i < meshes_.size(); i++) {
     meshes_[i].Draw(shader);
   }
