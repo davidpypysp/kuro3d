@@ -2,11 +2,11 @@
 #define SRC_CORE_RENDERER_RENDER_API_H_
 
 #include <memory>
+#include <vector>
 #include <glm/glm.hpp>
+#include "src/core/renderer/renderer_type.h"
 
 namespace kuro {
-
-struct ShaderProgram {};
 
 class RenderAPI {
  public:
@@ -27,7 +27,18 @@ class RenderAPI {
                                   const std::string &name,
                                   const glm::mat4 &mat) = 0;
 
-  virtual void CreateMeshInstance() = 0;
+  virtual std::shared_ptr<VertexHandle> CreateMeshInstance(
+      const std::vector<Vertex> &vertices,
+      const std::vector<unsigned int> &indices) = 0;
+
+  virtual void DrawMeshInstance(std::shared_ptr<VertexHandle> handle) = 0;
+
+  virtual std::shared_ptr<TextureHandle> CreateTextureInstance(
+      void *data, const unsigned int width, const unsigned int height,
+      const TextureFormat format) = 0;
+  virtual void EnableTextureUnit(
+      const unsigned int unit = 0,
+      std::shared_ptr<TextureHandle> handle = nullptr) = 0;
 };
 
 }  // namespace kuro

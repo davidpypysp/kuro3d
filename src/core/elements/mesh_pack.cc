@@ -1,6 +1,6 @@
-#include "src/core/elements/mesh_pack.h"
-#include <glad/glad.h>
 #include <iostream>
+#include "src/core/engine.h"
+#include "src/core/elements/mesh_pack.h"
 
 namespace kuro {
 
@@ -21,7 +21,6 @@ void MeshPack::Draw(Shader &shader) {
   unsigned int height_num = 1;
 
   for (unsigned int i = 0; i < textures_.size(); i++) {
-    glActiveTexture(GL_TEXTURE0 + i);
     std::string number;
     std::string name = textures_[i].type;
     if (name == "texture_diffuse") {
@@ -35,50 +34,15 @@ void MeshPack::Draw(Shader &shader) {
     }
 
     shader.SetInt(name + number, i);
-    glBindTexture(GL_TEXTURE_2D, textures_[i].id);
+    Engine::GetRenderAPI()->EnableTextureUnit(i, textures_[i].handle);
   }
 
-  glBindVertexArray(vao_);
-  glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_INT, 0);
-  glBindVertexArray(0);
-
-  glActiveTexture(GL_TEXTURE0);
+  Engine::GetRenderAPI()->DrawMeshInstance(vertex_handle_);
 }
 
 void MeshPack::SetupMesh() {
-  glGenVertexArrays(1, &vao_);
-  glGenBuffers(1, &vbo_);
-  glGenBuffers(1, &ebo_);
-
-  glBindVertexArray(vao_);
-  glBindBuffer(GL_ARRAY_BUFFER, vbo_);
-  glBufferData(GL_ARRAY_BUFFER, vertices_.size() * sizeof(Vertex),
-               &vertices_[0], GL_STATIC_DRAW);
-
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo_);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices_.size() * sizeof(unsigned int),
-               &indices_[0], GL_STATIC_DRAW);
-
-  glEnableVertexAttribArray(0);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)0);
-
-  glEnableVertexAttribArray(1);
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                        (void *)offsetof(Vertex, normal));
-
-  glEnableVertexAttribArray(2);
-  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                        (void *)offsetof(Vertex, tex_coords));
-
-  glEnableVertexAttribArray(3);
-  glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                        (void *)offsetof(Vertex, tangent));
-
-  glEnableVertexAttribArray(4);
-  glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
-                        (void *)offsetof(Vertex, bitangent));
-
-  glBindVertexArray(0);
+  vertex_handle_ =
+      Engine::GetRenderAPI()->CreateMeshInstance(vertices_, indices_);
 }
 
 }  // namespace kuro

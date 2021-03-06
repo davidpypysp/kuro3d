@@ -10,20 +10,6 @@
 
 namespace kuro {
 
-struct Vertex {
-  glm::vec3 position;
-  glm::vec3 normal;
-  glm::vec2 tex_coords;
-  glm::vec3 tangent;
-  glm::vec3 bitangent;
-};
-
-struct Texture {
-  unsigned int id;
-  std::string type;
-  std::string path;
-};
-
 class MeshPack : public VisualPack {
  public:
   MeshPack(const std::vector<Vertex> &vertices,
@@ -36,9 +22,7 @@ class MeshPack : public VisualPack {
   std::vector<Vertex> vertices_;
   std::vector<unsigned int> indices_;
   std::vector<Texture> textures_;
-  unsigned int vao_;
-  unsigned int vbo_;
-  unsigned int ebo_;
+  std::shared_ptr<VertexHandle> vertex_handle_;
 
   void SetupMesh();
 };

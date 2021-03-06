@@ -119,7 +119,7 @@ std::vector<Texture> ModelPack::LoadMaterialTextures(
     }
     if (!skip) {
       Texture texture;
-      texture.id = TextureFromFile(str.C_Str(), this->directory_);
+      texture.handle = TextureFromFile(str.C_Str(), this->directory_);
       texture.type = typeName;
       texture.path = str.C_Str();
       textures.push_back(texture);

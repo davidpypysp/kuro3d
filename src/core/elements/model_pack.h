@@ -2,7 +2,6 @@
 #define SRC_CORE_ELEMENTS_MODEL_PACK_H_
 
 #include <iostream>
-#include <glad/glad.h>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
@@ -12,48 +11,33 @@
 #include <stb_image.h>
 #include "src/core/elements/mesh_pack.h"
 #include "src/core/elements/visual_pack.h"
+#include "src/core/engine.h"
 
 namespace kuro {
 
-static unsigned int TextureFromFile(const char *path,
-                                    const std::string &directory,
-                                    const bool gamma = false) {
-  std::string filename = std::string(path);
-  filename = directory + '/' + filename;
+static std::shared_ptr<TextureHandle> TextureFromFile(
+    const char *path, const std::string &directory, const bool gamma = false) {
+  std::shared_ptr<TextureHandle> texture_handle = nullptr;
 
-  unsigned int texture_id;
-  glGenTextures(1, &texture_id);
-
+  std::string filename = directory + '/' + std::string(path);
   int width, height, component_num;
   unsigned char *data =
       stbi_load(filename.c_str(), &width, &height, &component_num, 0);
   if (data) {
-    GLenum format;
+    TextureFormat format = TextureFormat::RGB;
     if (component_num == 1) {
-      format = GL_RED;
-    } else if (component_num == 3) {
-      format = GL_RGB;
+      format = TextureFormat::RED;
     } else if (component_num == 4) {
-      format = GL_RGBA;
+      format = TextureFormat::RGBA;
     }
 
-    glBindTexture(GL_TEXTURE_2D, texture_id);
-    glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format,
-                 GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                    GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-    stbi_image_free(data);
+    texture_handle = Engine::GetRenderAPI()->CreateTextureInstance(
+        data, width, height, format);
   } else {
     std::cout << "Texture failed to load at path: " << path << std::endl;
-    stbi_image_free(data);
   }
-  return texture_id;
+  stbi_image_free(data);
+  return texture_handle;
 }
 
 class ModelPack : public VisualPack {

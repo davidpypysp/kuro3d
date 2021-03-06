@@ -44,8 +44,6 @@ GLRenderAPI::GLRenderAPI() : RenderAPI() {}
 
 void GLRenderAPI::Init() { glEnable(GL_DEPTH_TEST); }
 
-void GLRenderAPI::CreateMeshInstance() {}
-
 std::shared_ptr<ShaderProgram> GLRenderAPI::CreateShaderProgram(
     const char *vertex_path, const char *fragment_path,
     const char *geometry_path) {
@@ -142,4 +140,82 @@ void GLRenderAPI::SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
   glUniformMatrix4fv(GetShaderParam(program, name), 1, GL_FALSE, &mat[0][0]);
 }
 
+std::shared_ptr<VertexHandle> GLRenderAPI::CreateMeshInstance(
+    const std::vector<Vertex> &vertices,
+    const std::vector<unsigned int> &indices) {
+  auto handle = std::make_shared<GLVertexHandle>();
+  handle->size = indices.size();
+
+  glGenVertexArrays(1, &handle->vao);
+  glGenBuffers(1, &handle->vbo);
+  glGenBuffers(1, &handle->ebo);
+
+  glBindVertexArray(handle->vao);
+  glBindBuffer(GL_ARRAY_BUFFER, handle->vbo);
+  glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(Vertex), &vertices[0],
+               GL_STATIC_DRAW);
+
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, handle->ebo);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int),
+               &indices[0], GL_STATIC_DRAW);
+
+  glEnableVertexAttribArray(0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void *)0);
+
+  glEnableVertexAttribArray(1);
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                        (void *)offsetof(Vertex, normal));
+
+  glEnableVertexAttribArray(2);
+  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                        (void *)offsetof(Vertex, tex_coords));
+
+  glEnableVertexAttribArray(3);
+  glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                        (void *)offsetof(Vertex, tangent));
+
+  glEnableVertexAttribArray(4);
+  glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex),
+                        (void *)offsetof(Vertex, bitangent));
+
+  glBindVertexArray(0);
+  return std::static_pointer_cast<VertexHandle>(handle);
+}
+
+void GLRenderAPI::DrawMeshInstance(std::shared_ptr<VertexHandle> handle) {
+  auto gl_vertex_handle = std::static_pointer_cast<GLVertexHandle>(handle);
+  glBindVertexArray(gl_vertex_handle->vao);
+  glDrawElements(GL_TRIANGLES, gl_vertex_handle->size, GL_UNSIGNED_INT, 0);
+  glBindVertexArray(0);
+}
+
+std::shared_ptr<TextureHandle> GLRenderAPI::CreateTextureInstance(
+    void *data, const unsigned int width, const unsigned int height,
+    const TextureFormat format) {
+  auto handle = std::make_shared<GLTextureHandle>();
+  glGenTextures(1, &handle->id);
+  glBindTexture(GL_TEXTURE_2D, handle->id);
+
+  auto gl_format = texture_map_[format];
+
+  glTexImage2D(GL_TEXTURE_2D, 0, gl_format, width, height, 0, gl_format,
+               GL_UNSIGNED_BYTE, data);
+  glGenerateMipmap(GL_TEXTURE_2D);
+
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                  GL_LINEAR_MIPMAP_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  return handle;
+}
+
+void GLRenderAPI::EnableTextureUnit(const unsigned int unit,
+                                    std::shared_ptr<TextureHandle> handle) {
+  glActiveTexture(GL_TEXTURE0 + unit);
+  if (handle) {
+    auto gl_handle = std::static_pointer_cast<GLTextureHandle>(handle);
+    glBindTexture(GL_TEXTURE_2D, gl_handle->id);
+  }
+}
 }  // namespace kuro
