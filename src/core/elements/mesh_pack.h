@@ -5,6 +5,7 @@
 #include <string>
 #include <glm/glm.hpp>
 
+#include "src/core/renderer/texture.h"
 #include "src/core/renderer/shader.h"
 #include "src/core/elements/visual_pack.h"
 

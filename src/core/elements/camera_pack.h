@@ -1,7 +1,6 @@
 #ifndef SRC_CORE_ELEMENTS_CAMERA_PACK_H_
 #define SRC_CORE_ELEMENTS_CAMERA_PACK_H_
 
-#include <glad/glad.h>
 #include <vector>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

@@ -5,6 +5,7 @@
 #include <vector>
 #include <glm/glm.hpp>
 #include "src/core/renderer/renderer_type.h"
+#include "texture.h"
 
 namespace kuro {
 

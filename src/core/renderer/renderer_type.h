@@ -20,14 +20,6 @@ struct Vertex {
   glm::vec3 bitangent;
 };
 
-struct Texture {
-  std::shared_ptr<TextureHandle> handle;
-  std::string type;
-  std::string path;
-};
-
-enum TextureFormat { RED, RGB, RGBA };
-
 }  // namespace kuro
 
 #endif  // SRC_CORE_RENDERER_RENDERER_TYPE_H_
