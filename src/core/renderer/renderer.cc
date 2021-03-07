@@ -8,7 +8,6 @@ Renderer::Renderer() {}
 Renderer::~Renderer() {}
 
 void Renderer::Init() {
-  InitTextureLoader();
   shader_ =
       std::make_shared<Shader>("model_loading.vert", "model_loading.frag");
 }

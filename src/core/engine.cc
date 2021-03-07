@@ -9,6 +9,8 @@ Engine::Engine() {
   render_api_ = std::make_shared<GLRenderAPI>();
   renderer_ = std::make_shared<Renderer>();
   scene_manager_ = std::make_shared<SceneManager>();
+  texture_loader_ = std::make_shared<TextureLoader>();
+  model_loader_ = std::make_shared<ModelLoader>();
 }
 
 Engine::~Engine() {}
@@ -24,6 +26,14 @@ Engine* Engine::Instance() { return instance_; }
 
 std::shared_ptr<RenderAPI> Engine::GetRenderAPI() {
   return instance_->render_api_;
+}
+
+std::shared_ptr<TextureLoader> Engine::GetTextureLoader() {
+  return instance_->texture_loader_;
+}
+
+std::shared_ptr<ModelLoader> Engine::GetModelLoader() {
+  return instance_->model_loader_;
 }
 
 void Engine::SetWindowSize(const unsigned int width,

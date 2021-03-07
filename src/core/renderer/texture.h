@@ -7,19 +7,15 @@
 
 namespace kuro {
 
-struct Texture {
-  std::shared_ptr<TextureHandle> handle;
-  std::string type;
-  std::string path;
-};
+enum TextureType { DIFFUSE, SPECULAR, NORMAL, HEIGHT };
 
 enum TextureFormat { RED, RGB, RGBA };
 
-void InitTextureLoader();
-
-std::shared_ptr<TextureHandle> LoadTextureFromFile(const char *path,
-                                                   const std::string &directory,
-                                                   const bool gamma = false);
+struct Texture {
+  std::shared_ptr<TextureHandle> handle;
+  TextureType type;
+  std::string path;
+};
 
 }  // namespace kuro
 

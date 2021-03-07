@@ -3,22 +3,34 @@
 //     #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include "src/core/renderer/texture.h"
+#include "src/core/renderer/texture_loader.h"
 #include "src/core/engine.h"
 
 namespace kuro {
 
-void InitTextureLoader() { stbi_set_flip_vertically_on_load(true); }
+TextureLoader::TextureLoader() { stbi_set_flip_vertically_on_load(true); }
 
-std::shared_ptr<TextureHandle> LoadTextureFromFile(const char *path,
-                                                   const std::string &directory,
-                                                   const bool gamma) {
+std::shared_ptr<Texture> TextureLoader::AcquireTexture(
+    const std::string &path, const TextureType &type) {
+  for (unsigned int i = 0; i < texture_instances.size(); i++) {
+    if (path.compare(texture_instances[i]->path) == 0) {
+      return texture_instances[i];
+    }
+  }
+  auto texture = std::make_shared<Texture>();
+  texture->handle = LoadTextureFromFile(path.c_str());
+  texture->type = type;
+  texture->path = path;
+  texture_instances.push_back(texture);
+  return texture;
+};
+
+std::shared_ptr<TextureHandle> TextureLoader::LoadTextureFromFile(
+    const char *path) {
   std::shared_ptr<TextureHandle> texture_handle = nullptr;
 
-  std::string filename = directory + '/' + std::string(path);
   int width, height, component_num;
-  unsigned char *data =
-      stbi_load(filename.c_str(), &width, &height, &component_num, 0);
+  unsigned char *data = stbi_load(path, &width, &height, &component_num, 0);
   if (data) {
     TextureFormat format = TextureFormat::RGB;
     if (component_num == 1) {
