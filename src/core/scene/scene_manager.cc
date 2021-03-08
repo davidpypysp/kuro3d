@@ -1,6 +1,6 @@
 #include "src/core/scene/scene_manager.h"
 #include "src/core/elements/model_pack.h"
-#include "src/core/atoms/camera_atom.h"
+#include "src/core/elements/camera_atom.h"
 
 namespace kuro {
 
