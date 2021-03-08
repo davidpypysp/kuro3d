@@ -1,16 +1,15 @@
 #ifndef SRC_CORE_RENDERER_RENDERER_TYPE_H_
 #define SRC_CORE_RENDERER_RENDERER_TYPE_H_
 
-#include <memory>
 #include <glm/glm.hpp>
 
 namespace kuro {
 
 struct ShaderProgram {};
 
-struct VertexHandle {};
-
 struct TextureHandle {};
+
+struct MeshHandle {};
 
 struct Vertex {
   glm::vec3 position;

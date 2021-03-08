@@ -28,11 +28,11 @@ class RenderAPI {
                                   const std::string &name,
                                   const glm::mat4 &mat) = 0;
 
-  virtual std::shared_ptr<VertexHandle> CreateMeshInstance(
+  virtual std::shared_ptr<MeshHandle> CreateMeshInstance(
       const std::vector<Vertex> &vertices,
       const std::vector<unsigned int> &indices) = 0;
 
-  virtual void DrawMeshInstance(std::shared_ptr<VertexHandle> handle) = 0;
+  virtual void DrawMeshInstance(std::shared_ptr<MeshHandle> handle) = 0;
 
   virtual std::shared_ptr<TextureHandle> CreateTextureInstance(
       void *data, const unsigned int width, const unsigned int height,

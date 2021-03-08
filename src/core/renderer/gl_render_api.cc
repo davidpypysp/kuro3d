@@ -140,10 +140,10 @@ void GLRenderAPI::SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
   glUniformMatrix4fv(GetShaderParam(program, name), 1, GL_FALSE, &mat[0][0]);
 }
 
-std::shared_ptr<VertexHandle> GLRenderAPI::CreateMeshInstance(
+std::shared_ptr<MeshHandle> GLRenderAPI::CreateMeshInstance(
     const std::vector<Vertex> &vertices,
     const std::vector<unsigned int> &indices) {
-  auto handle = std::make_shared<GLVertexHandle>();
+  auto handle = std::make_shared<GLMeshHandle>();
   handle->size = indices.size();
 
   glGenVertexArrays(1, &handle->vao);
@@ -179,11 +179,11 @@ std::shared_ptr<VertexHandle> GLRenderAPI::CreateMeshInstance(
                         (void *)offsetof(Vertex, bitangent));
 
   glBindVertexArray(0);
-  return std::static_pointer_cast<VertexHandle>(handle);
+  return std::static_pointer_cast<MeshHandle>(handle);
 }
 
-void GLRenderAPI::DrawMeshInstance(std::shared_ptr<VertexHandle> handle) {
-  auto gl_vertex_handle = std::static_pointer_cast<GLVertexHandle>(handle);
+void GLRenderAPI::DrawMeshInstance(std::shared_ptr<MeshHandle> handle) {
+  auto gl_vertex_handle = std::static_pointer_cast<GLMeshHandle>(handle);
   glBindVertexArray(gl_vertex_handle->vao);
   glDrawElements(GL_TRIANGLES, gl_vertex_handle->size, GL_UNSIGNED_INT, 0);
   glBindVertexArray(0);

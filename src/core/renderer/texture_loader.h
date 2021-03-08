@@ -16,7 +16,7 @@ class TextureLoader {
  private:
   std::shared_ptr<TextureHandle> LoadTextureFromFile(const char *path);
 
-  std::vector<std::shared_ptr<Texture>> texture_instances;
+  std::vector<std::shared_ptr<Texture>> texture_instances_;
 };
 
 }  // namespace kuro

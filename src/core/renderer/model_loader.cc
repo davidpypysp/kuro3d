@@ -27,7 +27,6 @@ Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
                  const std::string &directory) {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
-  std::vector<std::shared_ptr<Texture>> textures;
 
   for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
     Vertex vertex;
@@ -70,6 +69,7 @@ Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
     }
   }
 
+  std::vector<std::shared_ptr<Texture>> textures;
   aiMaterial *material = scene->mMaterials[mesh->mMaterialIndex];
   auto diffuse_textures = LoadMaterialTextures(
       material, directory, aiTextureType_DIFFUSE, TextureType::DIFFUSE);

@@ -12,16 +12,17 @@ TextureLoader::TextureLoader() { stbi_set_flip_vertically_on_load(true); }
 
 std::shared_ptr<Texture> TextureLoader::AcquireTexture(
     const std::string &path, const TextureType &type) {
-  for (unsigned int i = 0; i < texture_instances.size(); i++) {
-    if (path.compare(texture_instances[i]->path) == 0) {
-      return texture_instances[i];
+  for (unsigned int i = 0; i < texture_instances_.size(); i++) {
+    if (path.compare(texture_instances_[i]->path) == 0) {
+      return texture_instances_[i];
     }
   }
+
   auto texture = std::make_shared<Texture>();
   texture->handle = LoadTextureFromFile(path.c_str());
   texture->type = type;
   texture->path = path;
-  texture_instances.push_back(texture);
+  texture_instances_.push_back(texture);
   return texture;
 };
 

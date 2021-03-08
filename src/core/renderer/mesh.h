@@ -2,6 +2,7 @@
 #define SRC_CORE_RENDERER_MESH_H_
 
 #include <vector>
+#include <memory>
 #include "src/core/renderer/renderer_type.h"
 #include "src/core/renderer/texture.h"
 
@@ -18,7 +19,7 @@ struct Mesh {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
   std::vector<std::shared_ptr<Texture>> textures;
-  std::shared_ptr<VertexHandle> handle;
+  std::shared_ptr<MeshHandle> handle;
 };
 
 }  // namespace kuro

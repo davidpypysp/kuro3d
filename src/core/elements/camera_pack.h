@@ -11,7 +11,6 @@ namespace kuro {
 
 // Defines several possible options for camera movement. Used as abstraction to
 // stay away from window-system specific input methods
-enum CameraMovement { FORWARD, BACKWARD, LEFT, RIGHT };
 
 // Default camera values
 const float default_yaw = -90.0;

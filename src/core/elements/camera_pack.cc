@@ -22,12 +22,6 @@ glm::mat4 CameraPack::GetViewMatrix(const glm::vec3 &position) {
   return glm::lookAt(position, position + front_, up_);
 }
 
-// void CameraPack::ProcessMouseScroll(const float y_offset) {
-//   zoom_ -= y_offset;
-//   if (zoom_ < 1.0) zoom_ = 1.0;
-//   if (zoom_ > 45.0) zoom_ = 45.0;
-// }
-
 // calculates the front vector from the CameraPack's (updated) Euler Angles
 void CameraPack::UpdateCameraVectors() {
   // calculate the new Front vector
