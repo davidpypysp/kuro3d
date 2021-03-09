@@ -3,8 +3,8 @@
 namespace kuro {
 
 // constructor with vectors
-CameraPack::CameraPack(const glm::vec3 &up, const float yaw, const float pitch)
-    : front_(glm::vec3(0.0, 0.0, -1.0)),
+CameraPack::CameraPack(const vec3 &up, const float yaw, const float pitch)
+    : front_(vec3(0.0, 0.0, -1.0)),
       movement_speed_(default_speed),
       mouse_sensitivity_(default_sensitivity),
       zoom_(default_zoom) {
@@ -14,28 +14,28 @@ CameraPack::CameraPack(const glm::vec3 &up, const float yaw, const float pitch)
   UpdateCameraVectors();
 }
 
-glm::mat4 CameraPack::GetPerspectiveMatrix(const float ratio) {
-  return glm::perspective(glm::radians(zoom_), ratio, 0.1f, 100.0f);
+mat4 CameraPack::GetPerspectiveMatrix(const float ratio) {
+  return perspective(radians(zoom_), ratio, 0.1f, 100.0f);
 }
 
-glm::mat4 CameraPack::GetViewMatrix(const glm::vec3 &position) {
-  return glm::lookAt(position, position + front_, up_);
+mat4 CameraPack::GetViewMatrix(const vec3 &position) {
+  return lookAt(position, position + front_, up_);
 }
 
 // calculates the front vector from the CameraPack's (updated) Euler Angles
 void CameraPack::UpdateCameraVectors() {
   // calculate the new Front vector
-  glm::vec3 front;
-  front.x = cos(glm::radians(yaw_)) * cos(glm::radians(pitch_));
-  front.y = sin(glm::radians(pitch_));
-  front.z = sin(glm::radians(yaw_)) * cos(glm::radians(pitch_));
-  front_ = glm::normalize(front);
+  vec3 front;
+  front.x = cos(radians(yaw_)) * cos(radians(pitch_));
+  front.y = sin(radians(pitch_));
+  front.z = sin(radians(yaw_)) * cos(radians(pitch_));
+  front_ = normalize(front);
   // also re-calculate the Right and Up vector
-  right_ = glm::normalize(glm::cross(
-      front_, world_up_));  // normalize the vectors, because their length gets
-                            // closer to 0 the more you look up or down which
-                            // results in slower movement.
-  up_ = glm::normalize(glm::cross(right_, front_));
+  right_ = normalize(
+      cross(front_, world_up_));  // normalize the vectors, because their length
+                                  // gets closer to 0 the more you look up or
+                                  // down which results in slower movement.
+  up_ = normalize(cross(right_, front_));
 }
 
 };  // namespace kuro

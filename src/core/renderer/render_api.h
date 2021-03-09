@@ -24,8 +24,7 @@ class RenderAPI {
                                  const std::string &name, const int value) = 0;
 
   virtual void SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
-                                  const std::string &name,
-                                  const glm::mat4 &mat) = 0;
+                                  const std::string &name, const mat4 &mat) = 0;
 
   virtual std::shared_ptr<MeshHandle> CreateMeshInstance(
       const std::vector<Vertex> &vertices,

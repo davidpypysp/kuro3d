@@ -30,7 +30,7 @@ Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
 
   for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
     Vertex vertex;
-    glm::vec3 vector;
+    vec3 vector;
     vector.x = mesh->mVertices[i].x;
     vector.y = mesh->mVertices[i].y;
     vector.z = mesh->mVertices[i].z;
@@ -43,7 +43,7 @@ Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
       vertex.normal = vector;
     }
     if (mesh->mTextureCoords[0]) {
-      glm::vec2 vec;
+      vec2 vec;
       vec.x = mesh->mTextureCoords[0][i].x;
       vec.y = mesh->mTextureCoords[0][i].y;
       vertex.tex_coords = vec;
@@ -58,7 +58,7 @@ Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
       vector.z = mesh->mBitangents[i].z;
       vertex.bitangent = vector;
     } else
-      vertex.tex_coords = glm::vec2(0.0f, 0.0f);
+      vertex.tex_coords = vec2(0.0f, 0.0f);
     vertices.push_back(vertex);
   }
 

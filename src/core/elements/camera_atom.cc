@@ -20,17 +20,17 @@ void CameraAtom::DrawSceneNode(SceneNode& scene_node, Shader& shader) {
   }
   const float kRatio =
       Engine::Instance()->window_width() / Engine::Instance()->window_height();
-  glm::mat4 projection = camera_pack_->GetPerspectiveMatrix(kRatio);
-  glm::mat4 view = camera_pack_->GetViewMatrix(position_);
+  mat4 projection = camera_pack_->GetPerspectiveMatrix(kRatio);
+  mat4 view = camera_pack_->GetViewMatrix(position_);
 
   shader.SetMat4("projection", projection);
   shader.SetMat4("view", view);
 
   for (auto pack : scene_node.GetPacks()) {
     if (auto visual_pack = std::dynamic_pointer_cast<VisualPack>(pack)) {
-      glm::mat4 model = glm::mat4(1.0);
-      model = glm::translate(model, scene_node.position());
-      model = glm::scale(model, scene_node.scale());
+      mat4 model = mat4(1.0);
+      model = math::translate(model, scene_node.position());
+      model = math::scale(model, scene_node.scale());
       shader.SetMat4("model", model);
       visual_pack->Draw(shader);
     }

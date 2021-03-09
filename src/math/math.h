@@ -6,6 +6,8 @@
 
 namespace kuro {
 using namespace glm;
-}
+namespace math = glm;
+
+}  // namespace kuro
 
 #endif  // SRC_MATH_MATH_H_

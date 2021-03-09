@@ -10,8 +10,8 @@ void SceneManager::CreateDefaultScene() {
   this->root_node_ = CreateSceneNode<SceneNode>("root");
 
   // default camera
-  current_camera_ = CreateSceneNode<CameraAtom>("default_camera", root_node_,
-                                                glm::vec3(0, 0, 8));
+  current_camera_ =
+      CreateSceneNode<CameraAtom>("default_camera", root_node_, vec3(0, 0, 8));
 
   // example model
   auto example_node = CreateSceneNode<SceneNode>("example_model", root_node_);

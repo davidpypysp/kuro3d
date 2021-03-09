@@ -32,7 +32,7 @@ class GLRenderAPI : public RenderAPI {
   void SetShaderIntParam(std::shared_ptr<ShaderProgram> program,
                          const std::string &name, const int value);
   void SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
-                          const std::string &name, const glm::mat4 &mat);
+                          const std::string &name, const mat4 &mat);
   std::shared_ptr<MeshHandle> CreateMeshInstance(
       const std::vector<Vertex> &vertices,
       const std::vector<unsigned int> &indices);

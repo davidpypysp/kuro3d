@@ -32,14 +32,14 @@ class SceneNode : public NodeBase<SceneNode> {
 
   void set_id(const uint32_t id) { id_ = id; }
 
-  glm::vec3 position() const { return position_; }
-  void set_position(const glm::vec3& position) { position_ = position; }
+  vec3 position() const { return position_; }
+  void set_position(const vec3& position) { position_ = position; }
 
-  glm::vec3 rotation() { return rotation_; }
-  void set_rotation(const glm::vec3& rotation) { rotation_ = rotation; }
+  vec3 rotation() { return rotation_; }
+  void set_rotation(const vec3& rotation) { rotation_ = rotation; }
 
-  glm::vec3 scale() { return scale_; }
-  void set_scale(const glm::vec3& scale) { scale_ = scale; }
+  vec3 scale() { return scale_; }
+  void set_scale(const vec3& scale) { scale_ = scale; }
 
   float* PositionPtr();
   float* RotationPtr();
@@ -54,9 +54,9 @@ class SceneNode : public NodeBase<SceneNode> {
   uint32_t id_;
 
   // transformation
-  glm::vec3 position_;
-  glm::vec3 rotation_;
-  glm::vec3 scale_ = {1.0, 1.0, 1.0};
+  vec3 position_;
+  vec3 rotation_;
+  vec3 scale_ = {1.0, 1.0, 1.0};
 
   std::shared_ptr<SceneManager> scene_manager_;
 

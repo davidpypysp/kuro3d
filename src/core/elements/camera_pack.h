@@ -22,10 +22,10 @@ const float default_zoom = 45.0;
 class CameraPack : public Pack {
  public:
   // camera Attributes
-  glm::vec3 front_;
-  glm::vec3 up_;
-  glm::vec3 right_;
-  glm::vec3 world_up_;
+  vec3 front_;
+  vec3 up_;
+  vec3 right_;
+  vec3 world_up_;
 
   // euler Angles
   float yaw_;
@@ -39,13 +39,13 @@ class CameraPack : public Pack {
   float zoom() const { return zoom_; }
 
   // constructor with vectors
-  CameraPack(const glm::vec3 &up = glm::vec3(0.0, 1.0, 0.0),
+  CameraPack(const vec3 &up = vec3(0.0, 1.0, 0.0),
              const float yaw = default_yaw, const float pitch = default_pitch);
 
-  glm::mat4 GetPerspectiveMatrix(const float ratio);
+  mat4 GetPerspectiveMatrix(const float ratio);
 
   // returns the view matrix calculated using Euler Angles and the LookAt Matrix
-  glm::mat4 GetViewMatrix(const glm::vec3 &position);
+  mat4 GetViewMatrix(const vec3 &position);
 
  private:
   // calculates the front vector from the Camera's (updated) Euler Angles

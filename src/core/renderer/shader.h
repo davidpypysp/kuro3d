@@ -14,7 +14,7 @@ class Shader {
   void Use();
   // utility uniform functions
   void SetInt(const std::string &name, const int value);
-  void SetMat4(const std::string &name, const glm::mat4 &mat);
+  void SetMat4(const std::string &name, const mat4 &mat);
 
  private:
   std::shared_ptr<ShaderProgram> shader_program_;

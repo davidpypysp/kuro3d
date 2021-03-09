@@ -135,8 +135,7 @@ void GLRenderAPI::SetShaderIntParam(std::shared_ptr<ShaderProgram> program,
 }
 
 void GLRenderAPI::SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
-                                     const std::string &name,
-                                     const glm::mat4 &mat) {
+                                     const std::string &name, const mat4 &mat) {
   glUniformMatrix4fv(GetShaderParam(program, name), 1, GL_FALSE, &mat[0][0]);
 }
 

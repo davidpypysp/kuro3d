@@ -17,7 +17,7 @@ void Shader::SetInt(const std::string &name, const int value) {
   Engine::GetRenderAPI()->SetShaderIntParam(shader_program_, name, value);
 }
 
-void Shader::SetMat4(const std::string &name, const glm::mat4 &mat) {
+void Shader::SetMat4(const std::string &name, const mat4 &mat) {
   Engine::GetRenderAPI()->SetShaderMat4Param(shader_program_, name, mat);
 }
 

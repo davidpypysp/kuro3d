@@ -27,9 +27,9 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   std::shared_ptr<T> CreateSceneNode(
       const std::string &name,
       const std::shared_ptr<SceneNode> parent = nullptr,
-      const glm::vec3 &position = glm::vec3(0.0, 0.0, 0.0),
-      const glm::vec3 &rotation = glm::vec3(0.0, 0.0, 0.0),
-      const glm::vec3 &scale = glm::vec3(1.0, 1.0, 1.0)) {
+      const vec3 &position = vec3(0.0, 0.0, 0.0),
+      const vec3 &rotation = vec3(0.0, 0.0, 0.0),
+      const vec3 &scale = vec3(1.0, 1.0, 1.0)) {
     auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
     scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
