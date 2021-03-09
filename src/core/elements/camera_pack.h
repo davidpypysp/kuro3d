@@ -2,9 +2,7 @@
 #define SRC_CORE_ELEMENTS_CAMERA_PACK_H_
 
 #include <vector>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
+#include "src/math/math.h"
 #include "src/core/elements/pack.h"
 
 namespace kuro {

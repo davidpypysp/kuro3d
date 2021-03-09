@@ -6,9 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
+#include "src/math/math.h"
 #include "src/utils/node_base.h"
 
 namespace kuro {

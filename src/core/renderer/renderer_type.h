@@ -1,7 +1,7 @@
 #ifndef SRC_CORE_RENDERER_RENDERER_TYPE_H_
 #define SRC_CORE_RENDERER_RENDERER_TYPE_H_
 
-#include <glm/glm.hpp>
+#include "src/math/math.h"
 
 namespace kuro {
 

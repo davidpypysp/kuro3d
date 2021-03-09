@@ -2,7 +2,7 @@
 #define SRC_CORE_ELEMENTS_PACK_H_
 
 #include <memory>
-#include "src/core/renderer/shader.h"
+#include "src/core/scene/scene_node.h"
 
 namespace kuro {
 
