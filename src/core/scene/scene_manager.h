@@ -34,7 +34,7 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
     scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
 
-    scene_node->set_position(position);
+    scene_node->set_translation(position);
     scene_node->set_rotation(rotation);
     scene_node->set_scale(scale);
 

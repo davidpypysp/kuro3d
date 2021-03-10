@@ -32,8 +32,8 @@ class SceneNode : public NodeBase<SceneNode> {
 
   void set_id(const uint32_t id) { id_ = id; }
 
-  vec3 position() const { return translation_; }
-  void set_position(const vec3& position) { translation_ = position; }
+  vec3 translation() const { return translation_; }
+  void set_translation(const vec3& translation) { translation_ = translation; }
 
   vec3 rotation() { return rotation_; }
   void set_rotation(const vec3& rotation) { rotation_ = rotation; }
@@ -41,7 +41,7 @@ class SceneNode : public NodeBase<SceneNode> {
   vec3 scale() { return scale_; }
   void set_scale(const vec3& scale) { scale_ = scale; }
 
-  float* PositionPtr();
+  float* TranslationPtr();
   float* RotationPtr();
   float* ScalePtr();
 

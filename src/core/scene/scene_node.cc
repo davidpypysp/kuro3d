@@ -17,7 +17,7 @@ std::shared_ptr<SceneNode> SceneNode::Create(const std::string& name) {
   return scene_node;
 }
 
-float* SceneNode::PositionPtr() { return &translation_[0]; }
+float* SceneNode::TranslationPtr() { return &translation_[0]; }
 float* SceneNode::RotationPtr() { return &rotation_[0]; }
 float* SceneNode::ScalePtr() { return &scale_[0]; }
 

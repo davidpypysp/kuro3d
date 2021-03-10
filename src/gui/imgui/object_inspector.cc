@@ -16,7 +16,7 @@ void ObjectInspector::Render() {
 
   ImGui::InputText("Name", &scene_node->name());
   ImGui::LabelText("Type", scene_node->Type());
-  ImGui::SliderFloat3("Position", scene_node->PositionPtr(), -10.0, 10.0);
+  ImGui::SliderFloat3("Translation", scene_node->TranslationPtr(), -10.0, 10.0);
   ImGui::SliderFloat3("Rotation", scene_node->RotationPtr(), -10.0, 10.0);
   ImGui::SliderFloat3("Scale", scene_node->ScalePtr(), 0.1, 2.0);
 
