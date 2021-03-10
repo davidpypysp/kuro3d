@@ -32,8 +32,8 @@ class SceneNode : public NodeBase<SceneNode> {
 
   void set_id(const uint32_t id) { id_ = id; }
 
-  vec3 position() const { return position_; }
-  void set_position(const vec3& position) { position_ = position; }
+  vec3 position() const { return translation_; }
+  void set_position(const vec3& position) { translation_ = position; }
 
   vec3 rotation() { return rotation_; }
   void set_rotation(const vec3& rotation) { rotation_ = rotation; }
@@ -51,12 +51,16 @@ class SceneNode : public NodeBase<SceneNode> {
   }
 
  protected:
+  void UpdateLocalTransform(const mat4& transform);
+
   uint32_t id_;
 
-  // transformation
-  vec3 position_;
+  // relative transformation
+  mat4 transform_;
+
+  vec3 translation_;
   vec3 rotation_;
-  vec3 scale_ = {1.0, 1.0, 1.0};
+  vec3 scale_;
 
   std::shared_ptr<SceneManager> scene_manager_;
 

@@ -21,7 +21,7 @@ void CameraAtom::DrawSceneNode(SceneNode& scene_node, Shader& shader) {
   const float kRatio =
       Engine::Instance()->window_width() / Engine::Instance()->window_height();
   mat4 projection = camera_pack_->GetPerspectiveMatrix(kRatio);
-  mat4 view = camera_pack_->GetViewMatrix(position_);
+  mat4 view = camera_pack_->GetViewMatrix(translation_);
 
   shader.SetMat4("projection", projection);
   shader.SetMat4("view", view);

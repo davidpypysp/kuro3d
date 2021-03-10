@@ -4,14 +4,20 @@
 
 namespace kuro {
 
-SceneNode::SceneNode(const std::string& name) : NodeBase(name) {}
+SceneNode::SceneNode(const std::string& name) : NodeBase(name) {
+  UpdateLocalTransform(mat4(1.0));
+  std::cout << "transform " << math::to_string(transform_) << std::endl;
+  std::cout << "position" << math::to_string(translation_) << std::endl;
+  std::cout << "rotation" << math::to_string(rotation_) << std::endl;
+  std::cout << "scale " << math::to_string(scale_) << std::endl;
+}
 
 std::shared_ptr<SceneNode> SceneNode::Create(const std::string& name) {
   auto scene_node = std::make_shared<SceneNode>(name);
   return scene_node;
 }
 
-float* SceneNode::PositionPtr() { return &position_[0]; }
+float* SceneNode::PositionPtr() { return &translation_[0]; }
 float* SceneNode::RotationPtr() { return &rotation_[0]; }
 float* SceneNode::ScalePtr() { return &scale_[0]; }
 
@@ -27,6 +33,17 @@ PackList& SceneNode::GetPacks() { return packs_; }
 void SceneNode::AddChildSceneNode(std::shared_ptr<SceneNode> scene_node) {
   AddChild(scene_node);
   scene_manager_->AddSceneNode(scene_node);
+}
+
+void SceneNode::UpdateLocalTransform(const mat4& transform) {
+  transform_ = transform;
+  quat rotation_quat;
+  vec3 skew;
+  vec4 perspective;
+  math::decompose(transform_, scale_, rotation_quat, translation_, skew,
+                  perspective);
+  rotation_quat = math::conjugate(rotation_quat);
+  rotation_ = math::eulerAngles(rotation_quat);
 }
 
 }  // namespace kuro
