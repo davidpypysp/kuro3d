@@ -5,7 +5,7 @@
 namespace kuro {
 
 SceneNode::SceneNode(const std::string& name) : NodeBase(name) {
-  UpdateLocalTransform(mat4(1.0));
+  SetLocalTransform(mat4(1.0));
   std::cout << "transform " << math::to_string(transform_) << std::endl;
   std::cout << "position" << math::to_string(translation_) << std::endl;
   std::cout << "rotation" << math::to_string(rotation_) << std::endl;
@@ -35,8 +35,12 @@ void SceneNode::AddChildSceneNode(std::shared_ptr<SceneNode> scene_node) {
   scene_manager_->AddSceneNode(scene_node);
 }
 
-void SceneNode::UpdateLocalTransform(const mat4& transform) {
+void SceneNode::SetLocalTransform(const mat4& transform) {
   transform_ = transform;
+  UpdateLocalTransform();
+}
+
+void SceneNode::UpdateLocalTransform() {
   quat rotation_quat;
   vec3 skew;
   vec4 perspective;

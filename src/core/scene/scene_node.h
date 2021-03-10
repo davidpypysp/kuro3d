@@ -51,7 +51,8 @@ class SceneNode : public NodeBase<SceneNode> {
   }
 
  protected:
-  void UpdateLocalTransform(const mat4& transform);
+  void SetLocalTransform(const mat4& transform);
+  void UpdateLocalTransform();
 
   uint32_t id_;
 
