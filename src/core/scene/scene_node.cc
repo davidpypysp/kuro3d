@@ -17,9 +17,9 @@ std::shared_ptr<SceneNode> SceneNode::Create(const std::string& name) {
   return scene_node;
 }
 
-float* SceneNode::TranslationPtr() { return &translation_[0]; }
-float* SceneNode::RotationPtr() { return &rotation_[0]; }
-float* SceneNode::ScalePtr() { return &scale_[0]; }
+float* SceneNode::LocalTranslationPtr() { return &translation_[0]; }
+float* SceneNode::LocalRotationPtr() { return &rotation_[0]; }
+float* SceneNode::LocalScalePtr() { return &scale_[0]; }
 
 void SceneNode::BindPack(std::shared_ptr<Pack> pack) {
   this->packs_.push_back(pack);
@@ -37,10 +37,42 @@ void SceneNode::AddChildSceneNode(std::shared_ptr<SceneNode> scene_node) {
 
 void SceneNode::SetLocalTransform(const mat4& transform) {
   transform_ = transform;
+  UpdateTransformComponents();
+}
+
+void SceneNode::SetLocalTransform(const vec3& translation, const vec3& rotation,
+                                  const vec3& scale) {
+  translation_ = translation;
+  rotation_ = rotation;
+  scale_ = scale;
+  UpdateLocalTransform();
+}
+
+void SceneNode::SetLocalTranslation(const vec3& translation) {
+  translation_ = translation;
+  UpdateLocalTransform();
+}
+
+void SceneNode::SetLocalRotation(const vec3& rotation) {
+  rotation_ = rotation;
+  UpdateLocalTransform();
+}
+
+void SceneNode::SetLocalScale(const vec3& scale) {
+  scale_ = scale;
   UpdateLocalTransform();
 }
 
 void SceneNode::UpdateLocalTransform() {
+  mat4 transform = math::translate(mat4(1.0), translation_);
+  transform = math::scale(transform, scale_);
+  mat4 rotation_mat =
+      math::eulerAngleYXZ(rotation_.y, rotation_.x, rotation_.z);
+  transform = transform * rotation_mat;
+  transform_ = transform;
+}
+
+void SceneNode::UpdateTransformComponents() {
   quat rotation_quat;
   vec3 skew;
   vec4 perspective;
