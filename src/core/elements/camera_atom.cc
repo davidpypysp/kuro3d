@@ -28,10 +28,8 @@ void CameraAtom::DrawSceneNode(SceneNode& scene_node, Shader& shader) {
 
   for (auto pack : scene_node.GetPacks()) {
     if (auto visual_pack = std::dynamic_pointer_cast<VisualPack>(pack)) {
-      mat4 model = mat4(1.0);
-      model = math::translate(model, scene_node.translation());
-      model = math::scale(model, scene_node.scale());
-      shader.SetMat4("model", model);
+      scene_node.UpdateLocalTransform();
+      shader.SetMat4("model", scene_node.LocalTransform());
       visual_pack->Draw(shader);
     }
   }

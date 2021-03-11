@@ -42,6 +42,8 @@ class SceneNode : public NodeBase<SceneNode> {
   float* LocalRotationPtr();
   float* LocalScalePtr();
 
+  mat4 LocalTransform();
+
   void SetLocalTransform(const mat4& transform);
   void SetLocalTransform(const vec3& translation, const vec3& rotation,
                          const vec3& scale);
@@ -49,13 +51,14 @@ class SceneNode : public NodeBase<SceneNode> {
   void SetLocalRotation(const vec3& rotation);
   void SetLocalScale(const vec3& scale);
 
+  void UpdateLocalTransform();
+
   std::shared_ptr<SceneManager> scene_manager() { return scene_manager_; }
   void set_scene_manager(std::shared_ptr<SceneManager> scene_manager) {
     scene_manager_ = scene_manager;
   }
 
  protected:
-  void UpdateLocalTransform();
   void UpdateTransformComponents();
 
   uint32_t id_;

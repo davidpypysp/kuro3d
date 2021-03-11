@@ -35,6 +35,8 @@ void SceneNode::AddChildSceneNode(std::shared_ptr<SceneNode> scene_node) {
   scene_manager_->AddSceneNode(scene_node);
 }
 
+mat4 SceneNode::LocalTransform() { return transform_; }
+
 void SceneNode::SetLocalTransform(const mat4& transform) {
   transform_ = transform;
   UpdateTransformComponents();
