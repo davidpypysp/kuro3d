@@ -1,5 +1,4 @@
 #include "src/core/elements/camera_atom.h"
-#include "src/core/elements/visual_pack.h"
 #include "src/core/engine.h"
 
 namespace kuro {
@@ -14,25 +13,14 @@ std::shared_ptr<CameraAtom> CameraAtom::Create(const std::string& name) {
   return camera_atom;
 }
 
-void CameraAtom::DrawSceneNode(SceneNode& scene_node, Shader& shader) {
-  if (scene_node.GetPacks().size() == 0) {
-    return;
-  }
+mat4 CameraAtom::GetPerspectiveMatrix() {
   const float kRatio =
       Engine::Instance()->window_width() / Engine::Instance()->window_height();
-  mat4 projection = camera_pack_->GetPerspectiveMatrix(kRatio);
-  mat4 view = camera_pack_->GetViewMatrix(translation_);
+  return camera_pack_->GetPerspectiveMatrix(kRatio);
+}
 
-  shader.SetMat4("projection", projection);
-  shader.SetMat4("view", view);
-
-  for (auto pack : scene_node.GetPacks()) {
-    if (auto visual_pack = std::dynamic_pointer_cast<VisualPack>(pack)) {
-      scene_node.UpdateLocalTransform();
-      shader.SetMat4("model", scene_node.LocalTransform());
-      visual_pack->Draw(shader);
-    }
-  }
+mat4 CameraAtom::GetViewMatrix() {
+  return camera_pack_->GetViewMatrix(translation_);
 }
 
 }  // namespace kuro

@@ -5,8 +5,8 @@
 #include <vector>
 #include <string>
 
-#include "src/core/renderer/shader.h"
 #include "src/core/scene/scene_node.h"
+#include "src/core/elements/camera_atom.h"
 
 namespace kuro {
 
@@ -18,7 +18,6 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
  public:
   SceneManager();
   void CreateDefaultScene();
-  void Draw(std::shared_ptr<Shader> shader);
 
   void AddSceneNode(std::shared_ptr<SceneNode> scene_node);
   std::shared_ptr<SceneNode> root_node() { return root_node_; }
@@ -55,10 +54,9 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
     return std::static_pointer_cast<T>(scene_node);
   }
 
- protected:
-  void DrawNodeTree(std::shared_ptr<SceneNode> scene_node,
-                    std::shared_ptr<Shader> shader);
+  std::shared_ptr<CameraAtom> current_camera() { return current_camera_; }
 
+ protected:
   SceneNodeList scene_nodes_;
   std::shared_ptr<SceneNode> root_node_;
   std::shared_ptr<CameraAtom> current_camera_;

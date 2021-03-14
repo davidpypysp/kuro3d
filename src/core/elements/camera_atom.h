@@ -6,7 +6,6 @@
 
 #include "src/core/elements/scene_atom.h"
 #include "src/core/elements/camera_pack.h"
-#include "src/core/renderer/shader.h"
 
 namespace kuro {
 
@@ -24,7 +23,8 @@ class CameraAtom : public SceneAtom {
 
   std::shared_ptr<CameraPack> camera_pack() { return camera_pack_; }
 
-  void DrawSceneNode(SceneNode& scene_node, Shader& shader);
+  mat4 GetPerspectiveMatrix();
+  mat4 GetViewMatrix();
 
  protected:
   std::shared_ptr<CameraPack> camera_pack_;

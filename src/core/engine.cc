@@ -24,6 +24,12 @@ void Engine::Init() {
 
 Engine* Engine::Instance() { return instance_; }
 
+std::shared_ptr<SceneManager> Engine::GetSceneManager() {
+  return instance_->scene_manager_;
+}
+
+std::shared_ptr<Renderer> Engine::GetRenderer() { return instance_->renderer_; }
+
 std::shared_ptr<RenderAPI> Engine::GetRenderAPI() {
   return instance_->render_api_;
 }
@@ -42,6 +48,6 @@ void Engine::SetWindowSize(const unsigned int width,
   window_width_ = width;
 }
 
-void Engine::Draw() { scene_manager_->Draw(renderer_->shader()); }
+void Engine::Draw() { renderer_->DrawScene(); }
 
 }  // namespace kuro

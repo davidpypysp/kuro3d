@@ -18,6 +18,8 @@ class Engine {
 
   static void Init();
   static Engine* Instance();
+  static std::shared_ptr<SceneManager> GetSceneManager();
+  static std::shared_ptr<Renderer> GetRenderer();
   static std::shared_ptr<RenderAPI> GetRenderAPI();
   static std::shared_ptr<TextureLoader> GetTextureLoader();
   static std::shared_ptr<ModelLoader> GetModelLoader();
