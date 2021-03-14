@@ -17,6 +17,10 @@ void SceneManager::CreateDefaultScene() {
   auto model_pack =
       std::make_shared<ModelPack>("resources/backpack/backpack.obj");
   example_node->BindPack(model_pack);
+
+  auto example_node2 =
+      CreateSceneNode<SceneNode>("example_model2", example_node, vec3(1, 1, 1));
+  example_node2->BindPack(model_pack);
 }
 
 void SceneManager::AddSceneNode(std::shared_ptr<SceneNode> scene_node) {
