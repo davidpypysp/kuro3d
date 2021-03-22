@@ -56,8 +56,9 @@ Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
       vector.y = mesh->mBitangents[i].y;
       vector.z = mesh->mBitangents[i].z;
       vertex.bitangent = vector;
-    } else
+    } else {
       vertex.tex_coords = vec2(0.0f, 0.0f);
+    }
     vertices.push_back(vertex);
   }
 
