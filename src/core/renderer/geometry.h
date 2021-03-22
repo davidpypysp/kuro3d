@@ -17,6 +17,8 @@ class Geometry {
         Engine::GetRenderAPI()->CreateGeometryInstance(vertices_, indices_);
   }
 
+  std::shared_ptr<GeometryHandle> handle() { return handle_; }
+
  protected:
   std::vector<Vertex> vertices_;
   std::vector<unsigned int> indices_;

@@ -10,6 +10,22 @@ class MeshBasicMaterial : public Material {
  public:
   MeshBasicMaterial();
 
+  void set_diffuse_map(std::shared_ptr<Texture> texture) {
+    diffuse_map_ = texture;
+  }
+
+  void set_specular_map(std::shared_ptr<Texture> texture) {
+    specular_map_ = texture;
+  }
+
+  void set_normal_map(std::shared_ptr<Texture> texture) {
+    normal_map_ = texture;
+  }
+
+  void set_height_map(std::shared_ptr<Texture> texture) {
+    height_map_ = texture;
+  }
+
   void Use();
 
  protected:

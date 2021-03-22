@@ -2,6 +2,9 @@
 
 namespace kuro {
 
-void MeshPack::Render() {}
+void MeshPack::Render() {
+  material_->Use();
+  Engine::GetRenderAPI()->DrawMeshInstance(geometry_->handle());
+}
 
 }  // namespace kuro
