@@ -3,7 +3,9 @@
 
 namespace kuro {
 
-MeshBasicMaterial::MeshBasicMaterial() {}
+MeshBasicMaterial::MeshBasicMaterial() {
+  shader_ = Engine::GetRenderer()->shader();
+}
 
 void MeshBasicMaterial::Use() {
   unsigned int texture_num = 0;

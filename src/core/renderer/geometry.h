@@ -4,18 +4,15 @@
 #include <vector>
 #include <memory>
 #include "src/core/renderer/renderer_type.h"
-#include "src/core/engine.h"
 
 namespace kuro {
 
 class Geometry {
  public:
-  Geometry() {}
+  Geometry(const std::vector<Vertex> &vertices,
+           const std::vector<unsigned int> &indices_);
 
-  void Setup() {
-    handle_ =
-        Engine::GetRenderAPI()->CreateGeometryInstance(vertices_, indices_);
-  }
+  void Setup();
 
   std::shared_ptr<GeometryHandle> handle() { return handle_; }
 

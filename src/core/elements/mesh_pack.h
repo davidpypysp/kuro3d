@@ -9,7 +9,8 @@ namespace kuro {
 
 class MeshPack : public VisualPack {
  public:
-  MeshPack();
+  MeshPack(std::shared_ptr<Geometry> geometry,
+           std::shared_ptr<Material> material);
 
   void Render();
 

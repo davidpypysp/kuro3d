@@ -7,7 +7,7 @@ namespace kuro {
 
 class Material {
  public:
-  Material(){};
+  Material();
 
   virtual void Use() = 0;
 

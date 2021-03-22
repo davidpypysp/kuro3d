@@ -5,6 +5,9 @@
 
 #include "src/core/renderer/model_loader.h"
 #include "src/core/engine.h"
+#include "src/core/renderer/geometry.h"
+#include "src/core/elements/mesh_basic_material.h"
+#include "src/core/elements/mesh_pack.h"
 
 namespace kuro {
 
@@ -90,6 +93,21 @@ Mesh ProcessMesh(aiMesh *mesh, const aiScene *scene,
       material, directory, aiTextureType_AMBIENT, TextureType::HEIGHT);
   textures.insert(textures.end(), height_textures.begin(),
                   height_textures.end());
+
+  auto geometry = std::make_shared<Geometry>(vertices, indices);
+  auto mesh_basic_material = std::make_shared<MeshBasicMaterial>();
+  if (diffuse_textures.size() > 0) {
+    mesh_basic_material->set_diffuse_map(diffuse_textures[0]);
+  }
+  if (specular_textures.size() > 0) {
+    mesh_basic_material->set_specular_map(specular_textures[0]);
+  }
+  if (normal_textures.size() > 0) {
+    mesh_basic_material->set_normal_map(normal_textures[0]);
+  }
+  if (height_textures.size() > 0) {
+    mesh_basic_material->set_height_map(height_textures[0]);
+  }
 
   return Mesh(vertices, indices, textures);
 }
