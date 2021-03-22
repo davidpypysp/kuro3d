@@ -16,8 +16,7 @@ std::vector<std::shared_ptr<Texture>> LoadMaterialTextures(
     aiString str;
     mat->GetTexture(type, i, &str);
     std::string path = directory + "/" + std::string(str.C_Str());
-    auto texture =
-        Engine::GetTextureLoader()->AcquireTexture(path, texture_type);
+    auto texture = Engine::GetTextureLoader()->LoadTexture(path, texture_type);
     textures.push_back(texture);
   }
   return textures;
@@ -107,8 +106,8 @@ void ProcessNode(aiNode *node, const aiScene *scene,
 
 ModelLoader::ModelLoader() {}
 
-void ModelLoader::AcquireModel(const std::string &path,
-                               std::vector<Mesh> *meshes) {
+void ModelLoader::LoadModel(const std::string &path,
+                            std::vector<Mesh> *meshes) {
   Assimp::Importer importer;
   const aiScene *scene = importer.ReadFile(
       path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |

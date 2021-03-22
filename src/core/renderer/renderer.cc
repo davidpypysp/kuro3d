@@ -31,7 +31,7 @@ void Renderer::DrawSceneNode(std::shared_ptr<SceneNode> scene_node,
   shader_->SetMat4("model", world_transform);
   for (auto pack : scene_node->GetPacks()) {
     if (auto visual_pack = std::dynamic_pointer_cast<VisualPack>(pack)) {
-      visual_pack->Draw(*shader_);
+      visual_pack->Draw(shader_);
     }
   }
 

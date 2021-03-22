@@ -4,16 +4,16 @@
 namespace kuro {
 
 ModelPack::ModelPack(const std::string &path) {
-  Engine::GetModelLoader()->AcquireModel(path, &meshes_);
+  Engine::GetModelLoader()->LoadModel(path, &meshes_);
 }
 
-void ModelPack::Draw(Shader &shader) {
+void ModelPack::Draw(std::shared_ptr<Shader> shader) {
   for (unsigned int i = 0; i < meshes_.size(); i++) {
     DrawMesh(meshes_[i], shader);
   }
 }
 
-void ModelPack::DrawMesh(const Mesh &mesh, Shader &shader) {
+void ModelPack::DrawMesh(const Mesh &mesh, std::shared_ptr<Shader> shader) {
   unsigned int diffuse_num = 0;
   unsigned int specular_num = 0;
   unsigned int normal_num = 0;
@@ -42,7 +42,7 @@ void ModelPack::DrawMesh(const Mesh &mesh, Shader &shader) {
         break;
     }
 
-    shader.SetInt(name + number, i);
+    shader->SetInt(name + number, i);
     Engine::GetRenderAPI()->EnableTextureUnit(i, textures[i]->handle);
   }
 

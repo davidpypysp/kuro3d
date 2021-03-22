@@ -11,10 +11,10 @@ class ModelPack : public VisualPack {
  public:
   ModelPack(const std::string &path);
 
-  void Draw(Shader &shader);
+  void Draw(std::shared_ptr<Shader> shader);
 
  private:
-  void DrawMesh(const Mesh &mesh, Shader &shader);
+  void DrawMesh(const Mesh &mesh, std::shared_ptr<Shader> shader);
   std::vector<Mesh> meshes_;
 };
 

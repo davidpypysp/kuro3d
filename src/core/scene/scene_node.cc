@@ -6,10 +6,6 @@ namespace kuro {
 
 SceneNode::SceneNode(const std::string& name) : NodeBase(name) {
   SetLocalTransform(mat4(1.0));
-  std::cout << "transform " << math::to_string(transform_) << std::endl;
-  std::cout << "position" << math::to_string(translation_) << std::endl;
-  std::cout << "rotation" << math::to_string(rotation_) << std::endl;
-  std::cout << "scale " << math::to_string(scale_) << std::endl;
 }
 
 std::shared_ptr<SceneNode> SceneNode::Create(const std::string& name) {

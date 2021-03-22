@@ -12,7 +12,7 @@ class ModelLoader {
  public:
   ModelLoader();
 
-  void AcquireModel(const std::string &path, std::vector<Mesh> *meshes);
+  void LoadModel(const std::string &path, std::vector<Mesh> *meshes);
 };
 
 }  // namespace kuro

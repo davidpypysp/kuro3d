@@ -9,10 +9,10 @@ namespace kuro {
 // pack could be render into world
 class VisualPack : public Pack {
  public:
-  VisualPack();
-  ~VisualPack();
+  VisualPack(){};
+  ~VisualPack(){};
 
-  virtual void Draw(Shader &shader);
+  virtual void Draw(std::shared_ptr<Shader> shader) = 0;
 };
 
 }  // namespace kuro
