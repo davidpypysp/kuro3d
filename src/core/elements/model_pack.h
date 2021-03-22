@@ -13,6 +13,8 @@ class ModelPack : public VisualPack {
 
   void Draw(std::shared_ptr<Shader> shader);
 
+  void Render() {}
+
  private:
   void DrawMesh(const Mesh &mesh, std::shared_ptr<Shader> shader);
   std::vector<Mesh> meshes_;

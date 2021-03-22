@@ -9,7 +9,7 @@ struct ShaderProgram {};
 
 struct TextureHandle {};
 
-struct MeshHandle {};
+struct GeometryHandle {};
 
 struct Vertex {
   vec3 position;

@@ -19,7 +19,7 @@ struct Mesh {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
   std::vector<std::shared_ptr<Texture>> textures;
-  std::shared_ptr<MeshHandle> handle;
+  std::shared_ptr<GeometryHandle> handle;
 };
 
 }  // namespace kuro

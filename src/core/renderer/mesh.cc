@@ -11,7 +11,7 @@ Mesh::Mesh(const std::vector<Vertex> &vertices,
 }
 
 void Mesh::Setup() {
-  handle = Engine::GetRenderAPI()->CreateMeshInstance(vertices, indices);
+  handle = Engine::GetRenderAPI()->CreateGeometryInstance(vertices, indices);
 }
 
 }  // namespace kuro

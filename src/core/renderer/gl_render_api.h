@@ -9,7 +9,7 @@ struct GLSLShaderProgram : public ShaderProgram {
   unsigned int id;
 };
 
-struct GLMeshHandle : public MeshHandle {
+struct GLGeometryHandle : public GeometryHandle {
   unsigned int vao;
   unsigned int vbo;
   unsigned int ebo;
@@ -33,10 +33,10 @@ class GLRenderAPI : public RenderAPI {
                          const std::string &name, const int value);
   void SetShaderMat4Param(std::shared_ptr<ShaderProgram> program,
                           const std::string &name, const mat4 &mat);
-  std::shared_ptr<MeshHandle> CreateMeshInstance(
+  std::shared_ptr<GeometryHandle> CreateGeometryInstance(
       const std::vector<Vertex> &vertices,
       const std::vector<unsigned int> &indices);
-  void DrawMeshInstance(std::shared_ptr<MeshHandle> handle);
+  void DrawMeshInstance(std::shared_ptr<GeometryHandle> handle);
   std::shared_ptr<TextureHandle> CreateTextureInstance(
       void *data, const unsigned int width, const unsigned int height,
       const TextureFormat format);

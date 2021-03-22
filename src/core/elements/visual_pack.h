@@ -13,6 +13,8 @@ class VisualPack : public Pack {
   ~VisualPack(){};
 
   virtual void Draw(std::shared_ptr<Shader> shader) = 0;
+
+  virtual void Render() = 0;
 };
 
 }  // namespace kuro
