@@ -12,12 +12,12 @@
 namespace kuro {
 
 std::vector<std::shared_ptr<Texture>> LoadMaterialTextures(
-    aiMaterial *mat, const std::string &directory, const aiTextureType &type,
-    const TextureType &texture_type) {
+    aiMaterial *ai_mat, const std::string &directory,
+    const aiTextureType &ai_texture_type, const TextureType &texture_type) {
   std::vector<std::shared_ptr<Texture>> textures;
-  for (unsigned int i = 0; i < mat->GetTextureCount(type); i++) {
+  for (unsigned int i = 0; i < ai_mat->GetTextureCount(ai_texture_type); i++) {
     aiString str;
-    mat->GetTexture(type, i, &str);
+    ai_mat->GetTexture(ai_texture_type, i, &str);
     std::string path = directory + "/" + std::string(str.C_Str());
     auto texture = Engine::GetTextureLoader()->LoadTexture(path, texture_type);
     textures.push_back(texture);
@@ -113,18 +113,20 @@ std::shared_ptr<MeshPack> ProcessMesh(aiMesh *ai_mesh, const aiScene *ai_scene,
   return mesh_pack;
 }
 
-void ProcessNode(aiNode *node, const aiScene *scene,
+void ProcessNode(aiNode *ai_node, const aiScene *ai_scene,
                  const std::string &directory,
                  std::shared_ptr<SceneNode> scene_node) {
-  for (unsigned int i = 0; i < node->mNumMeshes; i++) {
-    aiMesh *ai_mesh = scene->mMeshes[node->mMeshes[i]];
-    auto mesh_pack = ProcessMesh(ai_mesh, scene, directory);
+  for (unsigned int i = 0; i < ai_node->mNumMeshes; i++) {
+    aiMesh *ai_mesh = ai_scene->mMeshes[ai_node->mMeshes[i]];
+    auto mesh_pack = ProcessMesh(ai_mesh, ai_scene, directory);
     scene_node->BindPack(mesh_pack);
   }
-  for (unsigned int i = 0; i < node->mNumChildren; i++) {
-    auto child_node = std::make_shared<SceneNode>("child_node");
-    scene_node->AddChildSceneNode(child_node);
-    ProcessNode(node->mChildren[i], scene, directory, child_node);
+  for (unsigned int i = 0; i < ai_node->mNumChildren; i++) {
+    aiNode *ai_child = ai_node->mChildren[i];
+    const auto &node_name = std::string(ai_child->mName.C_Str());
+    auto child_node =
+        Engine::GetSceneManager()->CreateSceneNode(node_name, scene_node);
+    ProcessNode(ai_child, ai_scene, directory, child_node);
   }
 }
 
@@ -133,16 +135,16 @@ ModelLoader::ModelLoader() {}
 void ModelLoader::LoadModel(const std::string &path,
                             std::shared_ptr<SceneNode> scene_node) {
   Assimp::Importer importer;
-  const aiScene *scene = importer.ReadFile(
+  const aiScene *ai_scene = importer.ReadFile(
       path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
                 aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
-  if (!scene || scene->mFlags && AI_SCENE_FLAGS_INCOMPLETE ||
-      !scene->mRootNode) {
+  if (!ai_scene || ai_scene->mFlags && AI_SCENE_FLAGS_INCOMPLETE ||
+      !ai_scene->mRootNode) {
     std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
   }
   std::string directory = path.substr(0, path.find_last_of('/'));
-  ProcessNode(scene->mRootNode, scene, directory, scene_node);
+  ProcessNode(ai_scene->mRootNode, ai_scene, directory, scene_node);
 }
 
 }  // namespace kuro
