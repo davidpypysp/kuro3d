@@ -1,5 +1,6 @@
 #include "src/core/scene/scene_manager.h"
-#include "src/core/elements/model_pack.h"
+#include "src/core/renderer/model_loader.h"
+#include "src/core/engine.h"
 
 namespace kuro {
 
@@ -14,13 +15,8 @@ void SceneManager::CreateDefaultScene() {
 
   // example model
   auto example_node = CreateSceneNode<SceneNode>("example_model", root_node_);
-  auto model_pack =
-      std::make_shared<ModelPack>("resources/backpack/backpack.obj");
-  example_node->BindPack(model_pack);
-
-  auto example_node2 =
-      CreateSceneNode<SceneNode>("example_model2", example_node, vec3(1, 1, 1));
-  example_node2->BindPack(model_pack);
+  Engine::GetModelLoader()->LoadModel("resources/backpack/backpack.obj",
+                                      example_node);
 }
 
 void SceneManager::AddSceneNode(std::shared_ptr<SceneNode> scene_node) {

@@ -12,8 +12,6 @@ class VisualPack : public Pack {
   VisualPack(){};
   ~VisualPack(){};
 
-  virtual void Draw(std::shared_ptr<Shader> shader) = 0;
-
   virtual void Render() = 0;
 };
 
