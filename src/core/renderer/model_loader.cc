@@ -123,6 +123,7 @@ void ProcessNode(aiNode *node, const aiScene *scene,
   }
   for (unsigned int i = 0; i < node->mNumChildren; i++) {
     auto child_node = std::make_shared<SceneNode>("child_node");
+    scene_node->AddChildSceneNode(child_node);
     ProcessNode(node->mChildren[i], scene, directory, child_node);
   }
 }

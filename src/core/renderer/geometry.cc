@@ -5,7 +5,9 @@ namespace kuro {
 
 Geometry::Geometry(const std::vector<Vertex> &vertices,
                    const std::vector<unsigned int> &indices)
-    : vertices_(vertices), indices_(indices) {}
+    : vertices_(vertices), indices_(indices) {
+  Setup();
+}
 
 void Geometry::Setup() {
   handle_ = Engine::GetRenderAPI()->CreateGeometryInstance(vertices_, indices_);
