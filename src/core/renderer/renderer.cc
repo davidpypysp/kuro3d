@@ -9,8 +9,7 @@ Renderer::Renderer() {}
 Renderer::~Renderer() {}
 
 void Renderer::Init() {
-  shader_ =
-      std::make_shared<Shader>("model_loading.vert", "model_loading.frag");
+  shader_ = std::make_shared<Shader>("mesh_basic.vert", "mesh_basic.frag");
 }
 
 void Renderer::DrawScene() {

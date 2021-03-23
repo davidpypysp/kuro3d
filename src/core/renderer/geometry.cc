@@ -3,6 +3,8 @@
 
 namespace kuro {
 
+Geometry::Geometry() {}
+
 Geometry::Geometry(const std::vector<Vertex> &vertices,
                    const std::vector<unsigned int> &indices)
     : vertices_(vertices), indices_(indices) {

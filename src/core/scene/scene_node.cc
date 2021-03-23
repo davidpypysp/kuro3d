@@ -28,7 +28,6 @@ PackList& SceneNode::GetPacks() { return packs_; }
 
 void SceneNode::AddChildSceneNode(std::shared_ptr<SceneNode> scene_node) {
   AddChild(scene_node);
-  scene_manager_->AddSceneNode(scene_node);
 }
 
 mat4 SceneNode::LocalTransform() { return transform_; }

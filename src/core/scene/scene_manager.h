@@ -19,7 +19,6 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   SceneManager();
   void CreateDefaultScene();
 
-  void AddSceneNode(std::shared_ptr<SceneNode> scene_node);
   std::shared_ptr<SceneNode> root_node() { return root_node_; }
 
   template <class T = SceneNode>

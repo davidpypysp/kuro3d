@@ -19,8 +19,4 @@ void SceneManager::CreateDefaultScene() {
                                       example_node);
 }
 
-void SceneManager::AddSceneNode(std::shared_ptr<SceneNode> scene_node) {
-  scene_node->set_scene_manager(shared_from_this());
-}
-
 }  // namespace kuro

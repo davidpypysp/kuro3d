@@ -9,6 +9,7 @@ namespace kuro {
 
 class Geometry {
  public:
+  Geometry();
   Geometry(const std::vector<Vertex> &vertices,
            const std::vector<unsigned int> &indices_);
 
