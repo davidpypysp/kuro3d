@@ -11,6 +11,7 @@ Engine::Engine() {
   scene_manager_ = std::make_shared<SceneManager>();
   texture_loader_ = std::make_shared<TextureLoader>();
   model_loader_ = std::make_shared<ModelLoader>();
+  shader_manager_ = std::make_shared<ShaderManager>();
 }
 
 Engine::~Engine() {}
@@ -19,6 +20,7 @@ void Engine::Init() {
   instance_ = new Engine();
   instance_->render_api_->Init();
   instance_->renderer_->Init();
+  instance_->shader_manager_->Init();
   instance_->scene_manager_->CreateDefaultScene();
 }
 
@@ -40,6 +42,10 @@ std::shared_ptr<TextureLoader> Engine::GetTextureLoader() {
 
 std::shared_ptr<ModelLoader> Engine::GetModelLoader() {
   return instance_->model_loader_;
+}
+
+std::shared_ptr<ShaderManager> Engine::GetShaderManager() {
+  return instance_->shader_manager_;
 }
 
 void Engine::SetWindowSize(const unsigned int width,

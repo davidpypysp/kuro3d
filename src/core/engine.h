@@ -8,6 +8,7 @@
 #include "src/core/scene/scene_manager.h"
 #include "src/core/renderer/texture_loader.h"
 #include "src/core/renderer/model_loader.h"
+#include "src/core/renderer/shader_manager.h"
 
 namespace kuro {
 
@@ -23,6 +24,7 @@ class Engine {
   static std::shared_ptr<RenderAPI> GetRenderAPI();
   static std::shared_ptr<TextureLoader> GetTextureLoader();
   static std::shared_ptr<ModelLoader> GetModelLoader();
+  static std::shared_ptr<ShaderManager> GetShaderManager();
 
   std::shared_ptr<SceneManager> scene_manager() { return scene_manager_; }
   std::shared_ptr<Renderer> renderer() { return renderer_; }
@@ -42,6 +44,7 @@ class Engine {
   std::shared_ptr<SceneManager> scene_manager_;
   std::shared_ptr<TextureLoader> texture_loader_;
   std::shared_ptr<ModelLoader> model_loader_;
+  std::shared_ptr<ShaderManager> shader_manager_;
 };
 
 }  // namespace kuro

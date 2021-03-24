@@ -17,8 +17,7 @@ class Renderer {
   std::shared_ptr<Shader> shader() { return shader_; }
 
  private:
-  void DrawSceneNode(std::shared_ptr<SceneNode> scene_node,
-                     const mat4 &parent_transform);
+  void DrawSceneNode(std::shared_ptr<SceneNode> scene_node);
 
   std::shared_ptr<Shader> shader_;
 };

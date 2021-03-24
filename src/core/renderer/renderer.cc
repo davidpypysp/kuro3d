@@ -20,14 +20,12 @@ void Renderer::DrawScene() {
   shader_->SetMat4("projection", camera->GetPerspectiveMatrix());
   shader_->SetMat4("view", camera->GetViewMatrix());
 
-  DrawSceneNode(scene_manager->root_node(), mat4(1.0));
+  DrawSceneNode(scene_manager->root_node());
 }
 
-void Renderer::DrawSceneNode(std::shared_ptr<SceneNode> scene_node,
-                             const mat4 &parent_transform) {
-  scene_node->UpdateLocalTransform();
-  mat4 world_transform = scene_node->LocalTransform() * parent_transform;
-  shader_->SetMat4("model", world_transform);
+void Renderer::DrawSceneNode(std::shared_ptr<SceneNode> scene_node) {
+  scene_node->UpdateTransforms();
+  shader_->SetMat4("model", scene_node->WorldTransform());
   for (auto pack : scene_node->GetPacks()) {
     if (auto visual_pack = std::dynamic_pointer_cast<VisualPack>(pack)) {
       visual_pack->Render();
@@ -36,7 +34,7 @@ void Renderer::DrawSceneNode(std::shared_ptr<SceneNode> scene_node,
 
   // recursively draw child nodes
   for (auto child_node : scene_node->child_nodes()) {
-    DrawSceneNode(child_node, world_transform);
+    DrawSceneNode(child_node);
   }
 }
 

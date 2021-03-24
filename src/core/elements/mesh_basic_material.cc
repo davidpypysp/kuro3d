@@ -4,7 +4,7 @@
 namespace kuro {
 
 MeshBasicMaterial::MeshBasicMaterial() {
-  shader_ = Engine::GetRenderer()->shader();
+  shader_ = Engine::GetShaderManager()->mesh_basic_shader();
 }
 
 void MeshBasicMaterial::Use() {

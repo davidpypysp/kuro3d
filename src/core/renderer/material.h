@@ -11,6 +11,8 @@ class Material {
 
   virtual void Use() = 0;
 
+  std::shared_ptr<Shader> shader() { return shader_; }
+
  protected:
   std::shared_ptr<Shader> shader_;
 };
