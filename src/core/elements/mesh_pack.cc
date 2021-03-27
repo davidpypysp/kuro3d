@@ -9,6 +9,15 @@ MeshPack::MeshPack(std::shared_ptr<Geometry> geometry,
 
 void MeshPack::Render() {
   auto shader = material_->shader();
+  shader->Use();
+
+  auto scene_manager = Engine::GetSceneManager();
+  auto camera = scene_manager->current_camera();
+  shader->SetMat4("projection", camera->GetPerspectiveMatrix());
+  shader->SetMat4("view", camera->GetViewMatrix());
+
+  shader->SetMat4("model", scene_node_->WorldTransform());
+
   material_->Use();
   Engine::GetRenderAPI()->DrawMeshInstance(geometry_->handle());
 }

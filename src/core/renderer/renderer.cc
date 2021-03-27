@@ -14,18 +14,12 @@ void Renderer::Init() {
 
 void Renderer::DrawScene() {
   auto scene_manager = Engine::GetSceneManager();
-  auto camera = scene_manager->current_camera();
-
-  shader_->Use();
-  shader_->SetMat4("projection", camera->GetPerspectiveMatrix());
-  shader_->SetMat4("view", camera->GetViewMatrix());
 
   DrawSceneNode(scene_manager->root_node());
 }
 
 void Renderer::DrawSceneNode(std::shared_ptr<SceneNode> scene_node) {
   scene_node->UpdateTransforms();
-  shader_->SetMat4("model", scene_node->WorldTransform());
   for (auto pack : scene_node->GetPacks()) {
     if (auto visual_pack = std::dynamic_pointer_cast<VisualPack>(pack)) {
       visual_pack->Render();

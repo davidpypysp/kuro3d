@@ -94,6 +94,7 @@ void CubeGeometry::Setup() {
         vec3(vertices[index + 3], vertices[index + 4], vertices[index + 5]);
     vertex.tex_coords = vec2(vertices[index + 6], vertices[index + 7]);
     vertices_.push_back(vertex);
+    indices_.push_back(i);
   }
 
   Geometry::Setup();

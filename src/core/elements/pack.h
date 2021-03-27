@@ -18,7 +18,7 @@ class Pack {
     scene_node_ = scene_node;
   }
 
- private:
+ protected:
   std::shared_ptr<SceneNode> scene_node_;
 };
 
