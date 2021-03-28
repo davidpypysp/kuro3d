@@ -8,6 +8,12 @@ MeshPack::MeshPack(std::shared_ptr<Geometry> geometry,
     : geometry_(geometry), material_(material) {}
 
 void MeshPack::Render() {
+  PrepareShader();
+  material_->Use();
+  Engine::GetRenderAPI()->DrawMeshInstance(geometry_->handle());
+}
+
+void MeshPack::PrepareShader() {
   auto shader = material_->shader();
   shader->Use();
 
@@ -17,9 +23,6 @@ void MeshPack::Render() {
   shader->SetMat4("view", camera->GetViewMatrix());
 
   shader->SetMat4("model", scene_node_->WorldTransform());
-
-  material_->Use();
-  Engine::GetRenderAPI()->DrawMeshInstance(geometry_->handle());
 }
 
 }  // namespace kuro

@@ -15,6 +15,7 @@ class MeshPack : public VisualPack {
   void Render();
 
  protected:
+  void PrepareShader();
   std::shared_ptr<Geometry> geometry_;
   std::shared_ptr<Material> material_;
 };
