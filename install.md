@@ -13,6 +13,8 @@ sudo apt-get install libgl1-mesa-dev
 sudo apt-get install xorg-dev
 ```
 
+
+### Mac
 First build dependencies on mac
 ```
 No dependency needed
