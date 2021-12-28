@@ -31,3 +31,6 @@ make -j6
 cd src
 ./kuro3d
 ```
+
+
+### Windows
