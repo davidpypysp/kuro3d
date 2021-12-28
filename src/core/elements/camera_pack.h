@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_ELEMENTS_CAMERA_PACK_H_
-#define SRC_CORE_ELEMENTS_CAMERA_PACK_H_
+#ifndef CORE_ELEMENTS_CAMERA_PACK_H_
+#define CORE_ELEMENTS_CAMERA_PACK_H_
 
 #include <vector>
 #include "src/math/math.h"
@@ -54,4 +54,4 @@ class CameraPack : public Pack {
 
 };  // namespace kuro
 
-#endif  // SRC_CORE_ELEMENTS_CAMERA_PACK_H_
+#endif  // CORE_ELEMENTS_CAMERA_PACK_H_

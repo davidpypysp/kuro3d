@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_RENDERER_RENDERER_TYPE_H_
-#define SRC_CORE_RENDERER_RENDERER_TYPE_H_
+#ifndef CORE_RENDERER_RENDERER_TYPE_H_
+#define CORE_RENDERER_RENDERER_TYPE_H_
 
 #include "src/math/math.h"
 
@@ -21,4 +21,4 @@ struct Vertex {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_RENDERER_TYPE_H_
+#endif  // CORE_RENDERER_RENDERER_TYPE_H_

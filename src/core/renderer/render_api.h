@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_RENDERER_RENDER_API_H_
-#define SRC_CORE_RENDERER_RENDER_API_H_
+#ifndef CORE_RENDERER_RENDER_API_H_
+#define CORE_RENDERER_RENDER_API_H_
 
 #include <memory>
 #include <vector>
@@ -42,4 +42,4 @@ class RenderAPI {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_RENDER_API_H_
+#endif  // CORE_RENDERER_RENDER_API_H_

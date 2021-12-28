@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_SCENE_SCENE_MANAGER_H_
-#define SRC_CORE_SCENE_SCENE_MANAGER_H_
+#ifndef CORE_SCENE_SCENE_MANAGER_H_
+#define CORE_SCENE_SCENE_MANAGER_H_
 
 #include <memory>
 #include <vector>
@@ -64,4 +64,4 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_SCENE_SCENE_MANAGER_H_
+#endif  // CORE_SCENE_SCENE_MANAGER_H_

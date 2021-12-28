@@ -1,5 +1,5 @@
-#ifndef SRC_GUI_IMGUI_OBJECT_INSPECTOR_H_
-#define SRC_GUI_IMGUI_OBJECT_INSPECTOR_H_
+#ifndef GUI_IMGUI_OBJECT_INSPECTOR_H_
+#define GUI_IMGUI_OBJECT_INSPECTOR_H_
 
 #include "src/gui/imgui/window.h"
 
@@ -20,4 +20,4 @@ class ObjectInspector : public Window {
 
 }  // namespace kuro
 
-#endif  // SRC_GUI_IMGUI_OBJECT_INSPECTOR_H_
+#endif  // GUI_IMGUI_OBJECT_INSPECTOR_H_

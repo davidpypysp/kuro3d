@@ -1,5 +1,5 @@
-#ifndef SRC_UTILS_NODE_BASE_H_
-#define SRC_UTILS_NODE_BASE_H_
+#ifndef UTILS_NODE_BASE_H_
+#define UTILS_NODE_BASE_H_
 
 #include <string>
 #include <vector>
@@ -31,4 +31,4 @@ class NodeBase : public std::enable_shared_from_this<T> {
 
 }  // namespace kuro
 
-#endif  // SRC_UTILS_NODE_BASE_H_
+#endif  // UTILS_NODE_BASE_H_

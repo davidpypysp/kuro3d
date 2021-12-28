@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_RENDERER_GL_RENDER_API_H_
-#define SRC_CORE_RENDERER_GL_RENDER_API_H_
+#ifndef CORE_RENDERER_GL_RENDER_API_H_
+#define CORE_RENDERER_GL_RENDER_API_H_
 
 #include "src/core/renderer/render_api.h"
 
@@ -49,4 +49,4 @@ class GLRenderAPI : public RenderAPI {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_GL_RENDER_API_H_
+#endif  // CORE_RENDERER_GL_RENDER_API_H_

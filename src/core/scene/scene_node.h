@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_SCENE_SCENE_NODE_H_
-#define SRC_CORE_SCENE_SCENE_NODE_H_
+#ifndef CORE_SCENE_SCENE_NODE_H_
+#define CORE_SCENE_SCENE_NODE_H_
 
 #include <glad/glad.h>
 #include <string>
@@ -81,4 +81,4 @@ class SceneNode : public NodeBase<SceneNode> {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_SCENE_SCENE_NODE_H_
+#endif  // CORE_SCENE_SCENE_NODE_H_

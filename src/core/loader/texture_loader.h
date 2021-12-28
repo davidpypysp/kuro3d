@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_LOADER_TEXTURE_LOADER_H_
-#define SRC_CORE_LOADER_TEXTURE_LOADER_H_
+#ifndef CORE_LOADER_TEXTURE_LOADER_H_
+#define CORE_LOADER_TEXTURE_LOADER_H_
 
 #include <string>
 #include <vector>
@@ -21,4 +21,4 @@ class TextureLoader {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE?RENDERER_TEXTURE_LOADER_H_
+#endif  // CORE?RENDERER_TEXTURE_LOADER_H_

@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_RENDERER_GEOMETRY_H_
-#define SRC_CORE_RENDERER_GEOMETRY_H_
+#ifndef CORE_RENDERER_GEOMETRY_H_
+#define CORE_RENDERER_GEOMETRY_H_
 
 #include <vector>
 #include <memory>
@@ -25,4 +25,4 @@ class Geometry {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_GEOMETRY_H_
+#endif  // CORE_RENDERER_GEOMETRY_H_

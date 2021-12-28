@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_ENGINE_H_
-#define SRC_CORE_ENGINE_H_
+#ifndef CORE_ENGINE_H_
+#define CORE_ENGINE_H_
 
 #include <memory>
 
@@ -49,4 +49,4 @@ class Engine {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_ENGINE_H_
+#endif  // CORE_ENGINE_H_

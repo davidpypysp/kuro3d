@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_RENDERER_SHADER_MANAGER_H_
-#define SRC_CORE_RENDERER_SHADER_MANAGER_H_
+#ifndef CORE_RENDERER_SHADER_MANAGER_H_
+#define CORE_RENDERER_SHADER_MANAGER_H_
 
 #include <memory>
 #include "src/core/renderer/shader.h"
@@ -22,4 +22,4 @@ class ShaderManager {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_SHADER_MANAGER_H_
+#endif  // CORE_RENDERER_SHADER_MANAGER_H_

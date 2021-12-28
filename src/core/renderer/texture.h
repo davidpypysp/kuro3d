@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_RENDERER_TEXTURE_H_
-#define SRC_CORE_RENDERER_TEXTURE_H_
+#ifndef CORE_RENDERER_TEXTURE_H_
+#define CORE_RENDERER_TEXTURE_H_
 
 #include <string>
 #include <memory>
@@ -19,4 +19,4 @@ struct Texture {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_TEXTURE_H_
+#endif  // CORE_RENDERER_TEXTURE_H_
