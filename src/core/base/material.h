@@ -1,5 +1,5 @@
-#ifndef CORE_RENDERER_MATERIAL_H_
-#define CORE_RENDERER_MATERIAL_H_
+#ifndef CORE_BASE_MATERIAL_H_
+#define CORE_BASE_MATERIAL_H_
 
 #include "src/core/renderer/shader.h"
 
@@ -19,4 +19,4 @@ class Material {
 
 }  // namespace kuro
 
-#endif  // CORE_RENDERER_MATERIAL_H_
+#endif  //  CORE_BASE_MATERIAL_H_

@@ -1,5 +1,5 @@
-#ifndef CORE_RENDERER_SHADER_H_
-#define CORE_RENDERER_SHADER_H_
+#ifndef CORE_BASE_SHADER_H_
+#define CORE_BASE_SHADER_H_
 
 #include <string>
 #include <memory>
@@ -24,4 +24,4 @@ class Shader {
 
 }  // namespace kuro
 
-#endif  // CORE_RENDERER_SHADER_H_
+#endif  //  CORE_BASE_SHADER_H_
