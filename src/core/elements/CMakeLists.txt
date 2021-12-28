@@ -17,6 +17,9 @@ add_library(mesh_flat_material mesh_flat_material.cc)
 
 add_library(pack pack.cc)
 
+add_library(visual_pack visual_pack.cc)
+target_link_libraries(visual_pack pack)
+
 add_library(mesh_pack mesh_pack.cc)
 target_link_libraries(mesh_pack camera_atom)
 
