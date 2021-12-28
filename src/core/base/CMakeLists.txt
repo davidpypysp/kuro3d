@@ -1,5 +1,5 @@
-add_library(shader shader.cc)
+add_library(base_shader shader.cc)
 
-add_library(texture texture.cc)
+add_library(base_texture texture.cc)
 
-add_library(material material.cc)
+add_library(base_material material.cc)

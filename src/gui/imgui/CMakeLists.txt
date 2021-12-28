@@ -1,4 +1,4 @@
-add_library(Gui_Imgui
+add_library(gui_imgui
 	gui_base.cc
 	gui_main.cc
 	gui.cc
@@ -6,7 +6,7 @@ add_library(Gui_Imgui
 	scene_explorer.cc
 	window.cc
 )
-target_link_libraries(Gui_Imgui
-	Core_Engine
+target_link_libraries(gui_imgui
+	core_engine
 	${IMGUI_LIBRARIES}
 )
