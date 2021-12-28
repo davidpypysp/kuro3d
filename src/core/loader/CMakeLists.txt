@@ -7,3 +7,5 @@ target_link_libraries(model_loader
     assimp
 )
 
+add_library(texture_loader texture_loader.cc)
+

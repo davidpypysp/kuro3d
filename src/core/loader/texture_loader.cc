@@ -3,7 +3,7 @@
 //     #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#include "src/core/renderer/texture_loader.h"
+#include "src/core/loader/texture_loader.h"
 #include "src/core/engine.h"
 
 namespace kuro {

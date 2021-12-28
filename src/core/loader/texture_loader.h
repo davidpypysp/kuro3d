@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_RENDERER_TEXTURE_LOADER_H_
-#define SRC_CORE_RENDERER_TEXTURE_LOADER_H_
+#ifndef SRC_CORE_LOADER_TEXTURE_LOADER_H_
+#define SRC_CORE_LOADER_TEXTURE_LOADER_H_
 
 #include <string>
 #include <vector>
@@ -11,7 +11,7 @@ class TextureLoader {
  public:
   TextureLoader();
   std::shared_ptr<Texture> LoadTexture(const std::string &path,
-                                          const TextureType &type);
+                                       const TextureType &type);
 
  private:
   std::shared_ptr<TextureHandle> LoadTextureFromFile(const char *path);

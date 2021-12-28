@@ -6,8 +6,8 @@
 #include "src/core/renderer/renderer.h"
 #include "src/core/renderer/render_api.h"
 #include "src/core/scene/scene_manager.h"
-#include "src/core/renderer/texture_loader.h"
-#include "src/core/model/model_loader.h"
+#include "src/core/loader/texture_loader.h"
+#include "src/core/loader/model_loader.h"
 #include "src/core/renderer/shader_manager.h"
 
 namespace kuro {
