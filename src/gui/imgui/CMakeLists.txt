@@ -8,4 +8,5 @@ add_library(imgui_lib
 )
 target_link_libraries(imgui_lib
 	core
+	${IMGUI_LIBRARIES}
 )

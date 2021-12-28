@@ -13,7 +13,6 @@ add_executable(test_kuro_3d
 
 target_link_libraries(test_kuro_3d
     imgui_lib
-    ${IMGUI_LIBRARIES}
 )
 # TODO: Test new cmake end
 
