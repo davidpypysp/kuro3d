@@ -3,14 +3,28 @@ set(CMAKE_CXX_STANDARD 17)
 
 include_directories(${CMAKE_SOURCE_DIR})
 
-file(GLOB_RECURSE PROJECT_HEADERS
-    ${CMAKE_SOURCE_DIR}/src/*.h
+# TODO: Test new cmake
+add_subdirectory(core)
+add_subdirectory(gui)
+
+add_executable(test_kuro_3d
+    main.cc
 )
+
+target_link_libraries(test_kuro_3d
+    imgui_lib
+    ${IMGUI_LIBRARIES}
+)
+# TODO: Test new cmake end
+
+# file(GLOB_RECURSE PROJECT_HEADERS
+#     ${CMAKE_SOURCE_DIR}/src/*.h
+# )
 file(GLOB_RECURSE PROJECT_SOURCES
     ${CMAKE_SOURCE_DIR}/src/*.cc
 )
 
-add_executable(${EXE_NAME} ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+add_executable(${EXE_NAME}  ${PROJECT_SOURCES})
 
 
 target_link_libraries(${EXE_NAME}
