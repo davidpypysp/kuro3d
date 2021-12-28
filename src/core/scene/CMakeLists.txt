@@ -7,9 +7,3 @@ target_link_libraries(scene_manager
 )
 
 add_library(scene_utils scene_utils.cc)
-
-add_library(scene
-	scene_node
-	scene_manager
-	scene_utils
-)

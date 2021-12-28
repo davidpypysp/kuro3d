@@ -4,8 +4,8 @@ add_subdirectory(elements)
 add_subdirectory(loader)
 add_subdirectory(scene)
 
-add_library(core engine.cc)
-target_link_libraries(core
+add_library(Core_Engine engine.cc)
+target_link_libraries(Core_Engine
 	gl_render_api
 	renderer
 	scene_manager

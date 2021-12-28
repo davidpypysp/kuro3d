@@ -22,16 +22,3 @@ target_link_libraries(visual_pack pack)
 
 add_library(mesh_pack mesh_pack.cc)
 target_link_libraries(mesh_pack camera_atom)
-
-
-add_library(elements
-	atom
-	camera_atom
-	camera_pack
-	cube_geometry
-	mesh_basic_material
-	mesh_flat_material
-	pack
-	mesh_pack
-	scene_atom
-)
