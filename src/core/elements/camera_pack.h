@@ -2,6 +2,7 @@
 #define CORE_ELEMENTS_CAMERA_PACK_H_
 
 #include <vector>
+
 #include "src/math/math.h"
 #include "src/core/elements/pack.h"
 

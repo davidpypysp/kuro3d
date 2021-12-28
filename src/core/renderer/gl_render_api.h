@@ -1,6 +1,9 @@
 #ifndef CORE_RENDERER_GL_RENDER_API_H_
 #define CORE_RENDERER_GL_RENDER_API_H_
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
 #include "src/core/base/vertex.h"
 #include "src/core/base/shader.h"
 #include "src/core/renderer/geometry.h"

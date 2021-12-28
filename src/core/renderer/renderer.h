@@ -2,6 +2,7 @@
 #define CORE_RENDERER_RENDERER_H_
 
 #include <memory>
+
 #include "src/core/base/shader.h"
 #include "src/core/scene/scene_node.h"
 

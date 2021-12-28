@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 #include "src/core/base/texture.h"
 
 namespace kuro {
