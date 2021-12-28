@@ -5,5 +5,3 @@ target_link_libraries(scene_manager
 	scene_node
 	cube_geometry
 )
-
-add_library(scene_utils scene_utils.cc)
