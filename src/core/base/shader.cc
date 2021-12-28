@@ -1,4 +1,4 @@
-#include "src/core/renderer/shader.h"
+#include "src/core/base/shader.h"
 #include "src/core/engine.h"
 
 namespace kuro {

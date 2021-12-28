@@ -1,4 +1,4 @@
-#include "src/core/renderer/material.h"
+#include "src/core/base/material.h"
 
 namespace kuro {
 

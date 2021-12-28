@@ -11,7 +11,7 @@ struct Vertex {
   vec2 tex_coords;
   vec3 tangent;
   vec3 bitangent;
-}
+};
 
 }  // namespace kuro
 

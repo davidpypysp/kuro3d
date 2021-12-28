@@ -1,8 +1,8 @@
 #ifndef CORE_ELEMENTS_MESH_BASIC_MATERIAL_H_
 #define CORE_ELEMENTS_MESH_BASIC_MATERIAL_H_
 
-#include "src/core/renderer/material.h"
-#include "src/core/renderer/texture.h"
+#include "src/core/base/material.h"
+#include "src/core/base/texture.h"
 
 namespace kuro {
 

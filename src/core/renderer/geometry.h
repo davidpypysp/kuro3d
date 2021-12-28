@@ -3,9 +3,12 @@
 
 #include <vector>
 #include <memory>
-#include "src/core/renderer/renderer_type.h"
+
+#include "src/core/base/vertex.h"
 
 namespace kuro {
+
+struct GeometryHandle {};
 
 class Geometry {
  public:

@@ -2,7 +2,7 @@
 #define CORE_RENDERER_SHADER_MANAGER_H_
 
 #include <memory>
-#include "src/core/renderer/shader.h"
+#include "src/core/base/shader.h"
 
 namespace kuro {
 

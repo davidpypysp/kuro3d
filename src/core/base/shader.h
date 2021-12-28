@@ -4,6 +4,8 @@
 #include <string>
 #include <memory>
 
+#include "src/math/math.h"
+
 namespace kuro {
 
 struct ShaderProgram {};

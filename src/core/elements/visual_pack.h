@@ -2,7 +2,7 @@
 #define CORE_ELEMENTS_VISUAL_PACK_H_
 
 #include "src/core/elements/pack.h"
-#include "src/core/renderer/shader.h"
+#include "src/core/base/shader.h"
 
 namespace kuro {
 

@@ -1,5 +1,7 @@
 #include "src/core/elements/cube_geometry.h"
 
+#include "src/math/math.h"
+
 namespace kuro {
 
 CubeGeometry::CubeGeometry() : Geometry() { Setup(); }

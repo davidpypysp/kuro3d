@@ -1,7 +1,7 @@
 #ifndef CORE_BASE_MATERIAL_H_
 #define CORE_BASE_MATERIAL_H_
 
-#include "src/core/renderer/shader.h"
+#include "src/core/base/shader.h"
 
 namespace kuro {
 

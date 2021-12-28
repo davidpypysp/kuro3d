@@ -3,8 +3,8 @@
 
 #include <memory>
 #include <vector>
-#include "src/core/renderer/renderer_type.h"
-#include "texture.h"
+#include "src/core/base/texture.h"
+#include "src/core/renderer/geometry.h"
 
 namespace kuro {
 
