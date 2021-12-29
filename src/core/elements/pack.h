@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_ELEMENTS_PACK_H_
-#define SRC_CORE_ELEMENTS_PACK_H_
+#ifndef CORE_ELEMENTS_PACK_H_
+#define CORE_ELEMENTS_PACK_H_
 
 #include <memory>
 #include "src/core/scene/scene_node.h"
@@ -24,4 +24,4 @@ class Pack {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_ELEMENTS_BASE_PACK_H_
+#endif  // CORE_ELEMENTS_BASE_PACK_H_

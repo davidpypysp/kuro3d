@@ -1,4 +1,5 @@
 #include "src/core/elements/camera_atom.h"
+
 #include "src/core/engine.h"
 
 namespace kuro {

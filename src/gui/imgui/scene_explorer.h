@@ -1,5 +1,5 @@
-#ifndef SRC_GUI_IMGUI_SCENE_EXPLORER_H_
-#define SRC_GUI_IMGUI_SCENE_EXPLORER_H_
+#ifndef GUI_IMGUI_SCENE_EXPLORER_H_
+#define GUI_IMGUI_SCENE_EXPLORER_H_
 
 #include <string>
 #include "src/gui/imgui/window.h"
@@ -26,4 +26,4 @@ class SceneExplorer : public Window {
 }  // namespace gui
 }  // namespace kuro
 
-#endif  // SRC_GUI_IMGUI_SCENE_EXPLORER_H_
+#endif  // GUI_IMGUI_SCENE_EXPLORER_H_

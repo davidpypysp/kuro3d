@@ -1,27 +1,21 @@
 set(EXE_NAME kuro3d)
 set(CMAKE_CXX_STANDARD 17)
 
+# Gtest
+enable_testing()
+include(GoogleTest)
+
+# Add header path
 include_directories(${CMAKE_SOURCE_DIR})
 
-file(GLOB_RECURSE PROJECT_HEADERS
-    ${CMAKE_SOURCE_DIR}/src/*.h
-)
-file(GLOB_RECURSE PROJECT_SOURCES
-    ${CMAKE_SOURCE_DIR}/src/*.cc
-)
+add_subdirectory(core)
+add_subdirectory(gui)
 
-add_executable(${EXE_NAME} ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+# Gui app
+add_executable(${EXE_NAME} main.cc)
+target_link_libraries(${EXE_NAME} gui_imgui)
 
-
-target_link_libraries(${EXE_NAME}
-    ${IMGUI_LIBRARIES}
-    assimp
-)
-
-install(TARGETS ${EXE_NAME}
-    DESTINATION ${CMAKE_BINARY_DIR}
-)
-
+# Copy shader files to destination
 file(GLOB PROJECT_SHADERS
     ${CMAKE_SOURCE_DIR}/src/core/shaders/*.comp
     ${CMAKE_SOURCE_DIR}/src/core/shaders/*.frag
@@ -42,3 +36,11 @@ add_custom_command(
     COMMENT "Copy resource..."
 )
 
+
+# TODO: remove hello_Test
+add_executable(hello_test hello_test.cc)
+target_link_libraries(
+  hello_test
+  gtest_main
+)
+gtest_discover_tests(hello_test)

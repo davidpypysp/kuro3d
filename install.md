@@ -34,3 +34,8 @@ cd src
 
 
 ### Windows
+
+
+
+### TODO: NOTE
+build one specific target e.g.: cmake --build . --target atom

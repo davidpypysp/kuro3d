@@ -1,5 +1,5 @@
-#ifndef SRC_GUI_IMGUI_GUI_MAIN_H_
-#define SRC_GUI_IMGUI_GUI_MAIN_H_
+#ifndef GUI_IMGUI_GUI_MAIN_H_
+#define GUI_IMGUI_GUI_MAIN_H_
 
 #include <iostream>
 #include <memory>
@@ -33,4 +33,4 @@ class GuiMain {
 
 }  // namespace kuro
 
-#endif  // SRC_GUI_IMGUI_GUI_MAIN_H_
+#endif  // GUI_IMGUI_GUI_MAIN_H_

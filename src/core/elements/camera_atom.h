@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_ELEMENTS_CAMERA_ATOM_H_
-#define SRC_CORE_ELEMENTS_CAMERA_ATOM_H_
+#ifndef CORE_ELEMENTS_CAMERA_ATOM_H_
+#define CORE_ELEMENTS_CAMERA_ATOM_H_
 
 #include <string>
 #include <memory>
@@ -32,4 +32,4 @@ class CameraAtom : public SceneAtom {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_ELEMENTS_CAMERA_ATOM_H_
+#endif  // CORE_ELEMENTS_CAMERA_ATOM_H_

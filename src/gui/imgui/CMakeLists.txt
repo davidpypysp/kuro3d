@@ -1,0 +1,12 @@
+add_library(gui_imgui
+	gui_base.cc
+	gui_main.cc
+	gui.cc
+	object_inspector.cc
+	scene_explorer.cc
+	window.cc
+)
+target_link_libraries(gui_imgui
+	core_engine
+	${IMGUI_LIBRARIES}
+)

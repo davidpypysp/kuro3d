@@ -1,8 +1,9 @@
-#ifndef SRC_CORE_RENDERER_RENDERER_H_
-#define SRC_CORE_RENDERER_RENDERER_H_
+#ifndef CORE_RENDERER_RENDERER_H_
+#define CORE_RENDERER_RENDERER_H_
 
 #include <memory>
-#include "src/core/renderer/shader.h"
+
+#include "src/core/base/shader.h"
 #include "src/core/scene/scene_node.h"
 
 namespace kuro {
@@ -24,4 +25,4 @@ class Renderer {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_RENDERER_H_
+#endif  // CORE_RENDERER_RENDERER_H_

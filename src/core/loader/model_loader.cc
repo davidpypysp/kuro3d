@@ -1,9 +1,10 @@
+#include "src/core/loader/model_loader.h"
+
 #include <iostream>
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 #include <assimp/Importer.hpp>
 
-#include "src/core/renderer/model_loader.h"
 #include "src/core/engine.h"
 #include "src/core/renderer/geometry.h"
 #include "src/core/elements/mesh_basic_material.h"

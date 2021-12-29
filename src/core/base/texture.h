@@ -1,11 +1,12 @@
-#ifndef SRC_CORE_RENDERER_TEXTURE_H_
-#define SRC_CORE_RENDERER_TEXTURE_H_
+#ifndef CORE_BASE_TEXTURE_H_
+#define CORE_BASE_TEXTURE_H_
 
 #include <string>
 #include <memory>
-#include "src/core/renderer/renderer_type.h"
 
 namespace kuro {
+
+struct TextureHandle {};
 
 enum TextureType { DIFFUSE, SPECULAR, NORMAL, HEIGHT };
 
@@ -19,4 +20,4 @@ struct Texture {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_TEXTURE_H_
+#endif  //  CORE_BASE_TEXTURE_H_

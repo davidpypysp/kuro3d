@@ -1,10 +1,14 @@
-#ifndef SRC_CORE_RENDERER_SHADER_H_
-#define SRC_CORE_RENDERER_SHADER_H_
+#ifndef CORE_BASE_SHADER_H_
+#define CORE_BASE_SHADER_H_
 
 #include <string>
-#include "src/core/renderer/render_api.h"
+#include <memory>
+
+#include "src/math/math.h"
 
 namespace kuro {
+
+struct ShaderProgram {};
 
 class Shader {
  public:
@@ -22,4 +26,4 @@ class Shader {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_SHADER_H_
+#endif  //  CORE_BASE_SHADER_H_

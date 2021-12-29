@@ -1,5 +1,5 @@
-#ifndef SRC_MATH_MATH_H_
-#define SRC_MATH_MATH_H_
+#ifndef MATH_MATH_H_
+#define MATH_MATH_H_
 
 #include <math.h>
 #include <glm/glm.hpp>
@@ -21,4 +21,4 @@ constexpr float d2r = M_PI / 180.0;
 
 }  // namespace kuro
 
-#endif  // SRC_MATH_MATH_H_
+#endif  // MATH_MATH_H_

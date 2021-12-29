@@ -1,8 +1,8 @@
-#ifndef SRC_CORE_ELEMENTS_VISUAL_PACK_H_
-#define SRC_CORE_ELEMENTS_VISUAL_PACK_H_
+#ifndef CORE_ELEMENTS_VISUAL_PACK_H_
+#define CORE_ELEMENTS_VISUAL_PACK_H_
 
 #include "src/core/elements/pack.h"
-#include "src/core/renderer/shader.h"
+#include "src/core/base/shader.h"
 
 namespace kuro {
 
@@ -17,4 +17,4 @@ class VisualPack : public Pack {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_ELEMENTS_VISUAL_PACK_H_
+#endif  // CORE_ELEMENTS_VISUAL_PACK_H_

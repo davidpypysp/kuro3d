@@ -1,6 +1,12 @@
-#ifndef SRC_CORE_RENDERER_GL_RENDER_API_H_
-#define SRC_CORE_RENDERER_GL_RENDER_API_H_
+#ifndef CORE_RENDERER_GL_RENDER_API_H_
+#define CORE_RENDERER_GL_RENDER_API_H_
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include "src/core/base/vertex.h"
+#include "src/core/base/shader.h"
+#include "src/core/renderer/geometry.h"
 #include "src/core/renderer/render_api.h"
 
 namespace kuro {
@@ -49,4 +55,4 @@ class GLRenderAPI : public RenderAPI {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_GL_RENDER_API_H_
+#endif  // CORE_RENDERER_GL_RENDER_API_H_

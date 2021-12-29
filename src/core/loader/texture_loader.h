@@ -1,9 +1,10 @@
-#ifndef SRC_CORE_RENDERER_TEXTURE_LOADER_H_
-#define SRC_CORE_RENDERER_TEXTURE_LOADER_H_
+#ifndef CORE_LOADER_TEXTURE_LOADER_H_
+#define CORE_LOADER_TEXTURE_LOADER_H_
 
 #include <string>
 #include <vector>
-#include "src/core/renderer/texture.h"
+
+#include "src/core/base/texture.h"
 
 namespace kuro {
 
@@ -11,7 +12,7 @@ class TextureLoader {
  public:
   TextureLoader();
   std::shared_ptr<Texture> LoadTexture(const std::string &path,
-                                          const TextureType &type);
+                                       const TextureType &type);
 
  private:
   std::shared_ptr<TextureHandle> LoadTextureFromFile(const char *path);
@@ -21,4 +22,4 @@ class TextureLoader {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE?RENDERER_TEXTURE_LOADER_H_
+#endif  // CORE?RENDERER_TEXTURE_LOADER_H_

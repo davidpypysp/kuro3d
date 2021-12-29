@@ -1,5 +1,5 @@
-#ifndef SRC_GUI_IMGUI_GUI_BASE_H_
-#define SRC_GUI_IMGUI_GUI_BASE_H_
+#ifndef GUI_IMGUI_GUI_BASE_H_
+#define GUI_IMGUI_GUI_BASE_H_
 
 #include <string>
 #include <memory>
@@ -40,4 +40,4 @@ class GuiBase {
 
 }  // namespace kuro
 
-#endif  // SRC_GUI_IMGUI_GUI_BASE_H_
+#endif  // GUI_IMGUI_GUI_BASE_H_

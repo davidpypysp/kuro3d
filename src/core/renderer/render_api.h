@@ -1,10 +1,11 @@
-#ifndef SRC_CORE_RENDERER_RENDER_API_H_
-#define SRC_CORE_RENDERER_RENDER_API_H_
+#ifndef CORE_RENDERER_RENDER_API_H_
+#define CORE_RENDERER_RENDER_API_H_
 
 #include <memory>
 #include <vector>
-#include "src/core/renderer/renderer_type.h"
-#include "texture.h"
+
+#include "src/core/base/texture.h"
+#include "src/core/renderer/geometry.h"
 
 namespace kuro {
 
@@ -42,4 +43,4 @@ class RenderAPI {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_RENDERER_RENDER_API_H_
+#endif  // CORE_RENDERER_RENDER_API_H_

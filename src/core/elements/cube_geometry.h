@@ -1,5 +1,5 @@
-#ifndef SRC_CORE_ELEMENTS_CUBE_GEOMETRY_H_
-#define SRC_CORE_ELEMENTS_CUBE_GEOMETRY_H_
+#ifndef CORE_ELEMENTS_CUBE_GEOMETRY_H_
+#define CORE_ELEMENTS_CUBE_GEOMETRY_H_
 
 #include "src/core/renderer/geometry.h"
 
@@ -14,4 +14,4 @@ class CubeGeometry : public Geometry {
 
 }  // namespace kuro
 
-#endif  // SRC_CORE_ELEMENTS_CUBE_GEOMETRY_H_
+#endif  // CORE_ELEMENTS_CUBE_GEOMETRY_H_
