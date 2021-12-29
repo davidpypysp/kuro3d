@@ -1,18 +1,33 @@
 #include "src/core/scene/scene_node.h"
 
+#include "src/core/scene/scene_manager.h"
+#include "src/core/elements/pack.h"
+
 namespace kuro {
 
 SceneNode::SceneNode(const std::string& name) : NodeBase(name) {
   SetLocalTransform(mat4(1.0));
 }
 
+std::shared_ptr<SceneNode> SceneNode::Create(const std::string& name) {
+  auto scene_node = std::make_shared<SceneNode>(name);
+  return scene_node;
+}
+
 float* SceneNode::LocalTranslationPtr() { return &translation_[0]; }
 float* SceneNode::LocalRotationPtr() { return &rotation_[0]; }
 float* SceneNode::LocalScalePtr() { return &scale_[0]; }
 
-ComponentList& SceneNode::GetComponents() { return components_; }
+void SceneNode::BindPack(std::shared_ptr<Pack> pack) {
+  this->packs_.push_back(pack);
+  pack->set_scene_node(shared_from_this());
+}
 
-void SceneNode::AddChildNode(std::shared_ptr<SceneNode> scene_node) {
+void SceneNode::UnbindPack(std::shared_ptr<Pack> pack) {}
+
+PackList& SceneNode::GetPacks() { return packs_; }
+
+void SceneNode::AddChildSceneNode(std::shared_ptr<SceneNode> scene_node) {
   AddChild(scene_node);
   scene_node->set_parent(shared_from_this());
 }

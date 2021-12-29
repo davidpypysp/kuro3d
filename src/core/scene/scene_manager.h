@@ -6,18 +6,14 @@
 #include <string>
 
 #include "src/core/scene/scene_node.h"
-#include "src/core/elements/camera_atom.h"
 
 namespace kuro {
-
-class CameraAtom;
 
 typedef std::vector<std::shared_ptr<SceneNode>> SceneNodeList;
 
 class SceneManager : public std::enable_shared_from_this<SceneManager> {
  public:
   SceneManager();
-  void CreateDefaultScene();
 
   std::shared_ptr<SceneNode> root_node() { return root_node_; }
 
@@ -28,8 +24,7 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
     auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
     scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
-
-    if (parent && parent->scene_manager() == shared_from_this()) {
+    if (parent) {
       parent->AddChildSceneNode(scene_node);
     }
     return std::static_pointer_cast<T>(scene_node);
@@ -44,21 +39,19 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
     auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
     scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
-
     if (parent) {
       parent->AddChildSceneNode(scene_node);
     }
-
     scene_node->SetLocalTransform(translation, rotation, scale);
     return std::static_pointer_cast<T>(scene_node);
   }
 
-  std::shared_ptr<CameraAtom> current_camera() { return current_camera_; }
+  std::shared_ptr<SceneNode> camera_node() { return camera_node_; }
 
  protected:
   SceneNodeList scene_nodes_;
   std::shared_ptr<SceneNode> root_node_;
-  std::shared_ptr<CameraAtom> current_camera_;
+  std::shared_ptr<SceneNode> camera_node_;
   uint32_t scene_node_id_max_ = 0;
 };
 

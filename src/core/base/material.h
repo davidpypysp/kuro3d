@@ -9,8 +9,6 @@ class Material {
  public:
   Material();
 
-  virtual void Use() = 0;
-
   std::shared_ptr<Shader> shader() { return shader_; }
 
  protected:
