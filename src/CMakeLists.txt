@@ -1,6 +1,11 @@
 set(EXE_NAME kuro3d)
 set(CMAKE_CXX_STANDARD 17)
 
+# Gtest
+enable_testing()
+include(GoogleTest)
+
+# Add header path
 include_directories(${CMAKE_SOURCE_DIR})
 
 add_subdirectory(core)
@@ -31,3 +36,11 @@ add_custom_command(
     COMMENT "Copy resource..."
 )
 
+
+
+add_executable(hello_test hello_test.cc)
+target_link_libraries(
+  hello_test
+  gtest_main
+)
+gtest_discover_tests(hello_test)
