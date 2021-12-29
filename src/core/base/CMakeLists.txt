@@ -9,6 +9,5 @@ target_link_libraries(base_shader_test
 )
 gtest_discover_tests(base_shader_test)
 
-add_library(base_texture texture.cc)
-
 add_library(base_material material.cc)
+

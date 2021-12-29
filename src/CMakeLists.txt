@@ -37,7 +37,7 @@ add_custom_command(
 )
 
 
-
+# TODO: remove hello_Test
 add_executable(hello_test hello_test.cc)
 target_link_libraries(
   hello_test
