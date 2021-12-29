@@ -12,9 +12,6 @@
 
 namespace kuro {
 
-class SceneManager;
-class ComponentBase;
-
 typedef std::vector<std::shared_ptr<ComponentBase>> ComponentList;
 
 class SceneNode : public NodeBase<SceneNode> {

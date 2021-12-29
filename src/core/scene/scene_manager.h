@@ -25,7 +25,7 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
     scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
     if (parent) {
-      parent->AddChildSceneNode(scene_node);
+      parent->AddChildNode(scene_node);
     }
     return std::static_pointer_cast<T>(scene_node);
   }
@@ -40,7 +40,7 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
     scene_node->set_id(scene_node_id_max_++);
     scene_node->set_scene_manager(shared_from_this());
     if (parent) {
-      parent->AddChildSceneNode(scene_node);
+      parent->AddChildNode(scene_node);
     }
     scene_node->SetLocalTransform(translation, rotation, scale);
     return std::static_pointer_cast<T>(scene_node);

@@ -3,9 +3,9 @@
 
 class ComponentBase {
  public:
-  ComponentBase();
+  ComponentBase(){};
 
-  virtual ~ComponentBase();
+  virtual ~ComponentBase(){};
 };
 
 #endif
