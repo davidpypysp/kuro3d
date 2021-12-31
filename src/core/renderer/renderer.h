@@ -18,9 +18,7 @@ class Renderer {
 
   void RenderScene(std::shared_ptr<SceneManager> scene_manager);
 
- private:
-  void TransferSceneNodeData(std::shared_ptr<SceneNode> scene_node);
-
+ protected:
   RenderingPipeline pipeline_;
 };
 

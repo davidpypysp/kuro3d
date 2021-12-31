@@ -29,9 +29,14 @@ target_link_libraries(renderer_rendering_pipeline_test
 	renderer_rendering_pipeline
 )
 
-# add_library(renderer_renderer renderer.cc)
-# target_link_libraries(renderer_renderer
-# 	elements_visual_pack
-# 	base_shader
-# )
+add_library(renderer_renderer renderer.cc)
+target_link_libraries(renderer_renderer
+	renderer_rendering_pipeline
+	scene_scene_manager
+)
+
+add_gtest(renderer_renderer_test renderer_test.cc)
+target_link_libraries(renderer_renderer_test
+	renderer_renderer
+)
 
