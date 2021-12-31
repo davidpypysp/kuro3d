@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "src/core/base/texture.h"
-#include "src/core/renderer/geometry.h"
+#include "src/core/base/geometry.h"
 
 namespace kuro {
 

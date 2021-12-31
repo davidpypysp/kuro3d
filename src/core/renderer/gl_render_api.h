@@ -6,7 +6,6 @@
 
 #include "src/core/base/vertex.h"
 #include "src/core/base/shader.h"
-#include "src/core/renderer/geometry.h"
 #include "src/core/renderer/render_api.h"
 
 namespace kuro {

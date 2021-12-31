@@ -3,24 +3,25 @@
 
 #include <memory>
 
-#include "src/core/base/shader.h"
-#include "src/core/scene/scene_node.h"
+#include "src/core/scene/scene_manager.h"
+#include "src/core/renderer/rendering_pipeline.h"
 
 namespace kuro {
 
 class Renderer {
  public:
   Renderer();
-  ~Renderer();
-  void Init();
-  void DrawScene();
 
-  std::shared_ptr<Shader> shader() { return shader_; }
+  ~Renderer();
+
+  void Init();
+
+  void RenderScene(std::shared_ptr<SceneManager> scene_manager);
 
  private:
-  void DrawSceneNode(std::shared_ptr<SceneNode> scene_node);
+  void TransferSceneNodeData(std::shared_ptr<SceneNode> scene_node);
 
-  std::shared_ptr<Shader> shader_;
+  RenderingPipeline pipeline_;
 };
 
 }  // namespace kuro

@@ -1,6 +1,6 @@
 
 add_subdirectory(base)
-# add_subdirectory(renderer)
+add_subdirectory(renderer)
 # add_subdirectory(elements)
 # add_subdirectory(loader)
 add_subdirectory(scene)
