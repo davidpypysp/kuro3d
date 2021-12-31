@@ -5,9 +5,11 @@
 
 class VisualComp : public ComponentBase {
  public:
-  VisualComp();
+  VisualComp() {}
 
-  ~VisualComp();
+  ~VisualComp() {}
 
   virtual void Render() = 0;
 };
+
+#endif

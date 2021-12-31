@@ -4,17 +4,11 @@
 #include <string>
 #include <memory>
 
+#include "src/math/math.h"
 #include "src/core/base/shader_handle.h"
 
 namespace kuro {
-class ShaderProgram {
- public:
-  ShaderProgram();
-
-  void Setup(std::shared_ptr<ShaderHandle> shader_handle);
-
-  void Use();
-};
+struct ShaderProgram {};
 }  // namespace kuro
 
 #endif

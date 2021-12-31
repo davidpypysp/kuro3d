@@ -14,6 +14,8 @@ class MeshComp : public VisualComp {
     mesh_data_.material = material;
   }
 
+  MeshData& mesh_data() { return mesh_data_; }
+
  protected:
   MeshData mesh_data_;
 };

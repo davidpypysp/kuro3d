@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "src/core/base/mesh_data.h"
+#include "src/core/base/mesh_comp.h"
 #include "src/core/scene/scene_node.h"
 #include "src/core/renderer/shader_manager.h"
 #include "src/core/renderer/render_api.h"
@@ -12,7 +12,13 @@ namespace kuro {
 
 class RenderingPipeline {
  public:
+  RenderingPipeline();
+
+  void Setup();
+
   void PrepareDraw();
+
+  void DrawMesh(MeshData& mesh_data);
 
   // Render one mesh with material's shader program and geometry data
   void DrawSceneNode(std::shared_ptr<SceneNode> scene_node);
@@ -28,6 +34,9 @@ class RenderingPipeline {
 
   // data
   std::vector<MeshData> mesh_data_list_;
+
+  // TODO: remove temp
+  std::shared_ptr<ShaderHandle> temp_shader_handle_;
 };
 
 }  // namespace kuro

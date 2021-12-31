@@ -7,6 +7,8 @@ namespace kuro {
 
 struct Material {
   std::shared_ptr<ShaderHandle> shader_handle;
+
+  virtual ~Material() {}
 };
 
 }  // namespace kuro

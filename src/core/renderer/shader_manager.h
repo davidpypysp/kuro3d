@@ -2,8 +2,10 @@
 #define CORE_RENDERER_SHADER_MANAGER_H_
 
 #include <memory>
+#include <unordered_map>
 
-#include "src/core/base/shader.h"
+#include "src/core/base/shader_handle.h"
+#include "src/core/renderer/shader_program.h"
 
 namespace kuro {
 
@@ -11,14 +13,17 @@ class ShaderManager {
  public:
   ShaderManager();
   void Init();
-  std::shared_ptr<Shader> LoadShader();
 
-  std::shared_ptr<Shader> mesh_flat_shader() { return mesh_flat_shader_; }
-  std::shared_ptr<Shader> mesh_basic_shader() { return mesh_basic_shader_; }
+  std::shared_ptr<ShaderProgram> GetShaderProgram(
+      std::shared_ptr<ShaderHandle> shader_handle);
+
+  void SetShaderProgram(std::shared_ptr<ShaderHandle> shader_handle,
+                        std::shared_ptr<ShaderProgram> shader_program);
 
  protected:
-  std::shared_ptr<Shader> mesh_flat_shader_;
-  std::shared_ptr<Shader> mesh_basic_shader_;
+  std::unordered_map<std::shared_ptr<ShaderHandle>,
+                     std::shared_ptr<ShaderProgram>>
+      shader_map_;
 };
 
 }  // namespace kuro
