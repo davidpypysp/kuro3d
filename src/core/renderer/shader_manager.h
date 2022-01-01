@@ -6,6 +6,7 @@
 
 #include "src/core/base/shader_handle.h"
 #include "src/core/renderer/shader_program.h"
+#include "src/utils/type_annotation.h"
 
 namespace kuro {
 
@@ -25,6 +26,8 @@ class ShaderManager {
                      std::shared_ptr<ShaderProgram>>
       shader_map_;
 };
+
+REGISTER_TYPE_ANNOTATION(ShaderManager)
 
 }  // namespace kuro
 

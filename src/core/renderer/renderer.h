@@ -19,7 +19,7 @@ class Renderer {
   void RenderScene(std::shared_ptr<SceneManager> scene_manager);
 
  protected:
-  RenderingPipeline pipeline_;
+  std::shared_ptr<RenderingPipeline> pipeline_;
 };
 
 }  // namespace kuro
