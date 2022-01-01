@@ -24,6 +24,14 @@ class IocContainer {
     return instance;
   }
 
+  template <typename Parent, typename Child>
+  std::shared_ptr<Parent> Register() {
+    std::shared_ptr<Parent> instance = std::make_shared<Child>();
+    const std::string& type_name = TypeAnnotation<Parent>::Name();
+    type_instance_map[type_name] = instance;
+    return instance;
+  }
+
   template <typename T>
   void Register(std::shared_ptr<T> instance) {
     const std::string& type_name = TypeAnnotation<T>::Name();

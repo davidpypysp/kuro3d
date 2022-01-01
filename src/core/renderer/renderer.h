@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "src/core/base/dependency_helper.h"
 #include "src/core/scene/scene_manager.h"
 #include "src/core/renderer/rendering_pipeline.h"
 
@@ -18,8 +19,7 @@ class Renderer {
 
   void RenderScene(std::shared_ptr<SceneManager> scene_manager);
 
- protected:
-  std::shared_ptr<RenderingPipeline> pipeline_;
+  REGISTER_DEPENDENCY(RenderingPipeline, pipeline_)
 };
 
 }  // namespace kuro

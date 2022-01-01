@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "src/core/base/dependency_helper.h"
 #include "src/core/base/mesh_comp.h"
 #include "src/core/scene/scene_node.h"
 #include "src/core/renderer/shader_manager.h"
@@ -26,14 +27,14 @@ class RenderingPipeline {
   // Render one frame by gpu (given all mesh, light...)
   void DrawFrame(std::shared_ptr<SceneNode> root_node);
 
- protected:
   // dependencies
-  std::shared_ptr<RenderAPI> render_api_;
-  std::shared_ptr<SceneNode> camera_node_;
-  std::shared_ptr<ShaderManager> shader_manager_;
+  REGISTER_DEPENDENCY(RenderAPI, render_api_)
+  REGISTER_DEPENDENCY(ShaderManager, shader_manager_)
 
+ protected:
   // data
   std::vector<MeshData> mesh_data_list_;
+  std::shared_ptr<SceneNode> camera_node_;
 
   // TODO: remove temp
   std::shared_ptr<ShaderHandle> temp_shader_handle_;

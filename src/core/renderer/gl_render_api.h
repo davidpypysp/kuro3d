@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 #include "src/core/base/vertex.h"
-#include "src/core/base/shader.h"
+#include "src/core/renderer/shader_program.h"
 #include "src/core/renderer/render_api.h"
 
 namespace kuro {
