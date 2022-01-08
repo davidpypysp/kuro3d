@@ -1,54 +1,54 @@
-# add_library(renderer_geometry geometry.cc)
+# add_library(renderer.geometry geometry.cc)
 
-add_library(renderer_gl_render_api gl_render_api.cc)
-target_link_libraries(renderer_gl_render_api
+add_library(renderer.gl_render_api gl_render_api.cc)
+target_link_libraries(renderer.gl_render_api
 	${GLAD_LIBRARIES}
 )
 
-add_gtest(renderer_gl_render_api_test gl_render_api_test.cc)
-target_link_libraries(renderer_gl_render_api_test
-	renderer_gl_render_api
+add_gtest(renderer.gl_render_api_test gl_render_api_test.cc)
+target_link_libraries(renderer.gl_render_api_test
+	renderer.gl_render_api
 )
 
-add_library(renderer_shader_manager shader_manager.cc)
+add_library(renderer.shader_manager shader_manager.cc)
 
-add_gtest(renderer_shader_manager_test shader_manager_test.cc)
-target_link_libraries(renderer_shader_manager_test
-	renderer_shader_manager
+add_gtest(renderer.shader_manager_test shader_manager_test.cc)
+target_link_libraries(renderer.shader_manager_test
+	renderer.shader_manager
 )
 
-add_library(renderer_rendering_pipeline rendering_pipeline.cc)
-target_link_libraries(renderer_rendering_pipeline
-	renderer_shader_manager
-	base_camera_comp
-	scene_scene_node
+add_library(renderer.rendering_pipeline rendering_pipeline.cc)
+target_link_libraries(renderer.rendering_pipeline
+	renderer.shader_manager
+	base.camera_comp
+	scene.scene_node
 )
 
-add_gtest(renderer_rendering_pipeline_test rendering_pipeline_test.cc)
-target_link_libraries(renderer_rendering_pipeline_test
-	renderer_rendering_pipeline
+add_gtest(renderer.rendering_pipeline_test rendering_pipeline_test.cc)
+target_link_libraries(renderer.rendering_pipeline_test
+	renderer.rendering_pipeline
 )
 
-add_library(renderer_renderer renderer.cc)
-target_link_libraries(renderer_renderer
-	renderer_rendering_pipeline
-	scene_scene_manager
+add_library(renderer.renderer renderer.cc)
+target_link_libraries(renderer.renderer
+	renderer.rendering_pipeline
+	scene.scene_manager
 )
 
-add_gtest(renderer_renderer_test renderer_test.cc)
-target_link_libraries(renderer_renderer_test
-	renderer_renderer
+add_gtest(renderer.renderer_test renderer_test.cc)
+target_link_libraries(renderer.renderer_test
+	renderer.renderer
 )
 
-add_library(renderer_renderer_controller renderer_controller.cc)
-target_link_libraries(renderer_renderer_controller
-	renderer_renderer
-	renderer_gl_render_api
+add_library(renderer.renderer_controller renderer_controller.cc)
+target_link_libraries(renderer.renderer_controller
+	renderer.renderer
+	renderer.gl_render_api
 )
 
-add_gtest(renderer_renderer_controller_test renderer_controller_test.cc)
-target_link_libraries(renderer_renderer_controller_test
-	renderer_renderer_controller
+add_gtest(renderer.renderer_controller_test renderer_controller_test.cc)
+target_link_libraries(renderer.renderer_controller_test
+	renderer.renderer_controller
 )
 
 
