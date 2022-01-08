@@ -6,6 +6,7 @@
 
 #include "src/core/base/texture.h"
 #include "src/core/base/geometry.h"
+#include "src/core/renderer/shader_program.h"
 
 namespace kuro {
 

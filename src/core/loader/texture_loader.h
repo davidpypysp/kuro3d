@@ -4,7 +4,9 @@
 #include <string>
 #include <vector>
 
+#include "src/core/base/dependency_helper.h"
 #include "src/core/base/texture.h"
+#include "src/core/renderer/render_api.h"
 
 namespace kuro {
 
@@ -13,6 +15,8 @@ class TextureLoader {
   TextureLoader();
   std::shared_ptr<Texture> LoadTexture(const std::string &path,
                                        const TextureType &type);
+
+  REGISTER_DEPENDENCY(RenderAPI, render_api_)
 
  private:
   std::shared_ptr<TextureHandle> LoadTextureFromFile(const char *path);

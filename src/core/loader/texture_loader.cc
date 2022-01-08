@@ -5,8 +5,7 @@
 // To use stb_image, add this in *one* C++ source file.
 //     #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-
-#include "src/core/engine.h"
+#include <iostream>
 
 namespace kuro {
 
@@ -42,8 +41,8 @@ std::shared_ptr<TextureHandle> TextureLoader::LoadTextureFromFile(
       format = TextureFormat::RGBA;
     }
 
-    texture_handle = Engine::GetRenderAPI()->CreateTextureInstance(
-        data, width, height, format);
+    texture_handle =
+        render_api_->CreateTextureInstance(data, width, height, format);
   } else {
     std::cout << "Texture failed to load at path: " << path << std::endl;
   }

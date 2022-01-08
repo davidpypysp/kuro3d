@@ -20,6 +20,8 @@ class SceneNode : public NodeBase<SceneNode> {
 
   ComponentList& GetComponents();
 
+  void BindComponent(std::shared_ptr<ComponentBase> comp);
+
   void AddChildNode(std::shared_ptr<SceneNode> scene_node);
 
   void set_id(const uint32_t id) { id_ = id; }

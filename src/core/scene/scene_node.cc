@@ -12,6 +12,10 @@ float* SceneNode::LocalScalePtr() { return &scale_[0]; }
 
 ComponentList& SceneNode::GetComponents() { return components_; }
 
+void SceneNode::BindComponent(std::shared_ptr<ComponentBase> comp) {
+  components_.push_back(comp);
+}
+
 void SceneNode::AddChildNode(std::shared_ptr<SceneNode> scene_node) {
   AddChild(scene_node);
   scene_node->set_parent(shared_from_this());
