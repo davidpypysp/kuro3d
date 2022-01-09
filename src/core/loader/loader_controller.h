@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "src/core/base/ioc_container.h"
+#include "src/utils/ioc_container.h"
 #include "src/core/loader/model_loader.h"
 
 namespace kuro {

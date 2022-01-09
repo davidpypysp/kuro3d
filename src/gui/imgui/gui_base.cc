@@ -4,27 +4,7 @@ namespace kuro {
 
 namespace gui {
 
-GuiBase::GuiBase(GLFWwindow* window, const char* glsl_version) {
-  // Setup Dear ImGui context
-  IMGUI_CHECKVERSION();
-  ImGui::CreateContext();
-  ImGuiIO& io = ImGui::GetIO();
-
-  (void)io;
-  io.FontGlobalScale = 2.5f;
-  // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable
-  // Keyboard Controls io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; //
-  // Enable Gamepad Controls
-
-  // Setup Dear ImGui style
-  ImGui::StyleColorsDark();
-  // ImGui::StyleColorsClassic();
-
-  // Setup Platform/Renderer bindings
-  this->window_ = window;
-  ImGui_ImplGlfw_InitForOpenGL(window, true);
-  ImGui_ImplOpenGL3_Init(glsl_version);
-}
+GuiBase::GuiBase() {}
 
 void GuiBase::Draw() {
   // Start the Dear ImGui frame

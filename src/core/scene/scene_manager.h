@@ -6,6 +6,7 @@
 #include <string>
 
 #include "src/core/scene/scene_node.h"
+#include "src/utils/type_annotation.h"
 
 namespace kuro {
 
@@ -38,6 +39,9 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   }
 
   std::shared_ptr<SceneNode> camera_node() { return camera_node_; }
+  void set_camera_node(std::shared_ptr<SceneNode> camera_node) {
+    camera_node_ = camera_node;
+  }
 
  protected:
   SceneNodeList scene_nodes_;
@@ -45,6 +49,8 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   std::shared_ptr<SceneNode> camera_node_;
   uint32_t scene_node_id_max_ = 0;
 };
+
+REGISTER_TYPE_ANNOTATION(SceneManager)
 
 }  // namespace kuro
 

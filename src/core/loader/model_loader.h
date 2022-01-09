@@ -12,6 +12,7 @@
 #include "src/core/scene/scene_manager.h"
 #include "src/core/loader/texture_loader.h"
 #include "src/core/base/mesh_comp.h"
+#include "src/utils/type_annotation.h"
 
 namespace kuro {
 
@@ -19,11 +20,10 @@ class ModelLoader {
  public:
   ModelLoader();
 
-  void LoadModel(const std::string &path,
-                 std::shared_ptr<SceneNode> scene_node);
+  std::shared_ptr<SceneNode> LoadModel(
+      const std::string &path, std::shared_ptr<SceneManager> scene_manager);
 
   REGISTER_DEPENDENCY(TextureLoader, texture_loader_)
-  REGISTER_DEPENDENCY(SceneManager, scene_manager_)
 
  protected:
   std::vector<std::shared_ptr<Texture>> LoadMaterialTextures(
@@ -34,10 +34,12 @@ class ModelLoader {
                                         const aiScene *ai_scene,
                                         const std::string &directory);
 
-  void ProcessNode(aiNode *ai_node, const aiScene *ai_scene,
-                   const std::string &directory,
-                   std::shared_ptr<SceneNode> scene_node);
+  std::shared_ptr<SceneNode> ProcessNode(
+      aiNode *ai_node, const aiScene *ai_scene, const std::string &directory,
+      std::shared_ptr<SceneManager> scene_manager);
 };
+
+REGISTER_TYPE_ANNOTATION(ModelLoader)
 
 }  // namespace kuro
 

@@ -9,8 +9,8 @@ namespace kuro {
 
 ModelLoader::ModelLoader() {}
 
-void ModelLoader::LoadModel(const std::string &path,
-                            std::shared_ptr<SceneNode> scene_node) {
+std::shared_ptr<SceneNode> ModelLoader::LoadModel(
+    const std::string &path, std::shared_ptr<SceneManager> scene_manager) {
   Assimp::Importer importer;
   const aiScene *ai_scene = importer.ReadFile(
       path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
@@ -21,7 +21,7 @@ void ModelLoader::LoadModel(const std::string &path,
     std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
   }
   std::string directory = path.substr(0, path.find_last_of('/'));
-  ProcessNode(ai_scene->mRootNode, ai_scene, directory, scene_node);
+  return ProcessNode(ai_scene->mRootNode, ai_scene, directory, scene_manager);
 }
 
 std::vector<std::shared_ptr<Texture>> ModelLoader::LoadMaterialTextures(
@@ -126,9 +126,10 @@ std::shared_ptr<MeshComp> ModelLoader::ProcessMesh(
   return mesh_comp;
 }
 
-void ModelLoader::ProcessNode(aiNode *ai_node, const aiScene *ai_scene,
-                              const std::string &directory,
-                              std::shared_ptr<SceneNode> scene_node) {
+std::shared_ptr<SceneNode> ModelLoader::ProcessNode(
+    aiNode *ai_node, const aiScene *ai_scene, const std::string &directory,
+    std::shared_ptr<SceneManager> scene_manager) {
+  auto scene_node = scene_manager->CreateSceneNode(ai_node->mName.C_Str());
   for (unsigned int i = 0; i < ai_node->mNumMeshes; i++) {
     aiMesh *ai_mesh = ai_scene->mMeshes[ai_node->mMeshes[i]];
     auto mesh_comp = ProcessMesh(ai_mesh, ai_scene, directory);
@@ -137,8 +138,8 @@ void ModelLoader::ProcessNode(aiNode *ai_node, const aiScene *ai_scene,
   for (unsigned int i = 0; i < ai_node->mNumChildren; i++) {
     aiNode *ai_child = ai_node->mChildren[i];
     const auto &node_name = std::string(ai_child->mName.C_Str());
-    auto child_node = scene_manager_->CreateSceneNode(node_name, scene_node);
-    ProcessNode(ai_child, ai_scene, directory, child_node);
+    auto child_node = ProcessNode(ai_child, ai_scene, directory, scene_manager);
+    scene_node->AddChildNode(child_node);
   }
 }
 

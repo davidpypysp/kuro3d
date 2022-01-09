@@ -1,6 +1,6 @@
 
 #include "src/gui/imgui/object_inspector.h"
-#include "src/gui/imgui/gui.h"
+// #include "src/gui/imgui/gui.h"
 
 namespace kuro {
 
@@ -9,13 +9,14 @@ namespace gui {
 ObjectInspector::ObjectInspector(const std::string &name) : Window(name) {}
 
 void ObjectInspector::Render() {
-  auto scene_node = Gui::Instance()->selected_scene_node();
+  auto scene_node = gui_store_->selected_scene_node;
   if (!scene_node) {
     return;
   }
 
-  ImGui::InputText("Name", &scene_node->name());
-  ImGui::LabelText("Type", scene_node->Type());
+  ImGui::InputText("Name", const_cast<char *>(scene_node->name().c_str()),
+                   scene_node->name().size());
+  // ImGui::LabelText("Type", scene_node->Type());
   ImGui::SliderFloat3("Translation", scene_node->LocalTranslationPtr(), -10.0,
                       10.0);
   ImGui::SliderFloat3("Rotation", scene_node->LocalRotationPtr(), -10.0, 10.0);

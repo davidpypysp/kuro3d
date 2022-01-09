@@ -1,4 +1,4 @@
-#include "src/gui/imgui/gui_main.h"
+#include "src/gui/imgui/gui_system.h"
 
 #include <stdio.h>
 // [Win32] Our example includes a copy of glfw3.lib pre-compiled with VS2010 to
@@ -20,18 +20,9 @@ static void glfw_error_callback(int error, const char *description) {
   fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-GuiMain *GuiMain::instance_ = nullptr;
+GuiSystem::GuiSystem() {}
 
-GuiMain::GuiMain() {}
-
-GuiMain *GuiMain::Instance() {
-  if (!instance_) {
-    instance_ = new GuiMain();
-  }
-  return instance_;
-}
-
-int GuiMain::Run() {
+int GuiSystem::Init() {
   const unsigned int window_width = 3600, window_height = 1800;
 
   glfwSetErrorCallback(glfw_error_callback);
@@ -58,13 +49,24 @@ int GuiMain::Run() {
 #endif
 
   // Create window with graphics context
-  window_ = glfwCreateWindow(window_width, window_height, "kuro3d", NULL, NULL);
-  if (window_ == NULL) {
+  gl_window_ =
+      glfwCreateWindow(window_width, window_height, "kuro3d", NULL, NULL);
+  if (gl_window_ == NULL) {
     return 1;
   }
-  glfwMakeContextCurrent(window_);
+  glfwMakeContextCurrent(gl_window_);
   glfwSwapInterval(1);  // Enable vsync
-  glfwSetFramebufferSizeCallback(window_, FrameBufferSizeCallback);
+
+  auto engine_window = engine_->GetInstance<RectWindow>();
+  glfwSetFramebufferSizeCallback(
+      gl_window_, [](GLFWwindow *window, int width, int height) {
+        // Do Something
+        std::cout << "framebuffer size = "
+                  << "width=" << width << "height=" << height << std::endl;
+        // TODO: figure out how to pass variable into this lambda
+        //  engine_window->SetSize(width, height);
+        glViewport(0, 0, width, height);
+      });
 
   // Initialize OpenGL loader
   bool err = gladLoadGL() == 0;
@@ -76,11 +78,31 @@ int GuiMain::Run() {
     return 1;
   }
 
-  Engine::Init();
-  Engine::Instance()->SetWindowSize(window_width, window_height);
-  Gui::Init(window_, glsl_version);
+  engine_->Init();
+  engine_window->SetSize(window_width, window_height);
+
+  // Setup Dear ImGui context
+  IMGUI_CHECKVERSION();
+  ImGui::CreateContext();
+  ImGuiIO &io = ImGui::GetIO();
+  (void)io;
+  io.FontGlobalScale = 2.5f;
+  // io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable
+  // Keyboard Controls io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad; //
+  // Enable Gamepad Controls
+
+  // Setup Dear ImGui style
+  ImGui::StyleColorsDark();
+  // ImGui::StyleColorsClassic();
+
+  // Setup Platform/Renderer bindings
+  ImGui_ImplGlfw_InitForOpenGL(gl_window_, true);
+  ImGui_ImplOpenGL3_Init(glsl_version);
+}
+
+int GuiSystem::Run() {
   // Main loop
-  while (!glfwWindowShouldClose(window_)) {
+  while (!glfwWindowShouldClose(gl_window_)) {
     glfwPollEvents();
 
     glClearColor(0, 0, 0, 1);
@@ -88,28 +110,20 @@ int GuiMain::Run() {
 
     Loop();
 
-    glfwSwapBuffers(window_);
+    glfwSwapBuffers(gl_window_);
   }
 
   glfwTerminate();
   return 0;
 }
 
-void GuiMain::Loop() {
-  Engine::Instance()->Draw();
-  Gui::Instance()->Draw();
+void GuiSystem::Loop() {
+  // TODO: Cleanup engine Draw()
+  // engine_->Draw();
+  gui_manager_->Draw();
 }
 
-GuiMain::~GuiMain() {}
-
-void GuiMain::FrameBufferSizeCallback(GLFWwindow *window, int width,
-                                      int height) {
-  std::cout << "framebuffer size = "
-            << "width=" << width << "height=" << height << std::endl;
-  Engine::Instance()->SetWindowSize(width, height);
-  glViewport(0, 0, width, height);
-}
-
+GuiSystem::~GuiSystem() {}
 }  // namespace gui
 
 }  // namespace kuro

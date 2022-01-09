@@ -7,6 +7,7 @@
 #include "src/core/base/texture.h"
 #include "src/core/base/geometry.h"
 #include "src/core/renderer/shader_program.h"
+#include "src/utils/type_annotation.h"
 
 namespace kuro {
 
@@ -41,6 +42,8 @@ class RenderAPI {
       const unsigned int unit = 0,
       std::shared_ptr<TextureHandle> handle = nullptr) = 0;
 };
+
+REGISTER_TYPE_ANNOTATION(RenderAPI)
 
 }  // namespace kuro
 

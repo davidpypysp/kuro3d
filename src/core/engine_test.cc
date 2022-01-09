@@ -4,6 +4,9 @@
 
 namespace kuro {
 // Demonstrate some basic assertions.
-TEST(EngineTest, BasicAssertions) { Engine::Init(); }
+TEST(EngineTest, BasicAssertions) {
+  Engine engine;
+  engine.Init();
+}
 
 }  // namespace kuro

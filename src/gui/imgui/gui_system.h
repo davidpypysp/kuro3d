@@ -1,0 +1,41 @@
+#ifndef GUI_IMGUI_GUI_SYSTEM_H_
+#define GUI_IMGUI_GUI_SYSTEM_H_
+
+#include <iostream>
+#include <memory>
+
+#include "src/utils/type_annotation.h"
+#include "src/utils/dependency_helper.h"
+#include "src/gui/imgui/gui_manager.h"
+#include "src/core/engine.h"
+
+namespace kuro {
+
+namespace gui {
+
+class GuiSystem {
+ public:
+  GuiSystem();
+
+  ~GuiSystem();
+
+  int Run();
+
+  REGISTER_DEPENDENCY(Engine, engine_)
+  REGISTER_DEPENDENCY(GuiManager, gui_manager_)
+
+ protected:
+  int Init();
+
+  void Loop();
+
+  void Cleanup();
+
+  GLFWwindow* gl_window_;
+};
+
+}  // namespace gui
+
+}  // namespace kuro
+
+#endif

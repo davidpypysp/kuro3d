@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "src/core/base/dependency_helper.h"
+#include "src/utils/dependency_helper.h"
 #include "src/core/base/texture.h"
 #include "src/core/renderer/render_api.h"
 

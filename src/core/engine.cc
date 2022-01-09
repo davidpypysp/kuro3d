@@ -1,22 +1,14 @@
 #include "src/core/engine.h"
-#include "src/core/renderer/gl_render_api.h"
+#include "src/core/default_scenario.h"
 
 namespace kuro {
 
-Engine* Engine::instance_ = nullptr;
-
-Engine::Engine() {}
+Engine::Engine() { context_ = std::make_shared<Context>(); }
 
 Engine::~Engine() {}
 
-void Engine::Init() { instance_ = new Engine(); }
+void Engine::Init() { LoadScenario(); }
 
-Engine* Engine::Instance() { return instance_; }
-
-void Engine::SetWindowSize(const unsigned int width,
-                           const unsigned int height) {
-  window_height_ = height;
-  window_width_ = width;
-}
+void Engine::LoadScenario() { CreateDefaultScene(context_); }
 
 }  // namespace kuro

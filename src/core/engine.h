@@ -10,24 +10,23 @@ namespace kuro {
 class Engine {
  public:
   Engine();
+
   ~Engine();
 
-  static void Init();
-  static Engine* Instance();
+  void Init();
 
-  // TODO: window class
-  void SetWindowSize(const unsigned int width, const unsigned int height);
-  unsigned int window_width() const { return window_width_; }
-  unsigned int window_height() const { return window_height_; }
+  template <class T>
+  std::shared_ptr<T> GetInstance() {
+    return context_->Resolve<T>();
+  }
 
  protected:
-  static Engine* instance_;
+  std::shared_ptr<Context> context_;
 
-  Context context_;
-
-  unsigned int window_width_;
-  unsigned int window_height_;
+  void LoadScenario();
 };
+
+REGISTER_TYPE_ANNOTATION(Engine)
 
 }  // namespace kuro
 

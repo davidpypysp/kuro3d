@@ -15,7 +15,7 @@ endfunction()
 include_directories(${CMAKE_SOURCE_DIR})
 
 add_subdirectory(core)
-# add_subdirectory(gui)
+add_subdirectory(gui)
 add_subdirectory(utils)
 
 # Gui app

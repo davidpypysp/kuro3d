@@ -20,8 +20,10 @@ namespace gui {
 
 class GuiBase {
  public:
-  GuiBase(GLFWwindow* window, const char* glsl_version);
+  GuiBase();
+
   ~GuiBase();
+
   void Draw();
 
  protected:
@@ -32,7 +34,6 @@ class GuiBase {
     return std::static_pointer_cast<T>(window);
   }
 
-  GLFWwindow* window_;
   std::vector<std::shared_ptr<Window>> windows_;
 };
 

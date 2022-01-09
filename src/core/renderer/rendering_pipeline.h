@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "src/core/base/dependency_helper.h"
+#include "src/utils/dependency_helper.h"
 #include "src/core/base/mesh_comp.h"
 #include "src/core/scene/scene_node.h"
 #include "src/core/renderer/shader_manager.h"
@@ -39,6 +39,8 @@ class RenderingPipeline {
   // TODO: remove temp
   std::shared_ptr<ShaderHandle> temp_shader_handle_;
 };
+
+REGISTER_TYPE_ANNOTATION(RenderingPipeline)
 
 }  // namespace kuro
 

@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "src/core/base/dependency_helper.h"
+#include "src/utils/dependency_helper.h"
 #include "src/core/scene/scene_manager.h"
 #include "src/core/renderer/rendering_pipeline.h"
 
