@@ -17,33 +17,24 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
 
   std::shared_ptr<SceneNode> root_node() { return root_node_; }
 
-  template <class T = SceneNode>
-  std::shared_ptr<T> CreateSceneNode(
+  std::shared_ptr<SceneNode> CreateSceneNode(
       const std::string &name,
       const std::shared_ptr<SceneNode> parent = nullptr) {
-    auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
+    auto scene_node = std::make_shared<SceneNode>(name);
     scene_node->set_id(scene_node_id_max_++);
-    scene_node->set_scene_manager(shared_from_this());
     if (parent) {
       parent->AddChildNode(scene_node);
     }
-    return std::static_pointer_cast<T>(scene_node);
+    return scene_node;
   }
 
-  template <class T = SceneNode>
-  std::shared_ptr<T> CreateSceneNode(const std::string &name,
-                                     const std::shared_ptr<SceneNode> parent,
-                                     const vec3 &translation,
-                                     const vec3 &rotation = vec3(0.0, 0.0, 0.0),
-                                     const vec3 &scale = vec3(1.0, 1.0, 1.0)) {
-    auto scene_node = std::static_pointer_cast<SceneNode>(T::Create(name));
-    scene_node->set_id(scene_node_id_max_++);
-    scene_node->set_scene_manager(shared_from_this());
-    if (parent) {
-      parent->AddChildNode(scene_node);
-    }
+  std::shared_ptr<SceneNode> CreateSceneNode(
+      const std::string &name, const std::shared_ptr<SceneNode> parent,
+      const vec3 &translation, const vec3 &rotation = vec3(0.0, 0.0, 0.0),
+      const vec3 &scale = vec3(1.0, 1.0, 1.0)) {
+    auto scene_node = CreateSceneNode(name, parent);
     scene_node->SetLocalTransform(translation, rotation, scale);
-    return std::static_pointer_cast<T>(scene_node);
+    return scene_node;
   }
 
   std::shared_ptr<SceneNode> camera_node() { return camera_node_; }

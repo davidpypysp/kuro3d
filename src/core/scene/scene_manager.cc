@@ -2,6 +2,6 @@
 
 namespace kuro {
 
-SceneManager::SceneManager() {}
+SceneManager::SceneManager() { root_node_ = CreateSceneNode("root_node"); }
 
 }  // namespace kuro

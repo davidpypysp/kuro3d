@@ -3,12 +3,7 @@
 
 #include <memory>
 
-#include "src/core/renderer/renderer.h"
-#include "src/core/renderer/render_api.h"
-#include "src/core/scene/scene_manager.h"
-#include "src/core/loader/texture_loader.h"
-#include "src/core/loader/model_loader.h"
-#include "src/core/renderer/shader_manager.h"
+#include "src/core/context.h"
 
 namespace kuro {
 
@@ -19,32 +14,19 @@ class Engine {
 
   static void Init();
   static Engine* Instance();
-  static std::shared_ptr<SceneManager> GetSceneManager();
-  static std::shared_ptr<Renderer> GetRenderer();
-  static std::shared_ptr<RenderAPI> GetRenderAPI();
-  static std::shared_ptr<TextureLoader> GetTextureLoader();
-  static std::shared_ptr<ModelLoader> GetModelLoader();
-  static std::shared_ptr<ShaderManager> GetShaderManager();
 
-  std::shared_ptr<SceneManager> scene_manager() { return scene_manager_; }
-  std::shared_ptr<Renderer> renderer() { return renderer_; }
-
+  // TODO: window class
   void SetWindowSize(const unsigned int width, const unsigned int height);
   unsigned int window_width() const { return window_width_; }
   unsigned int window_height() const { return window_height_; }
 
-  void Draw();
-
  protected:
   static Engine* instance_;
+
+  Context context_;
+
   unsigned int window_width_;
   unsigned int window_height_;
-  std::shared_ptr<Renderer> renderer_;
-  std::shared_ptr<RenderAPI> render_api_;
-  std::shared_ptr<SceneManager> scene_manager_;
-  std::shared_ptr<TextureLoader> texture_loader_;
-  std::shared_ptr<ModelLoader> model_loader_;
-  std::shared_ptr<ShaderManager> shader_manager_;
 };
 
 }  // namespace kuro

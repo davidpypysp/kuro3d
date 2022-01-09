@@ -8,8 +8,6 @@ class VisualComp : public ComponentBase {
   VisualComp() {}
 
   ~VisualComp() {}
-
-  virtual void Render() = 0;
 };
 
 #endif

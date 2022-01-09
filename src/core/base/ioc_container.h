@@ -13,14 +13,14 @@ class IocContainer {
   template <typename T>
   std::shared_ptr<T> Resolve() {
     const std::string& type_name = TypeAnnotation<T>::Name();
-    return type_instance_map[type_name];
+    return std::static_pointer_cast<T>(type_instance_map_[type_name]);
   }
 
   template <typename T>
   std::shared_ptr<T> Register() {
     std::shared_ptr<T> instance = std::make_shared<T>();
     const std::string& type_name = TypeAnnotation<T>::Name();
-    type_instance_map[type_name] = instance;
+    type_instance_map_[type_name] = instance;
     return instance;
   }
 
@@ -28,18 +28,18 @@ class IocContainer {
   std::shared_ptr<Parent> Register() {
     std::shared_ptr<Parent> instance = std::make_shared<Child>();
     const std::string& type_name = TypeAnnotation<Parent>::Name();
-    type_instance_map[type_name] = instance;
+    type_instance_map_[type_name] = instance;
     return instance;
   }
 
   template <typename T>
   void Register(std::shared_ptr<T> instance) {
     const std::string& type_name = TypeAnnotation<T>::Name();
-    type_instance_map[type_name] = instance;
+    type_instance_map_[type_name] = instance;
   }
 
  protected:
-  std::unordered_map<std::string, std::shared_ptr<void>> type_instance_map;
+  std::unordered_map<std::string, std::shared_ptr<void>> type_instance_map_;
 };
 
 }  // namespace kuro

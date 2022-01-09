@@ -43,12 +43,3 @@ add_custom_command(
     # DEPENDS ${PROJECT_SHADERS}
     COMMENT "Copy resource..."
 )
-
-
-# TODO: remove hello_Test
-add_executable(hello_test hello_test.cc)
-target_link_libraries(
-  hello_test
-  gtest_main
-)
-gtest_discover_tests(hello_test)

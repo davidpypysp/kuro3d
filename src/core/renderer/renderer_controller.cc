@@ -5,9 +5,7 @@
 
 namespace kuro {
 
-RendererController::RendererController() { ResolveDependencies(); }
-
-void RendererController::ResolveDependencies() {
+RendererController::RendererController() {
   auto shader_manager = Register<ShaderManager>();
 
   auto render_api = Register<RenderAPI, GLRenderAPI>();

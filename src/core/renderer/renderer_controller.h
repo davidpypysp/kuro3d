@@ -10,9 +10,6 @@ namespace kuro {
 class RendererController : public IocContainer {
  public:
   RendererController();
-
- protected:
-  void ResolveDependencies();
 };
 
 }  // namespace kuro
