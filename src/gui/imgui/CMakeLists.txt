@@ -6,6 +6,7 @@ target_link_libraries(imgui.window
 add_library(imgui.object_inspector object_inspector.cc)
 target_link_libraries(imgui.object_inspector
 	imgui.window
+	scene.scene_node
 )
 
 add_library(imgui.scene_explorer scene_explorer.cc)
@@ -26,22 +27,30 @@ target_link_libraries(imgui.gui_manager
 	imgui.object_inspector
 )
 
+add_gtest(imgui.gui_manager_test gui_manager_test.cc)
+target_link_libraries(imgui.gui_manager_test
+	imgui.gui_manager
+)
+
 add_library(imgui.gui_system gui_system.cc)
 target_link_libraries(imgui.gui_system
 	imgui.gui_manager
 	core.engine
 )
 
-# add_library(gui_imgui
-# 	gui_base.cc
-# 	gui_main.cc
-# 	gui.cc
-# 	object_inspector.cc
-# 	scene_explorer.cc
-# 	window.cc
-# )
+add_gtest(imgui.gui_system_test gui_system_test.cc)
+target_link_libraries(imgui.gui_system_test
+	imgui.gui_system
+)
 
-# target_link_libraries(gui_imgui
-# 	core_engine
-# 	${IMGUI_LIBRARIES}
-# )
+add_library(imgui.context context.cc)
+target_link_libraries(imgui.context
+	imgui.gui_system
+	imgui.gui_manager
+	core.engine
+)
+
+add_library(imgui.app app.cc)
+target_link_libraries(imgui.app
+	imgui.context
+)

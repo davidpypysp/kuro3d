@@ -1,5 +1,6 @@
-
 #include "src/gui/imgui/object_inspector.h"
+
+#include "src/core/scene/scene_node.h"
 // #include "src/gui/imgui/gui.h"
 
 namespace kuro {
