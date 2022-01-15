@@ -46,7 +46,6 @@ add_library(imgui.context context.cc)
 target_link_libraries(imgui.context
 	imgui.gui_system
 	imgui.gui_manager
-	core.engine
 )
 
 add_library(imgui.app app.cc)

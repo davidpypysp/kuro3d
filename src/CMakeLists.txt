@@ -18,10 +18,9 @@ add_subdirectory(core)
 add_subdirectory(gui)
 add_subdirectory(utils)
 
-# Gui app
-# TODO: refa exe
-# add_executable(${EXE_NAME} main.cc)
-# target_link_libraries(${EXE_NAME} gui_imgui)
+# App main entry
+add_executable(${EXE_NAME} main.cc)
+target_link_libraries(${EXE_NAME} imgui.app)
 
 # Copy shader files to destination
 file(GLOB PROJECT_SHADERS
