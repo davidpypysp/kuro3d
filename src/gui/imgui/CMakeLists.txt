@@ -1,7 +1,5 @@
 add_library(imgui.window window.cc)
-target_link_libraries(imgui.window
-	${IMGUI_LIBRARIES}
-)
+target_link_libraries(imgui.window)
 
 add_library(imgui.object_inspector object_inspector.cc)
 target_link_libraries(imgui.object_inspector
@@ -18,6 +16,7 @@ target_link_libraries(imgui.scene_explorer
 add_library(imgui.gui_base gui_base.cc)
 target_link_libraries(imgui.gui_base
 	imgui.window
+	${IMGUI_LIBRARIES}
 )
 
 add_library(imgui.gui_manager gui_manager.cc)

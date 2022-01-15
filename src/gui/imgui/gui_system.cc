@@ -11,6 +11,8 @@
     !defined(IMGUI_DISABLE_WIN32_FUNCTIONS)
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
+#include <imgui_impl_opengl3.h>
+#include <imgui_impl_glfw.h>
 
 #include "src/core/io/rect_window.h"
 

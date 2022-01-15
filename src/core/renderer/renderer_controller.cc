@@ -1,7 +1,7 @@
 #include "src/core/renderer/renderer_controller.h"
 
-#include "src/core/renderer/renderer.h"
 #include "src/core/renderer/gl_render_api.h"
+#include "src/core/renderer/renderer.h"
 
 namespace kuro {
 

@@ -4,6 +4,9 @@
 #include <iostream>
 #include <memory>
 
+#include <glad/glad.h>  // Initialize with gladLoadGL()
+#include <GLFW/glfw3.h>
+
 #include "src/utils/type_annotation.h"
 #include "src/utils/dependency_helper.h"
 #include "src/gui/imgui/gui_manager.h"

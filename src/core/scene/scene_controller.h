@@ -4,7 +4,6 @@
 #include <memory>
 
 #include "src/utils/ioc_container.h"
-#include "src/core/scene/scene_manager.h"
 
 namespace kuro {
 
