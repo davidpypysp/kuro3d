@@ -24,6 +24,7 @@ target_link_libraries(imgui.gui_manager
 	imgui.gui_base
 	imgui.scene_explorer
 	imgui.object_inspector
+	core.engine
 )
 
 add_gtest(imgui.gui_manager_test gui_manager_test.cc)
@@ -34,7 +35,6 @@ target_link_libraries(imgui.gui_manager_test
 add_library(imgui.gui_system gui_system.cc)
 target_link_libraries(imgui.gui_system
 	imgui.gui_manager
-	core.engine
 )
 
 add_gtest(imgui.gui_system_test gui_system_test.cc)
