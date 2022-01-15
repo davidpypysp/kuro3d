@@ -10,6 +10,7 @@
 #include "src/gui/imgui/gui_store.h"
 #include "src/gui/imgui/scene_explorer.h"
 #include "src/gui/imgui/object_inspector.h"
+#include "src/core/engine.h"
 
 namespace kuro {
 
@@ -22,6 +23,7 @@ class GuiManager : public GuiBase {
   void Init();
 
   REGISTER_DEPENDENCY(GuiStore, gui_store_)
+  REGISTER_DEPENDENCY(Engine, engine_)
 
  protected:
   void InitWindows();

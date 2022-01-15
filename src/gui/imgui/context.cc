@@ -9,10 +9,17 @@ namespace kuro {
 namespace gui {
 
 Context::Context() {
-  Register<Engine>();
-  Register<GuiSystem>();
-  Register<GuiManager>();
-  Register<GuiStore>();
+  auto engine = Register<Engine>();
+
+  auto gui_store = Register<GuiStore>();
+
+  auto gui_manager = Register<GuiManager>();
+  gui_manager->RegisterEngine(engine);
+  gui_manager->RegisterGuiStore(gui_store);
+
+  auto gui_system = Register<GuiSystem>();
+  gui_system->RegisterEngine(engine);
+  gui_system->RegisterGuiManager(gui_manager);
 }
 
 }  // namespace gui

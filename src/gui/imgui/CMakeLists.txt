@@ -54,3 +54,8 @@ add_library(imgui.app app.cc)
 target_link_libraries(imgui.app
 	imgui.context
 )
+
+add_gtest(imgui.app_test app_test.cc)
+target_link_libraries(imgui.app_test
+	imgui.app
+)

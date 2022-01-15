@@ -1,5 +1,10 @@
 #include "src/core/context.h"
 
+#include "src/core/scene/scene_controller.h"
+#include "src/core/loader/loader_controller.h"
+#include "src/core/renderer/renderer_controller.h"
+#include "src/core/io/rect_window.h"
+
 namespace kuro {
 
 Context::Context() {

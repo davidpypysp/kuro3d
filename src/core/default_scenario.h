@@ -3,6 +3,9 @@
 
 #include "src/core/context.h"
 
+#include "src/core/scene/scene_manager.h"
+#include "src/core/loader/model_loader.h"
+
 namespace kuro {
 
 void CreateDefaultScene(std::shared_ptr<Context> context) {

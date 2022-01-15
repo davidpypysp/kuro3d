@@ -12,6 +12,8 @@
 #pragma comment(lib, "legacy_stdio_definitions")
 #endif
 
+#include "src/core/io/rect_window.h"
+
 namespace kuro {
 
 namespace gui {

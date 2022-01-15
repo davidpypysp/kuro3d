@@ -4,7 +4,7 @@ namespace kuro {
 
 namespace gui {
 
-App::App() {}
+App::App() { context_ = std::make_shared<Context>(); }
 
 void App::Run() {}
 
