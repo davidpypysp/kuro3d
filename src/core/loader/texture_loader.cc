@@ -13,9 +13,9 @@ TextureLoader::TextureLoader() { stbi_set_flip_vertically_on_load(true); }
 
 std::shared_ptr<Texture> TextureLoader::LoadTexture(const std::string &path,
                                                     const TextureType &type) {
-  for (unsigned int i = 0; i < texture_instances_.size(); i++) {
-    if (path.compare(texture_instances_[i]->path) == 0) {
-      return texture_instances_[i];
+  for (auto &instance : texture_instances_) {
+    if (path.compare(instance->path) == 0) {
+      return instance;
     }
   }
 

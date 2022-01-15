@@ -13,6 +13,7 @@ namespace kuro {
 class TextureLoader {
  public:
   TextureLoader();
+
   std::shared_ptr<Texture> LoadTexture(const std::string &path,
                                        const TextureType &type);
 

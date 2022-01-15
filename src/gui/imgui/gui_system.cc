@@ -105,6 +105,8 @@ int GuiSystem::Init() {
 }
 
 int GuiSystem::Run() {
+  Init();
+
   // Main loop
   while (!glfwWindowShouldClose(gl_window_)) {
     glfwPollEvents();
@@ -122,6 +124,7 @@ int GuiSystem::Run() {
 }
 
 void GuiSystem::Loop() {
+  std::cout << "loop" << std::endl;
   // TODO: Cleanup engine Draw()
   // engine_->Draw();
   gui_manager_->Draw();

@@ -11,8 +11,13 @@ namespace kuro {
 
 Context::Context() {
   auto scene_controller = Register<SceneController>();
-  auto loader_controller = Register<LoaderController>();
   auto renderer_controller = Register<RendererController>();
+  auto loader_controller = Register<LoaderController>();
+
+  // resolve cross dependencies
+  auto texture_loader = loader_controller->Resolve<TextureLoader>();
+  auto render_api = renderer_controller->Resolve<RenderAPI>();
+  texture_loader->RegisterRenderAPI(render_api);
 
   Register<RectWindow>();
 

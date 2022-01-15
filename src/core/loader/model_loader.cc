@@ -137,10 +137,10 @@ std::shared_ptr<SceneNode> ModelLoader::ProcessNode(
   }
   for (unsigned int i = 0; i < ai_node->mNumChildren; i++) {
     aiNode *ai_child = ai_node->mChildren[i];
-    const auto &node_name = std::string(ai_child->mName.C_Str());
     auto child_node = ProcessNode(ai_child, ai_scene, directory, scene_manager);
     scene_node->AddChildNode(child_node);
   }
+  return scene_node;
 }
 
 }  // namespace kuro
