@@ -8,8 +8,9 @@ Renderer::~Renderer() {}
 
 void Renderer::Init() {}
 
-void Renderer::RenderScene(std::shared_ptr<SceneManager> scene_manager) {
-  pipeline_->DrawFrame(scene_manager->root_node());
+void Renderer::RenderScene() {
+  pipeline_->DrawFrame(scene_manager_->root_node(),
+                       scene_manager_->camera_node());
 }
 
 }  // namespace kuro

@@ -17,24 +17,24 @@ class RenderingPipeline {
 
   void Setup();
 
-  void PrepareDraw();
-
-  void DrawMesh(MeshData& mesh_data);
-
-  // Render one mesh with material's shader program and geometry data
-  void DrawSceneNode(std::shared_ptr<SceneNode> scene_node);
-
   // Render one frame by gpu (given all mesh, light...)
-  void DrawFrame(std::shared_ptr<SceneNode> root_node);
+  void DrawFrame(std::shared_ptr<SceneNode> root_node,
+                 std::shared_ptr<SceneNode> camera_node);
 
   // dependencies
   REGISTER_DEPENDENCY(RenderAPI, render_api_)
   REGISTER_DEPENDENCY(ShaderManager, shader_manager_)
 
  protected:
+  void PrepareDraw(std::shared_ptr<SceneNode> camera_node);
+
+  void DrawMesh(MeshData& mesh_data);
+
+  // Render one mesh with material's shader program and geometry data
+  void DrawSceneNode(std::shared_ptr<SceneNode> scene_node);
+
   // data
   std::vector<MeshData> mesh_data_list_;
-  std::shared_ptr<SceneNode> camera_node_;
 
   // TODO: remove temp
   std::shared_ptr<ShaderHandle> temp_shader_handle_;

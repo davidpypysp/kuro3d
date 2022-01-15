@@ -17,9 +17,10 @@ class Renderer {
 
   void Init();
 
-  void RenderScene(std::shared_ptr<SceneManager> scene_manager);
+  void RenderScene();
 
   REGISTER_DEPENDENCY(RenderingPipeline, pipeline_)
+  REGISTER_DEPENDENCY(SceneManager, scene_manager_)
 };
 
 }  // namespace kuro

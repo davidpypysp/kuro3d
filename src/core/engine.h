@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "src/core/context.h"
+#include "src/core/renderer/renderer.h"
 
 namespace kuro {
 
@@ -20,8 +21,11 @@ class Engine {
     return context_->Resolve<T>();
   }
 
+  void Draw();
+
  protected:
   std::shared_ptr<Context> context_;
+  std::shared_ptr<Renderer> renderer_;
 
   void LoadScenario();
 };

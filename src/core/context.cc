@@ -6,6 +6,7 @@
 
 #include "src/core/loader/model_loader.h"
 #include "src/core/io/rect_window.h"
+#include "src/core/renderer/renderer.h"
 
 namespace kuro {
 
@@ -17,13 +18,18 @@ Context::Context() {
   // resolve cross dependencies
   auto texture_loader = loader_controller->Resolve<TextureLoader>();
   auto render_api = renderer_controller->Resolve<RenderAPI>();
+  auto scene_manager = scene_controller->Resolve<SceneManager>();
+  auto renderer = renderer_controller->Resolve<Renderer>();
+
   texture_loader->RegisterRenderAPI(render_api);
+  renderer->RegisterSceneManager(scene_manager);
 
   Register<RectWindow>();
 
-  Register<SceneManager>(scene_controller->Resolve<SceneManager>());
   Register<ModelLoader>(loader_controller->Resolve<ModelLoader>());
-  Register<RenderAPI>(renderer_controller->Resolve<RenderAPI>());
+  Register<SceneManager>(scene_manager);
+  Register<RenderAPI>(render_api);
+  Register<Renderer>(renderer);
 }
 
 }  // namespace kuro

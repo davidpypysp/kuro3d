@@ -4,12 +4,17 @@
 
 namespace kuro {
 
-Engine::Engine() { context_ = std::make_shared<Context>(); }
+Engine::Engine() {
+  context_ = std::make_shared<Context>();
+  renderer_ = context_->Resolve<Renderer>();
+}
 
 Engine::~Engine() {}
 
+void Engine::LoadScenario() { CreateDefaultScene(context_); }
+
 void Engine::Init() { LoadScenario(); }
 
-void Engine::LoadScenario() { CreateDefaultScene(context_); }
+void Engine::Draw() { renderer_->RenderScene(); }
 
 }  // namespace kuro

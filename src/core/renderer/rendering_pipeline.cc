@@ -21,20 +21,20 @@ void RenderingPipeline::Setup() {
   shader_manager_->SetShaderProgram(temp_shader_handle_, temp_shader_program);
 }
 
-void RenderingPipeline::PrepareDraw() {
+void RenderingPipeline::PrepareDraw(std::shared_ptr<SceneNode> camera_node) {
   auto shader_program = shader_manager_->GetShaderProgram(temp_shader_handle_);
 
   render_api_->EnableShaderProgram(shader_program);
 
   if (auto camera_comp = std::dynamic_pointer_cast<CameraComp>(
-          camera_node_->GetComponents()[0])) {
+          camera_node->GetComponents()[0])) {
     // TODO: turn ratio to window height/width
     constexpr float kRatio = 800.0 / 600.0;
     render_api_->SetShaderMat4Param(shader_program, "projection",
                                     camera_comp->GetPerspectiveMatrix(kRatio));
     render_api_->SetShaderMat4Param(
         shader_program, "view",
-        camera_comp->GetViewMatrix(camera_node_->translation()));
+        camera_comp->GetViewMatrix(camera_node->translation()));
   }
 }
 
@@ -94,8 +94,9 @@ void RenderingPipeline::DrawSceneNode(std::shared_ptr<SceneNode> scene_node) {
   }
 }
 
-void RenderingPipeline::DrawFrame(std::shared_ptr<SceneNode> root_node) {
-  PrepareDraw();
+void RenderingPipeline::DrawFrame(std::shared_ptr<SceneNode> root_node,
+                                  std::shared_ptr<SceneNode> camera_node) {
+  PrepareDraw(camera_node);
   DrawSceneNode(root_node);
 }
 
