@@ -107,6 +107,8 @@ int GuiSystem::Init() {
 int GuiSystem::Run() {
   Init();
 
+  gui_manager_->Init();
+
   // Main loop
   while (!glfwWindowShouldClose(gl_window_)) {
     glfwPollEvents();
