@@ -42,9 +42,7 @@ std::vector<std::shared_ptr<Texture>> ModelLoader::LoadMaterialTextures(
 
 std::shared_ptr<SceneNode> ModelLoader::LoadCube(
     std::shared_ptr<SceneManager> scene_manager) {
-  auto cube_node = scene_manager->CreateSceneNode("example_cube",
-                                                  scene_manager->root_node());
-
+  auto cube_node = scene_manager->CreateSceneNode("example_cube");
   auto cube_geometry = std::make_shared<CubeGeometry>();
   cube_geometry->handle = render_api_->CreateGeometryInstance(
       cube_geometry->vertices, cube_geometry->indices);

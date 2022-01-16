@@ -23,8 +23,7 @@ void RenderingPipeline::Setup() {
 
 void RenderingPipeline::PrepareDraw(std::shared_ptr<SceneNode> camera_node) {
   auto shader_program =
-      shader_manager_->GetShaderProgram(MeshFlatMaterial::shader_handle);
-
+      shader_manager_->GetShaderProgram(MeshBasicMaterial::shader_handle);
   render_api_->EnableShaderProgram(shader_program);
 
   if (auto camera_comp = std::dynamic_pointer_cast<CameraComp>(
@@ -81,7 +80,7 @@ void RenderingPipeline::DrawMesh(MeshData& mesh_data) {
 void RenderingPipeline::DrawSceneNode(std::shared_ptr<SceneNode> scene_node) {
   scene_node->UpdateTransforms();
   auto shader_program =
-      shader_manager_->GetShaderProgram(MeshFlatMaterial::shader_handle);
+      shader_manager_->GetShaderProgram(MeshBasicMaterial::shader_handle);
   render_api_->SetShaderMat4Param(shader_program, "model",
                                   scene_node->WorldTransform());
 

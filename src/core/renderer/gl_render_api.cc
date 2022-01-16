@@ -182,7 +182,6 @@ std::shared_ptr<GeometryHandle> GLRenderAPI::CreateGeometryInstance(
 }
 
 void GLRenderAPI::DrawMeshInstance(std::shared_ptr<GeometryHandle> handle) {
-  std::cout << "draw mesh instance" << std::endl;
   auto gl_vertex_handle = std::static_pointer_cast<GLGeometryHandle>(handle);
   glBindVertexArray(gl_vertex_handle->vao);
   glDrawElements(GL_TRIANGLES, gl_vertex_handle->size, GL_UNSIGNED_INT, 0);
