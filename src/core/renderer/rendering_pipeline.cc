@@ -4,33 +4,33 @@
 
 #include "src/core/base/camera_comp.h"
 #include "src/core/base/mesh_basic_material.h"
+#include "src/core/base/mesh_flat_material.h"
 
 namespace kuro {
 
 RenderingPipeline::RenderingPipeline() {}
 
 void RenderingPipeline::Setup() {
-  // TODO: remove temp shader handle
-  temp_shader_handle_ = std::make_shared<ShaderHandle>();
-  temp_shader_handle_->vertex_shader_path = "mesh.vert";
-  temp_shader_handle_->fragment_shader_path = "mesh_basic.vert";
-  auto temp_shader_program = render_api_->CreateShaderProgram(
-      temp_shader_handle_->vertex_shader_path.c_str(),
-      temp_shader_handle_->fragment_shader_path.c_str(),
-      temp_shader_handle_->geometry_shader_path.c_str());
-  shader_manager_->SetShaderProgram(temp_shader_handle_, temp_shader_program);
-  temp_shader_handle_->name = "temp_shader_handle_test";
+  auto mesh_flat_shader =
+      render_api_->CreateShaderProgram(MeshFlatMaterial::shader_handle);
+  shader_manager_->SetShaderProgram(MeshFlatMaterial::shader_handle,
+                                    mesh_flat_shader);
+  auto mesh_basic_shader =
+      render_api_->CreateShaderProgram(MeshBasicMaterial::shader_handle);
+  shader_manager_->SetShaderProgram(MeshBasicMaterial::shader_handle,
+                                    mesh_basic_shader);
 }
 
 void RenderingPipeline::PrepareDraw(std::shared_ptr<SceneNode> camera_node) {
-  auto shader_program = shader_manager_->GetShaderProgram(temp_shader_handle_);
+  auto shader_program =
+      shader_manager_->GetShaderProgram(MeshFlatMaterial::shader_handle);
 
   render_api_->EnableShaderProgram(shader_program);
 
   if (auto camera_comp = std::dynamic_pointer_cast<CameraComp>(
           camera_node->GetComponents()[0])) {
     // TODO: turn ratio to window height/width
-    constexpr float kRatio = 800.0 / 600.0;
+    constexpr float kRatio = 3600.0 / 1800.0;
     render_api_->SetShaderMat4Param(shader_program, "projection",
                                     camera_comp->GetPerspectiveMatrix(kRatio));
     render_api_->SetShaderMat4Param(
@@ -41,8 +41,10 @@ void RenderingPipeline::PrepareDraw(std::shared_ptr<SceneNode> camera_node) {
 
 void RenderingPipeline::DrawMesh(MeshData& mesh_data) {
   auto material = mesh_data.material;
-  auto shader_program = shader_manager_->GetShaderProgram(temp_shader_handle_);
+  auto shader_program =
+      shader_manager_->GetShaderProgram(material->GetShaderHandle());
 
+  // TODO: refactor material selection pipeline
   if (auto mesh_basic_material =
           std::dynamic_pointer_cast<MeshBasicMaterial>(material)) {
     // use material
@@ -78,7 +80,8 @@ void RenderingPipeline::DrawMesh(MeshData& mesh_data) {
 
 void RenderingPipeline::DrawSceneNode(std::shared_ptr<SceneNode> scene_node) {
   scene_node->UpdateTransforms();
-  auto shader_program = shader_manager_->GetShaderProgram(temp_shader_handle_);
+  auto shader_program =
+      shader_manager_->GetShaderProgram(MeshFlatMaterial::shader_handle);
   render_api_->SetShaderMat4Param(shader_program, "model",
                                   scene_node->WorldTransform());
 

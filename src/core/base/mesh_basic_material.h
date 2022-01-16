@@ -7,6 +7,10 @@
 namespace kuro {
 
 struct MeshBasicMaterial : public Material {
+  static std::shared_ptr<ShaderHandle> shader_handle;
+
+  std::shared_ptr<ShaderHandle> GetShaderHandle();
+
   std::shared_ptr<Texture> diffuse_map;
   std::shared_ptr<Texture> specular_map;
   std::shared_ptr<Texture> normal_map;

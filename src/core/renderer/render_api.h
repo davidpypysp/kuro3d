@@ -21,6 +21,13 @@ class RenderAPI {
       const char *vertex_path, const char *fragment_path,
       const char *geometry_path = nullptr) = 0;
 
+  std::shared_ptr<ShaderProgram> CreateShaderProgram(
+      std::shared_ptr<ShaderHandle> handle) {
+    return CreateShaderProgram(handle->vertex_shader_path.c_str(),
+                               handle->fragment_shader_path.c_str(),
+                               handle->geometry_shader_path.c_str());
+  }
+
   virtual void EnableShaderProgram(std::shared_ptr<ShaderProgram> program) = 0;
 
   virtual void SetShaderIntParam(std::shared_ptr<ShaderProgram> program,

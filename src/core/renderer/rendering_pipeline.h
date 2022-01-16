@@ -35,9 +35,6 @@ class RenderingPipeline {
 
   // data
   std::vector<MeshData> mesh_data_list_;
-
-  // TODO: remove temp
-  std::shared_ptr<ShaderHandle> temp_shader_handle_;
 };
 
 REGISTER_TYPE_ANNOTATION(RenderingPipeline)

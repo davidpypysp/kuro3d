@@ -1,13 +1,13 @@
 #ifndef CORE_BASE_CUBE_GEOMETRY_H_
 #define CORE_BASE_CUBE_GEOMETRY_H_
 
-#include "src/core/renderer/geometry.h"
+#include "src/core/base/geometry.h"
 
 namespace kuro {
 
 struct CubeGeometry : public Geometry {
   CubeGeometry() {
-    float vertices[] = {
+    float input[] = {
         // positions          // normals           // texture coords
         // face 1
         -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
@@ -90,13 +90,12 @@ struct CubeGeometry : public Geometry {
     for (unsigned int i = 0; i < 36; i++) {
       unsigned int index = i * 8;
       Vertex vertex;
-      vertex.position =
-          vec3(vertices[index], vertices[index + 1], vertices[index + 2]);
+      vertex.position = vec3(input[index], input[index + 1], input[index + 2]);
       vertex.normal =
-          vec3(vertices[index + 3], vertices[index + 4], vertices[index + 5]);
-      vertex.tex_coords = vec2(vertices[index + 6], vertices[index + 7]);
-      vertices_.push_back(vertex);
-      indices_.push_back(i);
+          vec3(input[index + 3], input[index + 4], input[index + 5]);
+      vertex.tex_coords = vec2(input[index + 6], input[index + 7]);
+      vertices.push_back(vertex);
+      indices.push_back(i);
     }
   }
 };

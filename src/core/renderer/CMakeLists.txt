@@ -21,6 +21,8 @@ add_library(renderer.rendering_pipeline rendering_pipeline.cc)
 target_link_libraries(renderer.rendering_pipeline
 	renderer.shader_manager
 	base.camera_comp
+	base.mesh_basic_material
+	base.mesh_flat_material
 	scene.scene_node
 )
 

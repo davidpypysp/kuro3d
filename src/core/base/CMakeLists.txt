@@ -1,6 +1,6 @@
-# add_library(base_shader shader.cc)
+add_library(base.mesh_flat_material mesh_flat_material.cc)
 
-# add_library(base_material material.cc)
+add_library(base.mesh_basic_material mesh_basic_material.cc)
 
 add_library(base.camera_comp camera_comp.cc)
 

@@ -23,6 +23,9 @@ class ModelLoader {
   std::shared_ptr<SceneNode> LoadModel(
       const std::string &path, std::shared_ptr<SceneManager> scene_manager);
 
+  std::shared_ptr<SceneNode> LoadCube(
+      std::shared_ptr<SceneManager> scene_manager);
+
   REGISTER_DEPENDENCY(TextureLoader, texture_loader_)
   REGISTER_DEPENDENCY(RenderAPI, render_api_)
 

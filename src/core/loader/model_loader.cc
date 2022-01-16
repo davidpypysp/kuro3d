@@ -3,7 +3,9 @@
 #include <iostream>
 
 #include "src/core/base/geometry.h"
+#include "src/core/base/cube_geometry.h"
 #include "src/core/base/mesh_basic_material.h"
+#include "src/core/base/mesh_flat_material.h"
 
 namespace kuro {
 
@@ -36,6 +38,21 @@ std::vector<std::shared_ptr<Texture>> ModelLoader::LoadMaterialTextures(
     textures.push_back(texture);
   }
   return textures;
+}
+
+std::shared_ptr<SceneNode> ModelLoader::LoadCube(
+    std::shared_ptr<SceneManager> scene_manager) {
+  auto cube_node = scene_manager->CreateSceneNode("example_cube",
+                                                  scene_manager->root_node());
+
+  auto cube_geometry = std::make_shared<CubeGeometry>();
+  cube_geometry->handle = render_api_->CreateGeometryInstance(
+      cube_geometry->vertices, cube_geometry->indices);
+  auto mesh_flat_material = std::make_shared<MeshFlatMaterial>();
+  std::shared_ptr<MeshComp> cube_mesh_comp =
+      std::make_shared<MeshComp>(cube_geometry, mesh_flat_material);
+  cube_node->BindComponent(cube_mesh_comp);
+  return cube_node;
 }
 
 std::shared_ptr<MeshComp> ModelLoader::ProcessMesh(

@@ -1,6 +1,7 @@
 #include "src/core/renderer/gl_render_api.h"
 
 #include <string>
+#include <string.h>
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -70,7 +71,7 @@ std::shared_ptr<ShaderProgram> GLRenderAPI::CreateShaderProgram(
 
     vertex_code = vshader_stream.str();
     fragment_code = fshader_stream.str();
-    if (geometry_path != nullptr) {
+    if (geometry_path != nullptr && strlen(geometry_path) != 0) {
       gshader_file.open(geometry_path);
       std::stringstream gshader_stream;
       gshader_stream << gshader_file.rdbuf();
@@ -78,7 +79,7 @@ std::shared_ptr<ShaderProgram> GLRenderAPI::CreateShaderProgram(
       geometry_code = gshader_stream.str();
     }
   } catch (std::ifstream::failure &e) {
-    std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+    std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ: " << std::endl;
   }
 
   const char *vshader_code = vertex_code.c_str();
@@ -97,7 +98,7 @@ std::shared_ptr<ShaderProgram> GLRenderAPI::CreateShaderProgram(
   CheckCompileErrors(fragment, "FRAGMENT");
   // if geometry shader is given, compile geometry shader
   unsigned int geometry;
-  if (geometry_path != nullptr) {
+  if (geometry_path != nullptr && strlen(geometry_path) != 0) {
     const char *gshader_code = geometry_code.c_str();
     geometry = glCreateShader(GL_GEOMETRY_SHADER);
     glShaderSource(geometry, 1, &gshader_code, NULL);
@@ -181,6 +182,7 @@ std::shared_ptr<GeometryHandle> GLRenderAPI::CreateGeometryInstance(
 }
 
 void GLRenderAPI::DrawMeshInstance(std::shared_ptr<GeometryHandle> handle) {
+  std::cout << "draw mesh instance" << std::endl;
   auto gl_vertex_handle = std::static_pointer_cast<GLGeometryHandle>(handle);
   glBindVertexArray(gl_vertex_handle->vao);
   glDrawElements(GL_TRIANGLES, gl_vertex_handle->size, GL_UNSIGNED_INT, 0);

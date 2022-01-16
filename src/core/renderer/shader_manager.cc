@@ -1,5 +1,8 @@
 #include "src/core/renderer/shader_manager.h"
 
+#include "src/core/base/mesh_flat_material.h"
+#include "src/core/base/mesh_basic_material.h"
+
 namespace kuro {
 
 ShaderManager::ShaderManager() {}
