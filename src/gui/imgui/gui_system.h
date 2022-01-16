@@ -39,6 +39,8 @@ class GuiSystem {
 
 }  // namespace gui
 
+REGISTER_TYPE_ANNOTATION(gui::GuiSystem)
+
 }  // namespace kuro
 
 #endif

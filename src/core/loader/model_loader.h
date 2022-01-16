@@ -24,6 +24,7 @@ class ModelLoader {
       const std::string &path, std::shared_ptr<SceneManager> scene_manager);
 
   REGISTER_DEPENDENCY(TextureLoader, texture_loader_)
+  REGISTER_DEPENDENCY(RenderAPI, render_api_)
 
  protected:
   std::vector<std::shared_ptr<Texture>> LoadMaterialTextures(

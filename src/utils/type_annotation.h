@@ -7,7 +7,7 @@ namespace kuro {
 
 template <typename T>
 struct TypeAnnotation {
-  static std::string Name() { return "NotExisted"; }
+  static std::string Name() { return ""; }
 };
 
 #define REGISTER_TYPE_ANNOTATION(className)          \

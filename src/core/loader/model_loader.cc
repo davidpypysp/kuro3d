@@ -107,7 +107,10 @@ std::shared_ptr<MeshComp> ModelLoader::ProcessMesh(
   textures.insert(textures.end(), height_textures.begin(),
                   height_textures.end());
 
+  // TODO: Refactor geometry creation
   auto geometry = std::make_shared<Geometry>(vertices, indices);
+  geometry->handle = render_api_->CreateGeometryInstance(vertices, indices);
+
   auto mesh_basic_material = std::make_shared<MeshBasicMaterial>();
   if (diffuse_textures.size() > 0) {
     mesh_basic_material->diffuse_map = diffuse_textures[0];

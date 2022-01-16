@@ -13,7 +13,10 @@ Engine::~Engine() {}
 
 void Engine::LoadScenario() { CreateDefaultScene(context_); }
 
-void Engine::Init() { LoadScenario(); }
+void Engine::Init() {
+  renderer_->Init();
+  LoadScenario();
+}
 
 void Engine::Draw() { renderer_->RenderScene(); }
 

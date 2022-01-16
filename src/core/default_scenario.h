@@ -5,6 +5,7 @@
 
 #include "src/core/scene/scene_manager.h"
 #include "src/core/loader/model_loader.h"
+#include "src/core/base/camera_comp.h"
 
 namespace kuro {
 
@@ -13,8 +14,12 @@ void CreateDefaultScene(std::shared_ptr<Context> context) {
   auto model_loader = context->Resolve<ModelLoader>();
 
   auto root_node = scene_manager->root_node();
+
+  // TODO: refactor camera generation
   auto camera_node = scene_manager->CreateSceneNode(
       "default_camera", scene_manager->root_node(), vec3(0, 0, 8));
+  auto camera_comp = std::make_shared<CameraComp>();
+  camera_node->BindComponent(camera_comp);
   scene_manager->set_camera_node(camera_node);
 
   auto model_node =

@@ -35,6 +35,9 @@ class IocContainer {
   template <typename T>
   void Register(std::shared_ptr<T> instance) {
     const std::string& type_name = TypeAnnotation<T>::Name();
+    if (type_name.size() == 0) {
+      throw std::runtime_error("Type name not registered: ");
+    }
     type_instance_map_[type_name] = instance;
   }
 

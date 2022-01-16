@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "src/utils/dependency_helper.h"
+#include "src/utils/type_annotation.h"
 #include "src/core/scene/scene_manager.h"
 #include "src/core/renderer/rendering_pipeline.h"
 
@@ -19,9 +20,11 @@ class Renderer {
 
   void RenderScene();
 
-  REGISTER_DEPENDENCY(RenderingPipeline, pipeline_)
+  REGISTER_DEPENDENCY(RenderingPipeline, rendering_pipeline_)
   REGISTER_DEPENDENCY(SceneManager, scene_manager_)
 };
+
+REGISTER_TYPE_ANNOTATION(Renderer)
 
 }  // namespace kuro
 

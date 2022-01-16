@@ -17,16 +17,18 @@ Context::Context() {
 
   // resolve cross dependencies
   auto texture_loader = loader_controller->Resolve<TextureLoader>();
+  auto model_loader = loader_controller->Resolve<ModelLoader>();
   auto render_api = renderer_controller->Resolve<RenderAPI>();
   auto scene_manager = scene_controller->Resolve<SceneManager>();
   auto renderer = renderer_controller->Resolve<Renderer>();
 
   texture_loader->RegisterRenderAPI(render_api);
+  model_loader->RegisterRenderAPI(render_api);
   renderer->RegisterSceneManager(scene_manager);
 
   Register<RectWindow>();
 
-  Register<ModelLoader>(loader_controller->Resolve<ModelLoader>());
+  Register<ModelLoader>(model_loader);
   Register<SceneManager>(scene_manager);
   Register<RenderAPI>(render_api);
   Register<Renderer>(renderer);

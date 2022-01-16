@@ -19,6 +19,7 @@ void RenderingPipeline::Setup() {
       temp_shader_handle_->fragment_shader_path.c_str(),
       temp_shader_handle_->geometry_shader_path.c_str());
   shader_manager_->SetShaderProgram(temp_shader_handle_, temp_shader_program);
+  temp_shader_handle_->name = "temp_shader_handle_test";
 }
 
 void RenderingPipeline::PrepareDraw(std::shared_ptr<SceneNode> camera_node) {

@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "src/utils/dependency_helper.h"
+#include "src/utils/type_annotation.h"
 #include "src/core/base/texture.h"
 #include "src/core/renderer/render_api.h"
 
@@ -24,6 +25,8 @@ class TextureLoader {
 
   std::vector<std::shared_ptr<Texture>> texture_instances_;
 };
+
+REGISTER_TYPE_ANNOTATION(TextureLoader)
 
 }  // namespace kuro
 
