@@ -7,7 +7,7 @@ std::shared_ptr<ShaderHandle> MeshBasicMaterial::shader_handle =
                                    "mesh_basic.frag");
 
 std::shared_ptr<ShaderHandle> MeshBasicMaterial::GetShaderHandle() {
-  return MeshBasicMaterial::shader_handle;
+  return this->shader_handle;
 }
 
 }  // namespace kuro
