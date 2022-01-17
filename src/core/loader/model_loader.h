@@ -44,7 +44,7 @@ class ModelLoader {
       std::shared_ptr<SceneManager> scene_manager);
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::ModelLoader)
 

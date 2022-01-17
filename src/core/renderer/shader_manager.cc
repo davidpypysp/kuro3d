@@ -18,5 +18,5 @@ void ShaderManager::SetShaderProgram(std::shared_ptr<ShaderHandle> handle,
   shader_map_[handle] = program;
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

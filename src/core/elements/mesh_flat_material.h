@@ -13,7 +13,7 @@ class MeshFlatMaterial : public Material {
   void Use();
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_MESH_FLAT_MATERIAL_H_

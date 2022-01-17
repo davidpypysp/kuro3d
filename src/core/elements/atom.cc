@@ -5,5 +5,5 @@ namespace core {
 
 Atom::Atom() {}
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

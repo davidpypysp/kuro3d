@@ -7,5 +7,5 @@ Pack::Pack() {}
 
 Pack::~Pack() {}
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

@@ -31,7 +31,7 @@ class CameraAtom : public SceneAtom {
   std::shared_ptr<CameraPack> camera_pack_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_CAMERA_ATOM_H_

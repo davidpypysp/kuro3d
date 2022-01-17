@@ -23,7 +23,7 @@ class Pack {
   std::shared_ptr<SceneNode> scene_node_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_BASE_PACK_H_

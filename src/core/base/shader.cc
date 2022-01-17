@@ -22,5 +22,5 @@ void Shader::SetMat4(const std::string &name, const mat4 &mat) {
   Engine::GetRenderAPI()->SetShaderMat4Param(shader_program_, name, mat);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

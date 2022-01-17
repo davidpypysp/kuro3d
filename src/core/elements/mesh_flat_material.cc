@@ -11,5 +11,5 @@ MeshFlatMaterial::MeshFlatMaterial() {
 
 void MeshFlatMaterial::Use() {}
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

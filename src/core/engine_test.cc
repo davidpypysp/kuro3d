@@ -10,5 +10,5 @@ TEST(EngineTest, BasicAssertions) {
   engine.Init();
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

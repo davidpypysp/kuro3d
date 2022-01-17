@@ -8,5 +8,5 @@ namespace core {
 
 TEST(TextureLoaderTest, BasicAssertions) { TextureLoader texture_loader; }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

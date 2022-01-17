@@ -33,5 +33,5 @@ void MeshBasicMaterial::Use() {
   }
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

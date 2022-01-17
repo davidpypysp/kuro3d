@@ -51,7 +51,7 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   uint32_t scene_node_id_max_ = 0;
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::SceneManager)
 

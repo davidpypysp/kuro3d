@@ -7,5 +7,5 @@ namespace core {
 
 TEST(ShaderManagerTest, BasicAssertions) { ShaderManager shader_manager; }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

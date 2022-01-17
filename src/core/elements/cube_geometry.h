@@ -13,7 +13,7 @@ class CubeGeometry : public Geometry {
   void Setup();
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_CUBE_GEOMETRY_H_

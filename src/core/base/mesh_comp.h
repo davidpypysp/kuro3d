@@ -21,7 +21,7 @@ class MeshComp : public VisualComp {
   MeshData mesh_data_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

@@ -53,7 +53,7 @@ class GLRenderAPI : public RenderAPI {
   static constexpr GLint texture_map_[] = {GL_RED, GL_RGB, GL_RGBA};
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_RENDERER_GL_RENDER_API_H_

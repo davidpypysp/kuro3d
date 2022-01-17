@@ -28,7 +28,7 @@ class ShaderManager {
       shader_map_;
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::ShaderManager)
 

@@ -36,5 +36,5 @@ Context::Context() {
   renderer->RegisterSceneManager(scene_manager);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

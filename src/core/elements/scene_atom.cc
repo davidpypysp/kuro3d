@@ -5,5 +5,5 @@ namespace core {
 
 SceneAtom::SceneAtom(const std::string& name) : Atom(), SceneNode(name) {}
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

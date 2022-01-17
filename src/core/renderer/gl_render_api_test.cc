@@ -7,5 +7,5 @@ namespace core {
 
 TEST(GLRenderAPITest, BasicAssertions) { GLRenderAPI gl_render_api; }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

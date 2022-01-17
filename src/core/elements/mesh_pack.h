@@ -21,7 +21,7 @@ class MeshPack : public VisualPack {
   std::shared_ptr<Material> material_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_MESH_PACK_H_

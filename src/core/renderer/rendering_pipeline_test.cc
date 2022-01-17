@@ -9,5 +9,5 @@ TEST(RenderingPipelineTest, BasicAssertions) {
   RenderingPipeline rendering_pipeline;
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

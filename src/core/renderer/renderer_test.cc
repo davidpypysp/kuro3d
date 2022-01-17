@@ -7,5 +7,5 @@ namespace core {
 
 TEST(RendererTest, BasicAssertions) { Renderer renderer; }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

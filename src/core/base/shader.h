@@ -25,7 +25,7 @@ class Shader {
   std::shared_ptr<ShaderProgram> shader_program_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  //  CORE_BASE_SHADER_H_

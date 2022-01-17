@@ -25,5 +25,5 @@ mat4 CameraAtom::GetViewMatrix() {
   return camera_pack_->GetViewMatrix(translation_);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

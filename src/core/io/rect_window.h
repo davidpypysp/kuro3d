@@ -14,7 +14,7 @@ struct RectWindow {
   }
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

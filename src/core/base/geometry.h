@@ -24,7 +24,7 @@ struct Geometry {
       : vertices(vertices), indices(indices) {}
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

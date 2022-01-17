@@ -104,5 +104,5 @@ void RenderingPipeline::DrawFrame(std::shared_ptr<SceneNode> root_node,
   DrawSceneNode(root_node);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

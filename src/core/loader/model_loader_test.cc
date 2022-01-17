@@ -7,5 +7,5 @@ namespace core {
 
 TEST(ModelLoaderTest, BasicAssertions) { ModelLoader model_loader; }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

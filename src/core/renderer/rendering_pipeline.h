@@ -38,7 +38,7 @@ class RenderingPipeline {
   std::vector<MeshData> mesh_data_list_;
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::RenderingPipeline)
 

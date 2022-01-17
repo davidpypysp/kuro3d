@@ -27,7 +27,7 @@ class TextureLoader {
   std::vector<std::shared_ptr<Texture>> texture_instances_;
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::TextureLoader)
 

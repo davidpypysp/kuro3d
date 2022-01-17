@@ -85,5 +85,5 @@ void SceneNode::UpdateTransformComponents() {
   rotation_ = math::eulerAngles(rotation_quat);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

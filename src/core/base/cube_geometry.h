@@ -101,7 +101,7 @@ struct CubeGeometry : public Geometry {
   }
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

@@ -31,5 +31,5 @@ void CreateDefaultScene(std::shared_ptr<Context> context) {
   root_node->AddChildNode(model_node);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

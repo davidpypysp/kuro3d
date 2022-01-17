@@ -12,7 +12,7 @@ struct MeshData {
   std::shared_ptr<Material> material;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

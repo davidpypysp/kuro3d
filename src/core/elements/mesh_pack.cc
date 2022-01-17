@@ -27,5 +27,5 @@ void MeshPack::PrepareShader() {
   shader->SetMat4("model", scene_node_->WorldTransform());
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

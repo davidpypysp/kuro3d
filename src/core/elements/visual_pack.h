@@ -16,7 +16,7 @@ class VisualPack : public Pack {
   virtual void Render() = 0;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_VISUAL_PACK_H_

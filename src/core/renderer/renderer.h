@@ -25,7 +25,7 @@ class Renderer {
   REGISTER_DEPENDENCY(SceneManager, scene_manager_)
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::Renderer)
 

@@ -27,7 +27,7 @@ class Geometry {
   std::shared_ptr<GeometryHandle> handle_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_RENDERER_GEOMETRY_H_

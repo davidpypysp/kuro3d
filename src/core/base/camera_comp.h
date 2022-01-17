@@ -51,7 +51,7 @@ class CameraComp : public ComponentBase {
   void UpdateCameraVectors();
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

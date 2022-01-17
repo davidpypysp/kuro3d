@@ -21,7 +21,7 @@ struct ShaderHandle {
   std::string geometry_shader_path;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

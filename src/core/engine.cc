@@ -21,5 +21,5 @@ void Engine::Init() {
 
 void Engine::Draw() { renderer_->RenderScene(); }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

@@ -12,7 +12,7 @@ struct MeshFlatMaterial : public Material {
   std::shared_ptr<ShaderHandle> GetShaderHandle() { return shader_handle; }
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

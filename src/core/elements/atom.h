@@ -11,7 +11,7 @@ class Atom {
  protected:
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_ATOM_H_

@@ -19,7 +19,7 @@ class SceneAtom : public Atom, public SceneNode {
  protected:
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_SCENE_ATOM_H_

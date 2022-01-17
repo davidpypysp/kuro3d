@@ -36,7 +36,7 @@ class MeshBasicMaterial : public Material {
   std::shared_ptr<Texture> height_map_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_MESH_BASIC_MATERIAL_H_

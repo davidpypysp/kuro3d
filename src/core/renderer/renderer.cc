@@ -14,5 +14,5 @@ void Renderer::RenderScene() {
                                  scene_manager_->camera_node());
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

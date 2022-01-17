@@ -14,7 +14,7 @@ struct Vertex {
   vec3 bitangent;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

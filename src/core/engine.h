@@ -31,7 +31,7 @@ class Engine {
   void LoadScenario();
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::Engine)
 

@@ -103,5 +103,5 @@ void CubeGeometry::Setup() {
   Geometry::Setup();
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

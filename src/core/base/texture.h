@@ -19,7 +19,7 @@ struct Texture {
   std::string path;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  //  CORE_BASE_TEXTURE_H_

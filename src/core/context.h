@@ -11,7 +11,7 @@ class Context : public IocContainer {
   Context();
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

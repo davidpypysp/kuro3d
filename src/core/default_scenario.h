@@ -15,7 +15,7 @@ namespace core {
 
 void CreateDefaultScene(std::shared_ptr<Context> context);
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

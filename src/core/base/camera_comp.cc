@@ -39,6 +39,6 @@ void CameraComp::UpdateCameraVectors() {
   up_ = normalize(cross(right_, front_));
 }
 
-} /* namespace core */
+}  // namespace core
 
 }  // namespace kuro

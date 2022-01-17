@@ -5,5 +5,5 @@ namespace core {
 
 SceneManager::SceneManager() { root_node_ = CreateSceneNode("root_node"); }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

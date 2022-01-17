@@ -14,7 +14,7 @@ struct Material {
   virtual ~Material() {}
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  //  CORE_BASE_MATERIAL_H_

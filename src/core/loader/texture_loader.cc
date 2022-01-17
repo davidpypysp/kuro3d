@@ -51,5 +51,5 @@ std::shared_ptr<TextureHandle> TextureLoader::LoadTextureFromFile(
   return texture_handle;
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

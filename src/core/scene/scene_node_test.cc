@@ -7,5 +7,5 @@ namespace core {
 
 TEST(SceneNodeTest, BasicAssertions) { SceneNode scene_node("node1"); }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

@@ -10,7 +10,7 @@
 namespace kuro {
 namespace core {
 struct ShaderProgram {};
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif

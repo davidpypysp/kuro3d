@@ -218,5 +218,5 @@ void GLRenderAPI::EnableTextureUnit(const unsigned int unit,
     glBindTexture(GL_TEXTURE_2D, gl_handle->id);
   }
 }
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

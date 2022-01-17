@@ -67,7 +67,7 @@ class SceneNode : public NodeBase<SceneNode> {
   ComponentList components_;
 };
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
 
 #endif  // CORE_SCENE_SCENE_NODE_H_

@@ -17,5 +17,5 @@ void Geometry::Setup() {
   handle_ = Engine::GetRenderAPI()->CreateGeometryInstance(vertices_, indices_);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

@@ -2,7 +2,8 @@
 
 #include "src/core/base/camera_comp.h"
 
-namespace kuro {  namespace core {
+namespace kuro {
+namespace core {
 
 TEST(CameraCompTest, BasicAssertions) {
   CameraComp camera_comp;
@@ -10,5 +11,5 @@ TEST(CameraCompTest, BasicAssertions) {
   EXPECT_EQ(camera_comp.zoom(), 45.0);
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro

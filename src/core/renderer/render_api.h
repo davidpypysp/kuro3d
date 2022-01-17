@@ -51,7 +51,7 @@ class RenderAPI {
       std::shared_ptr<TextureHandle> handle = nullptr) = 0;
 };
 
-} /* namespace core */
+}  // namespace core
 
 REGISTER_TYPE_ANNOTATION(core::RenderAPI)
 

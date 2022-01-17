@@ -162,5 +162,5 @@ std::shared_ptr<SceneNode> ModelLoader::ProcessNode(
   return scene_node;
 }
 
-} /* namespace core */
+}  // namespace core
 }  //  namespace kuro
