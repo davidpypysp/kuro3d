@@ -7,7 +7,7 @@ target_link_libraries(loader.texture_loader_test
 
 add_library(loader.model_loader model_loader.cc)
 target_link_libraries(loader.model_loader
-    assimp
+    assimp::assimp
 	loader.texture_loader
 	base.mesh_basic_material
 	base.mesh_flat_material
