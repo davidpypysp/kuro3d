@@ -1,13 +1,11 @@
-add_library(base_shader shader.cc)
+add_library(base.mesh_flat_material mesh_flat_material.cc)
 
-add_executable(base_shader_test shader_test.cc)
-target_link_libraries(base_shader_test
-	gtest_main
-	base_shader
-	core_engine
-	${IMGUI_LIBRARIES}
+add_library(base.mesh_basic_material mesh_basic_material.cc)
+
+add_library(base.camera_comp camera_comp.cc)
+
+add_gtest(base.camera_comp_test camera_comp_test.cc)
+target_link_libraries(base.camera_comp_test
+	base.camera_comp
 )
-gtest_discover_tests(base_shader_test)
-
-add_library(base_material material.cc)
 

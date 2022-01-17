@@ -5,7 +5,9 @@
 #include <vector>
 
 #include "src/core/base/texture.h"
-#include "src/core/renderer/geometry.h"
+#include "src/core/base/geometry.h"
+#include "src/core/renderer/shader_program.h"
+#include "src/utils/type_annotation.h"
 
 namespace kuro {
 
@@ -18,6 +20,13 @@ class RenderAPI {
   virtual std::shared_ptr<ShaderProgram> CreateShaderProgram(
       const char *vertex_path, const char *fragment_path,
       const char *geometry_path = nullptr) = 0;
+
+  std::shared_ptr<ShaderProgram> CreateShaderProgram(
+      std::shared_ptr<ShaderHandle> handle) {
+    return CreateShaderProgram(handle->vertex_shader_path.c_str(),
+                               handle->fragment_shader_path.c_str(),
+                               handle->geometry_shader_path.c_str());
+  }
 
   virtual void EnableShaderProgram(std::shared_ptr<ShaderProgram> program) = 0;
 
@@ -40,6 +49,8 @@ class RenderAPI {
       const unsigned int unit = 0,
       std::shared_ptr<TextureHandle> handle = nullptr) = 0;
 };
+
+REGISTER_TYPE_ANNOTATION(RenderAPI)
 
 }  // namespace kuro
 

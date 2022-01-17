@@ -2,6 +2,8 @@
 #define GUI_IMGUI_OBJECT_INSPECTOR_H_
 
 #include "src/gui/imgui/window.h"
+#include "src/gui/imgui/gui_store.h"
+#include "src/utils/dependency_helper.h"
 
 namespace kuro {
 
@@ -13,7 +15,7 @@ class ObjectInspector : public Window {
 
   void Render();
 
- protected:
+  REGISTER_DEPENDENCY(GuiStore, gui_store_)
 };
 
 }  // namespace gui

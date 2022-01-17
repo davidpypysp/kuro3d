@@ -5,15 +5,22 @@ set(CMAKE_CXX_STANDARD 17)
 enable_testing()
 include(GoogleTest)
 
+function(add_gtest TARGET NAME)
+    add_executable(${TARGET} ${NAME})
+    gtest_discover_tests(${TARGET})
+    target_link_libraries(${TARGET} gtest_main)
+endfunction()
+
 # Add header path
 include_directories(${CMAKE_SOURCE_DIR})
 
 add_subdirectory(core)
 add_subdirectory(gui)
+add_subdirectory(utils)
 
-# Gui app
+# App main entry
 add_executable(${EXE_NAME} main.cc)
-target_link_libraries(${EXE_NAME} gui_imgui)
+target_link_libraries(${EXE_NAME} imgui.app)
 
 # Copy shader files to destination
 file(GLOB PROJECT_SHADERS
@@ -35,12 +42,3 @@ add_custom_command(
     # DEPENDS ${PROJECT_SHADERS}
     COMMENT "Copy resource..."
 )
-
-
-# TODO: remove hello_Test
-add_executable(hello_test hello_test.cc)
-target_link_libraries(
-  hello_test
-  gtest_main
-)
-gtest_discover_tests(hello_test)

@@ -1,0 +1,1 @@
+add_gtest(type_annotation_test type_annotation_test.cc)

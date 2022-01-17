@@ -1,18 +1,32 @@
 #include "src/core/loader/model_loader.h"
 
 #include <iostream>
-#include <assimp/postprocess.h>
-#include <assimp/scene.h>
-#include <assimp/Importer.hpp>
 
-#include "src/core/engine.h"
-#include "src/core/renderer/geometry.h"
-#include "src/core/elements/mesh_basic_material.h"
-#include "src/core/elements/mesh_pack.h"
+#include "src/core/base/geometry.h"
+#include "src/core/base/cube_geometry.h"
+#include "src/core/base/mesh_basic_material.h"
+#include "src/core/base/mesh_flat_material.h"
 
 namespace kuro {
 
-std::vector<std::shared_ptr<Texture>> LoadMaterialTextures(
+ModelLoader::ModelLoader() {}
+
+std::shared_ptr<SceneNode> ModelLoader::LoadModel(
+    const std::string &path, std::shared_ptr<SceneManager> scene_manager) {
+  Assimp::Importer importer;
+  const aiScene *ai_scene = importer.ReadFile(
+      path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
+                aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+
+  if (!ai_scene || ai_scene->mFlags && AI_SCENE_FLAGS_INCOMPLETE ||
+      !ai_scene->mRootNode) {
+    std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
+  }
+  std::string directory = path.substr(0, path.find_last_of('/'));
+  return ProcessNode(ai_scene->mRootNode, ai_scene, directory, scene_manager);
+}
+
+std::vector<std::shared_ptr<Texture>> ModelLoader::LoadMaterialTextures(
     aiMaterial *ai_mat, const std::string &directory,
     const aiTextureType &ai_texture_type, const TextureType &texture_type) {
   std::vector<std::shared_ptr<Texture>> textures;
@@ -20,14 +34,27 @@ std::vector<std::shared_ptr<Texture>> LoadMaterialTextures(
     aiString str;
     ai_mat->GetTexture(ai_texture_type, i, &str);
     std::string path = directory + "/" + std::string(str.C_Str());
-    auto texture = Engine::GetTextureLoader()->LoadTexture(path, texture_type);
+    auto texture = texture_loader_->LoadTexture(path, texture_type);
     textures.push_back(texture);
   }
   return textures;
 }
 
-std::shared_ptr<MeshPack> ProcessMesh(aiMesh *ai_mesh, const aiScene *ai_scene,
-                                      const std::string &directory) {
+std::shared_ptr<SceneNode> ModelLoader::LoadCube(
+    std::shared_ptr<SceneManager> scene_manager) {
+  auto cube_node = scene_manager->CreateSceneNode("example_cube");
+  auto cube_geometry = std::make_shared<CubeGeometry>();
+  cube_geometry->handle = render_api_->CreateGeometryInstance(
+      cube_geometry->vertices, cube_geometry->indices);
+  auto mesh_flat_material = std::make_shared<MeshFlatMaterial>();
+  std::shared_ptr<MeshComp> cube_mesh_comp =
+      std::make_shared<MeshComp>(cube_geometry, mesh_flat_material);
+  cube_node->BindComponent(cube_mesh_comp);
+  return cube_node;
+}
+
+std::shared_ptr<MeshComp> ModelLoader::ProcessMesh(
+    aiMesh *ai_mesh, const aiScene *ai_scene, const std::string &directory) {
   std::vector<Vertex> vertices;
   std::vector<unsigned int> indices;
 
@@ -95,57 +122,43 @@ std::shared_ptr<MeshPack> ProcessMesh(aiMesh *ai_mesh, const aiScene *ai_scene,
   textures.insert(textures.end(), height_textures.begin(),
                   height_textures.end());
 
+  // TODO: Refactor geometry creation
   auto geometry = std::make_shared<Geometry>(vertices, indices);
+  geometry->handle = render_api_->CreateGeometryInstance(vertices, indices);
+
   auto mesh_basic_material = std::make_shared<MeshBasicMaterial>();
   if (diffuse_textures.size() > 0) {
-    mesh_basic_material->set_diffuse_map(diffuse_textures[0]);
+    mesh_basic_material->diffuse_map = diffuse_textures[0];
   }
   if (specular_textures.size() > 0) {
-    mesh_basic_material->set_specular_map(specular_textures[0]);
+    mesh_basic_material->specular_map = specular_textures[0];
   }
   if (normal_textures.size() > 0) {
-    mesh_basic_material->set_normal_map(normal_textures[0]);
+    mesh_basic_material->normal_map = normal_textures[0];
   }
   if (height_textures.size() > 0) {
-    mesh_basic_material->set_height_map(height_textures[0]);
+    mesh_basic_material->height_map = height_textures[0];
   }
 
-  auto mesh_pack = std::make_shared<MeshPack>(geometry, mesh_basic_material);
-  return mesh_pack;
+  auto mesh_comp = std::make_shared<MeshComp>(geometry, mesh_basic_material);
+  return mesh_comp;
 }
 
-void ProcessNode(aiNode *ai_node, const aiScene *ai_scene,
-                 const std::string &directory,
-                 std::shared_ptr<SceneNode> scene_node) {
+std::shared_ptr<SceneNode> ModelLoader::ProcessNode(
+    aiNode *ai_node, const aiScene *ai_scene, const std::string &directory,
+    std::shared_ptr<SceneManager> scene_manager) {
+  auto scene_node = scene_manager->CreateSceneNode(ai_node->mName.C_Str());
   for (unsigned int i = 0; i < ai_node->mNumMeshes; i++) {
     aiMesh *ai_mesh = ai_scene->mMeshes[ai_node->mMeshes[i]];
-    auto mesh_pack = ProcessMesh(ai_mesh, ai_scene, directory);
-    scene_node->BindPack(mesh_pack);
+    auto mesh_comp = ProcessMesh(ai_mesh, ai_scene, directory);
+    scene_node->BindComponent(mesh_comp);
   }
   for (unsigned int i = 0; i < ai_node->mNumChildren; i++) {
     aiNode *ai_child = ai_node->mChildren[i];
-    const auto &node_name = std::string(ai_child->mName.C_Str());
-    auto child_node =
-        Engine::GetSceneManager()->CreateSceneNode(node_name, scene_node);
-    ProcessNode(ai_child, ai_scene, directory, child_node);
+    auto child_node = ProcessNode(ai_child, ai_scene, directory, scene_manager);
+    scene_node->AddChildNode(child_node);
   }
-}
-
-ModelLoader::ModelLoader() {}
-
-void ModelLoader::LoadModel(const std::string &path,
-                            std::shared_ptr<SceneNode> scene_node) {
-  Assimp::Importer importer;
-  const aiScene *ai_scene = importer.ReadFile(
-      path, aiProcess_Triangulate | aiProcess_GenSmoothNormals |
-                aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
-
-  if (!ai_scene || ai_scene->mFlags && AI_SCENE_FLAGS_INCOMPLETE ||
-      !ai_scene->mRootNode) {
-    std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
-  }
-  std::string directory = path.substr(0, path.find_last_of('/'));
-  ProcessNode(ai_scene->mRootNode, ai_scene, directory, scene_node);
+  return scene_node;
 }
 
 }  // namespace kuro

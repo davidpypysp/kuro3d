@@ -3,25 +3,28 @@
 
 #include <memory>
 
-#include "src/core/base/shader.h"
-#include "src/core/scene/scene_node.h"
+#include "src/utils/dependency_helper.h"
+#include "src/utils/type_annotation.h"
+#include "src/core/scene/scene_manager.h"
+#include "src/core/renderer/rendering_pipeline.h"
 
 namespace kuro {
 
 class Renderer {
  public:
   Renderer();
+
   ~Renderer();
+
   void Init();
-  void DrawScene();
 
-  std::shared_ptr<Shader> shader() { return shader_; }
+  void RenderScene();
 
- private:
-  void DrawSceneNode(std::shared_ptr<SceneNode> scene_node);
-
-  std::shared_ptr<Shader> shader_;
+  REGISTER_DEPENDENCY(RenderingPipeline, rendering_pipeline_)
+  REGISTER_DEPENDENCY(SceneManager, scene_manager_)
 };
+
+REGISTER_TYPE_ANNOTATION(Renderer)
 
 }  // namespace kuro
 

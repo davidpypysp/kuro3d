@@ -1,14 +1,20 @@
 #include "src/core/renderer/shader_manager.h"
 
+#include "src/core/base/mesh_flat_material.h"
+#include "src/core/base/mesh_basic_material.h"
+
 namespace kuro {
 
 ShaderManager::ShaderManager() {}
 
-void ShaderManager::Init() {
-  mesh_flat_shader_ = std::make_shared<Shader>("mesh.vert", "mesh_flat.frag");
-  mesh_basic_shader_ = std::make_shared<Shader>("mesh.vert", "mesh_basic.frag");
+std::shared_ptr<ShaderProgram> ShaderManager::GetShaderProgram(
+    std::shared_ptr<ShaderHandle> handle) {
+  return shader_map_[handle];
 }
 
-std::shared_ptr<Shader> ShaderManager::LoadShader() { return nullptr; }
+void ShaderManager::SetShaderProgram(std::shared_ptr<ShaderHandle> handle,
+                                     std::shared_ptr<ShaderProgram> program) {
+  shader_map_[handle] = program;
+}
 
 }  // namespace kuro

@@ -4,13 +4,6 @@
 #include <string>
 #include <memory>
 #include <vector>
-#include <glad/glad.h>  // Initialize with gladLoadGL()
-#include <GLFW/glfw3.h>
-
-#include <imgui.h>
-#include <misc/cpp/imgui_stdlib.h>
-#include <imgui_impl_glfw.h>
-#include <imgui_impl_opengl3.h>
 
 #include "src/gui/imgui/window.h"
 
@@ -20,8 +13,10 @@ namespace gui {
 
 class GuiBase {
  public:
-  GuiBase(GLFWwindow* window, const char* glsl_version);
+  GuiBase();
+
   ~GuiBase();
+
   void Draw();
 
  protected:
@@ -32,7 +27,6 @@ class GuiBase {
     return std::static_pointer_cast<T>(window);
   }
 
-  GLFWwindow* window_;
   std::vector<std::shared_ptr<Window>> windows_;
 };
 

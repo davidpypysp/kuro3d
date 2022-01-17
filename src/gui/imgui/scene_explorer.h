@@ -2,8 +2,11 @@
 #define GUI_IMGUI_SCENE_EXPLORER_H_
 
 #include <string>
+
 #include "src/gui/imgui/window.h"
-#include "src/core/engine.h"
+#include "src/gui/imgui/gui_store.h"
+#include "src/utils/dependency_helper.h"
+#include "src/core/scene/scene_manager.h"
 
 namespace kuro {
 namespace gui {
@@ -14,12 +17,15 @@ class SceneExplorer : public Window {
 
   void Render();
 
+  REGISTER_DEPENDENCY(SceneManager, scene_manager_)
+  REGISTER_DEPENDENCY(GuiStore, gui_store_)
+
  protected:
-  static bool TreeNode(std::shared_ptr<SceneNode> scene_node,
-                       ImGuiTreeNodeFlags flags = 0);
+  bool TreeNode(std::shared_ptr<SceneNode> scene_node,
+                ImGuiTreeNodeFlags flags = 0);
 
   void RenderNodes(std::shared_ptr<SceneNode> scene_node);
-  static const ImGuiTreeNodeFlags base_flags_ =
+  const ImGuiTreeNodeFlags base_flags_ =
       ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen;
 };
 

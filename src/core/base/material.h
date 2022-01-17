@@ -1,20 +1,16 @@
 #ifndef CORE_BASE_MATERIAL_H_
 #define CORE_BASE_MATERIAL_H_
 
-#include "src/core/base/shader.h"
+#include <memory>
+
+#include "src/core/base/shader_handle.h"
 
 namespace kuro {
 
-class Material {
- public:
-  Material();
+struct Material {
+  virtual std::shared_ptr<ShaderHandle> GetShaderHandle() = 0;
 
-  virtual void Use() = 0;
-
-  std::shared_ptr<Shader> shader() { return shader_; }
-
- protected:
-  std::shared_ptr<Shader> shader_;
+  virtual ~Material() {}
 };
 
 }  // namespace kuro

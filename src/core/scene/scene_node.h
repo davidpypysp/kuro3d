@@ -1,35 +1,28 @@
 #ifndef CORE_SCENE_SCENE_NODE_H_
 #define CORE_SCENE_SCENE_NODE_H_
 
-#include <glad/glad.h>
 #include <string>
 #include <iostream>
 #include <vector>
 #include <memory>
 
 #include "src/math/math.h"
+#include "src/core/base/component_base.h"
 #include "src/utils/node_base.h"
 
 namespace kuro {
 
-class SceneManager;
-class Pack;
-
-typedef std::vector<std::shared_ptr<Pack>> PackList;
+typedef std::vector<std::shared_ptr<ComponentBase>> ComponentList;
 
 class SceneNode : public NodeBase<SceneNode> {
  public:
   SceneNode(const std::string& name);
 
-  static std::shared_ptr<SceneNode> Create(const std::string& name);
+  ComponentList& GetComponents();
 
-  virtual const char* Type() const { return "SceneNode"; }
+  void BindComponent(std::shared_ptr<ComponentBase> comp);
 
-  void BindPack(std::shared_ptr<Pack> pack);
-  void UnbindPack(std::shared_ptr<Pack> pack);
-  PackList& GetPacks();
-
-  void AddChildSceneNode(std::shared_ptr<SceneNode> scene_node);
+  void AddChildNode(std::shared_ptr<SceneNode> scene_node);
 
   void set_id(const uint32_t id) { id_ = id; }
 
@@ -56,11 +49,6 @@ class SceneNode : public NodeBase<SceneNode> {
 
   void UpdateTransforms();
 
-  std::shared_ptr<SceneManager> scene_manager() { return scene_manager_; }
-  void set_scene_manager(std::shared_ptr<SceneManager> scene_manager) {
-    scene_manager_ = scene_manager;
-  }
-
  protected:
   void UpdateTransformComponents();
 
@@ -74,10 +62,8 @@ class SceneNode : public NodeBase<SceneNode> {
   vec3 rotation_;
   vec3 scale_;
 
-  std::shared_ptr<SceneManager> scene_manager_;
-
   // children
-  PackList packs_;
+  ComponentList components_;
 };
 
 }  // namespace kuro
