@@ -4,6 +4,7 @@
 #include "src/core/base/material.h"
 
 namespace kuro {
+namespace core {
 
 struct MeshFlatMaterial : public Material {
   static std::shared_ptr<ShaderHandle> shader_handle;
@@ -11,6 +12,7 @@ struct MeshFlatMaterial : public Material {
   std::shared_ptr<ShaderHandle> GetShaderHandle() { return shader_handle; }
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif

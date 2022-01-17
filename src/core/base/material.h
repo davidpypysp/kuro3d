@@ -6,6 +6,7 @@
 #include "src/core/base/shader_handle.h"
 
 namespace kuro {
+namespace core {
 
 struct Material {
   virtual std::shared_ptr<ShaderHandle> GetShaderHandle() = 0;
@@ -13,6 +14,7 @@ struct Material {
   virtual ~Material() {}
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  //  CORE_BASE_MATERIAL_H_

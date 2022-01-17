@@ -6,6 +6,7 @@
 #include "src/core/elements/visual_pack.h"
 
 namespace kuro {
+namespace core {
 
 class MeshPack : public VisualPack {
  public:
@@ -20,6 +21,7 @@ class MeshPack : public VisualPack {
   std::shared_ptr<Material> material_;
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_MESH_PACK_H_

@@ -3,6 +3,7 @@
 #include "src/core/engine.h"
 
 namespace kuro {
+namespace core {
 
 Geometry::Geometry() {}
 
@@ -16,4 +17,5 @@ void Geometry::Setup() {
   handle_ = Engine::GetRenderAPI()->CreateGeometryInstance(vertices_, indices_);
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

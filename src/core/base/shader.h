@@ -7,6 +7,7 @@
 #include "src/math/math.h"
 
 namespace kuro {
+namespace core {
 
 struct ShaderProgram {};
 
@@ -24,6 +25,7 @@ class Shader {
   std::shared_ptr<ShaderProgram> shader_program_;
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  //  CORE_BASE_SHADER_H_

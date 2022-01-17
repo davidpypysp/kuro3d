@@ -3,6 +3,7 @@
 #include "src/core/engine.h"
 
 namespace kuro {
+namespace core {
 
 CameraAtom::CameraAtom(const std::string& name) : SceneAtom(name) {}
 
@@ -24,4 +25,5 @@ mat4 CameraAtom::GetViewMatrix() {
   return camera_pack_->GetViewMatrix(translation_);
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

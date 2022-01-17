@@ -3,7 +3,9 @@
 #include "src/core/renderer/renderer.h"
 
 namespace kuro {
+namespace core {
 
 TEST(RendererTest, BasicAssertions) { Renderer renderer; }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

@@ -16,6 +16,9 @@ namespace kuro {
 
 namespace gui {
 
+using SceneManager = core::SceneManager;
+using Engine = core::Engine;
+
 class GuiManager : public GuiBase {
  public:
   GuiManager();

@@ -3,7 +3,9 @@
 #include "src/core/scene/scene_manager.h"
 
 namespace kuro {
+namespace core {
 
 TEST(SceneNodeTest, BasicAssertions) { SceneManager scene_manager; }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

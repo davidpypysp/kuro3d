@@ -7,6 +7,7 @@
 #include "src/core/base/mesh_flat_material.h"
 
 namespace kuro {
+namespace core {
 
 RenderingPipeline::RenderingPipeline() {}
 
@@ -103,4 +104,5 @@ void RenderingPipeline::DrawFrame(std::shared_ptr<SceneNode> root_node,
   DrawSceneNode(root_node);
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

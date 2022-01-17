@@ -3,8 +3,10 @@
 #include "src/core/loader/texture_loader.h"
 
 namespace kuro {
+namespace core {
 // Demonstrate some basic assertions.
 
 TEST(TextureLoaderTest, BasicAssertions) { TextureLoader texture_loader; }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

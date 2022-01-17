@@ -8,6 +8,7 @@
 #include "src/core/scene/scene_node.h"
 
 namespace kuro {
+namespace core {
 
 class SceneAtom : public Atom, public SceneNode {
  public:
@@ -18,6 +19,7 @@ class SceneAtom : public Atom, public SceneNode {
  protected:
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_SCENE_ATOM_H_

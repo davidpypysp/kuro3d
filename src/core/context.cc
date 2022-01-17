@@ -7,6 +7,7 @@
 #include "src/core/renderer/gl_render_api.h"
 
 namespace kuro {
+namespace core {
 
 Context::Context() {
   // Init Scene
@@ -35,4 +36,5 @@ Context::Context() {
   renderer->RegisterSceneManager(scene_manager);
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

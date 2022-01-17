@@ -11,6 +11,7 @@
 #include "src/utils/node_base.h"
 
 namespace kuro {
+namespace core {
 
 typedef std::vector<std::shared_ptr<ComponentBase>> ComponentList;
 
@@ -66,6 +67,7 @@ class SceneNode : public NodeBase<SceneNode> {
   ComponentList components_;
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  // CORE_SCENE_SCENE_NODE_H_

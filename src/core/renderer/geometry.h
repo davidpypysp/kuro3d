@@ -7,6 +7,7 @@
 #include "src/core/base/vertex.h"
 
 namespace kuro {
+namespace core {
 
 struct GeometryHandle {};
 
@@ -26,6 +27,7 @@ class Geometry {
   std::shared_ptr<GeometryHandle> handle_;
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  // CORE_RENDERER_GEOMETRY_H_

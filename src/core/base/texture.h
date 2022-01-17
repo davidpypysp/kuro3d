@@ -5,6 +5,7 @@
 #include <memory>
 
 namespace kuro {
+namespace core {
 
 struct TextureHandle {};
 
@@ -18,6 +19,7 @@ struct Texture {
   std::string path;
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  //  CORE_BASE_TEXTURE_H_

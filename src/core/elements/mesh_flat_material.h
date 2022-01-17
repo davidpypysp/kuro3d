@@ -4,6 +4,7 @@
 #include "src/core/base/material.h"
 
 namespace kuro {
+namespace core {
 
 class MeshFlatMaterial : public Material {
  public:
@@ -12,6 +13,7 @@ class MeshFlatMaterial : public Material {
   void Use();
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_MESH_FLAT_MATERIAL_H_

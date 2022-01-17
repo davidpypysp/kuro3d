@@ -9,6 +9,7 @@
 #include "src/core/renderer/render_api.h"
 
 namespace kuro {
+namespace core {
 
 struct GLSLShaderProgram : public ShaderProgram {
   unsigned int id;
@@ -52,6 +53,7 @@ class GLRenderAPI : public RenderAPI {
   static constexpr GLint texture_map_[] = {GL_RED, GL_RGB, GL_RGBA};
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif  // CORE_RENDERER_GL_RENDER_API_H_

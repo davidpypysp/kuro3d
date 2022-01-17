@@ -3,6 +3,7 @@
 #include "src/math/math.h"
 
 namespace kuro {
+namespace core {
 
 CubeGeometry::CubeGeometry() : Geometry() { Setup(); }
 
@@ -102,4 +103,5 @@ void CubeGeometry::Setup() {
   Geometry::Setup();
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

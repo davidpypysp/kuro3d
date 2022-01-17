@@ -8,6 +8,7 @@
 #include "src/core/base/mesh_flat_material.h"
 
 namespace kuro {
+namespace core {
 
 ModelLoader::ModelLoader() {}
 
@@ -161,4 +162,5 @@ std::shared_ptr<SceneNode> ModelLoader::ProcessNode(
   return scene_node;
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

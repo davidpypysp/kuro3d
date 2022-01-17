@@ -10,6 +10,7 @@
 #include "src/core/renderer/render_api.h"
 
 namespace kuro {
+namespace core {
 
 class TextureLoader {
  public:
@@ -26,8 +27,10 @@ class TextureLoader {
   std::vector<std::shared_ptr<Texture>> texture_instances_;
 };
 
-REGISTER_TYPE_ANNOTATION(TextureLoader)
+} /* namespace core */
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::TextureLoader)
 
-#endif  // CORE?RENDERER_TEXTURE_LOADER_H_
+}  //  namespace kuro
+
+#endif  // CORE_RENDERER_TEXTURE_LOADER_H_

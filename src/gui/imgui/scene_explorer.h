@@ -9,7 +9,10 @@
 #include "src/core/scene/scene_manager.h"
 
 namespace kuro {
+
 namespace gui {
+
+using SceneManager = core::SceneManager;
 
 class SceneExplorer : public Window {
  public:
@@ -21,10 +24,10 @@ class SceneExplorer : public Window {
   REGISTER_DEPENDENCY(GuiStore, gui_store_)
 
  protected:
-  bool TreeNode(std::shared_ptr<SceneNode> scene_node,
+  bool TreeNode(std::shared_ptr<core::SceneNode> scene_node,
                 ImGuiTreeNodeFlags flags = 0);
 
-  void RenderNodes(std::shared_ptr<SceneNode> scene_node);
+  void RenderNodes(std::shared_ptr<core::SceneNode> scene_node);
   const ImGuiTreeNodeFlags base_flags_ =
       ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_DefaultOpen;
 };

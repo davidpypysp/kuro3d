@@ -4,6 +4,7 @@
 #include "src/core/base/geometry.h"
 
 namespace kuro {
+namespace core {
 
 struct CubeGeometry : public Geometry {
   CubeGeometry() {
@@ -100,6 +101,7 @@ struct CubeGeometry : public Geometry {
   }
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif

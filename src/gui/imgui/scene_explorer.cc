@@ -5,7 +5,7 @@ namespace gui {
 
 SceneExplorer::SceneExplorer(const std::string &name) : Window(name) {}
 
-bool SceneExplorer::TreeNode(std::shared_ptr<SceneNode> scene_node,
+bool SceneExplorer::TreeNode(std::shared_ptr<core::SceneNode> scene_node,
                              ImGuiTreeNodeFlags flags) {
   auto node_flags = base_flags_ | flags;
   if (scene_node == gui_store_->selected_scene_node) {
@@ -20,7 +20,7 @@ bool SceneExplorer::TreeNode(std::shared_ptr<SceneNode> scene_node,
   return node_open;
 }
 
-void SceneExplorer::RenderNodes(std::shared_ptr<SceneNode> scene_node) {
+void SceneExplorer::RenderNodes(std::shared_ptr<core::SceneNode> scene_node) {
   if (scene_node->child_nodes().size() == 0) {
     TreeNode(scene_node,
              ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen);

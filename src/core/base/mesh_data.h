@@ -5,12 +5,14 @@
 #include "src/core/base/material.h"
 
 namespace kuro {
+namespace core {
 
 struct MeshData {
   std::shared_ptr<Geometry> geometry;
   std::shared_ptr<Material> material;
 };
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif

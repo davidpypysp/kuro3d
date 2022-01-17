@@ -8,6 +8,7 @@
 #include <iostream>
 
 namespace kuro {
+namespace core {
 
 TextureLoader::TextureLoader() { stbi_set_flip_vertically_on_load(true); }
 
@@ -50,4 +51,5 @@ std::shared_ptr<TextureHandle> TextureLoader::LoadTextureFromFile(
   return texture_handle;
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

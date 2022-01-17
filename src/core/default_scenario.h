@@ -11,9 +11,11 @@
 #include "src/core/base/mesh_basic_material.h"
 
 namespace kuro {
+namespace core {
 
 void CreateDefaultScene(std::shared_ptr<Context> context);
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro
 
 #endif

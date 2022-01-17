@@ -3,10 +3,12 @@
 #include "src/core/engine.h"
 
 namespace kuro {
+namespace core {
 // Demonstrate some basic assertions.
 TEST(EngineTest, BasicAssertions) {
   Engine engine;
   engine.Init();
 }
 
-}  // namespace kuro
+} /* namespace core */
+}  //  namespace kuro

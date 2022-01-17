@@ -7,6 +7,7 @@
 #include "src/core/renderer/renderer.h"
 
 namespace kuro {
+namespace core {
 
 class Engine {
  public:
@@ -30,8 +31,10 @@ class Engine {
   void LoadScenario();
 };
 
-REGISTER_TYPE_ANNOTATION(Engine)
+} /* namespace core */
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::Engine)
+
+}  //  namespace kuro
 
 #endif  // CORE_ENGINE_H_

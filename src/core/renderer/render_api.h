@@ -10,6 +10,7 @@
 #include "src/utils/type_annotation.h"
 
 namespace kuro {
+namespace core {
 
 class RenderAPI {
  public:
@@ -50,8 +51,10 @@ class RenderAPI {
       std::shared_ptr<TextureHandle> handle = nullptr) = 0;
 };
 
-REGISTER_TYPE_ANNOTATION(RenderAPI)
+} /* namespace core */
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::RenderAPI)
+
+}  //  namespace kuro
 
 #endif  // CORE_RENDERER_RENDER_API_H_
