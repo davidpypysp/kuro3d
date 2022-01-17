@@ -17,7 +17,7 @@ class Engine {
   void Init();
 
   template <class T>
-  std::shared_ptr<T> GetInstance() {
+  inline std::shared_ptr<T> GetInstance() {
     return context_->Resolve<T>();
   }
 
