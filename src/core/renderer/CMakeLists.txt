@@ -41,17 +41,3 @@ add_gtest(renderer.renderer_test renderer_test.cc)
 target_link_libraries(renderer.renderer_test
 	renderer.renderer
 )
-
-add_library(renderer.renderer_controller renderer_controller.cc)
-target_link_libraries(renderer.renderer_controller
-	renderer.renderer
-	renderer.gl_render_api
-)
-
-add_gtest(renderer.renderer_controller_test renderer_controller_test.cc)
-target_link_libraries(renderer.renderer_controller_test
-	renderer.renderer_controller
-)
-
-
-

@@ -14,8 +14,3 @@ add_gtest(scene.scene_manager_test scene_manager_test.cc)
 target_link_libraries(scene.scene_manager_test
 	scene.scene_manager
 )
-
-add_library(scene.scene_controller scene_controller.cc)
-target_link_libraries(scene.scene_controller
-	scene.scene_manager
-)
