@@ -74,7 +74,8 @@ int GuiSystem::Init() {
         std::cout << "framebuffer size = "
                   << "width=" << width << "height=" << height << std::endl;
         // TODO: figure out how to pass variable into this lambda
-        //  engine_window->SetSize(width, height);
+        auto engine_window = Engine::Instance()->GetInstance<RectWindow>();
+        engine_window->SetSize(width, height);
         glViewport(0, 0, width, height);
       });
 
@@ -112,7 +113,6 @@ int GuiSystem::Init() {
 
 int GuiSystem::Run() {
   Init();
-
   gui_manager_->Init();
 
   // Main loop

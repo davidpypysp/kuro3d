@@ -40,9 +40,6 @@ class GuiManager {
   }
 
   std::vector<std::shared_ptr<Window>> windows_;
-
-  std::shared_ptr<SceneExplorer> scene_explorer_;
-  std::shared_ptr<ObjectInspector> object_inspector_;
 };
 
 }  // namespace gui

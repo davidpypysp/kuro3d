@@ -17,13 +17,13 @@ void GuiManager::Draw() {
 }
 
 void GuiManager::InitWindows() {
-  scene_explorer_ = AddWindow<SceneExplorer>("Scene Explorer");
-  scene_explorer_->RegisterGuiStore(gui_store_);
+  auto scene_explorer = AddWindow<SceneExplorer>("Scene Explorer");
+  scene_explorer->RegisterGuiStore(gui_store_);
   auto scene_manager = engine_->GetInstance<SceneManager>();
-  scene_explorer_->RegisterSceneManager(scene_manager);
+  scene_explorer->RegisterSceneManager(scene_manager);
 
-  object_inspector_ = AddWindow<ObjectInspector>("Object Inspector");
-  object_inspector_->RegisterGuiStore(gui_store_);
+  auto object_inspector = AddWindow<ObjectInspector>("Object Inspector");
+  object_inspector->RegisterGuiStore(gui_store_);
 }
 
 }  // namespace gui
