@@ -6,9 +6,15 @@ namespace kuro {
 
 namespace gui {
 
-GuiManager::GuiManager() : GuiBase() {}
+GuiManager::GuiManager() {}
 
 void GuiManager::Init() { InitWindows(); }
+
+void GuiManager::Draw() {
+  for (auto window : windows_) {
+    window->RenderFrame();
+  }
+}
 
 void GuiManager::InitWindows() {
   scene_explorer_ = AddWindow<SceneExplorer>("Scene Explorer");

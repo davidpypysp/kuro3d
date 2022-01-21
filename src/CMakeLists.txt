@@ -20,7 +20,7 @@ add_subdirectory(utils)
 
 # App main entry
 add_executable(${EXE_NAME} main.cc)
-target_link_libraries(${EXE_NAME} imgui.app)
+target_link_libraries(${EXE_NAME} imgui.gui_system)
 
 # Copy shader files to destination
 file(GLOB PROJECT_SHADERS

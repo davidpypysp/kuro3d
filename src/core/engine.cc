@@ -21,5 +21,7 @@ void Engine::Init() {
 
 void Engine::Draw() { renderer_->RenderScene(); }
 
+std::shared_ptr<Engine> Engine::instance_ = std::make_shared<Engine>();
+
 }  // namespace core
 }  //  namespace kuro

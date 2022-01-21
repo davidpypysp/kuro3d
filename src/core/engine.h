@@ -24,9 +24,13 @@ class Engine {
 
   void Draw();
 
+  static std::shared_ptr<Engine> Instance() { return Engine::instance_; }
+
  protected:
   std::shared_ptr<Context> context_;
   std::shared_ptr<Renderer> renderer_;
+
+  static std::shared_ptr<Engine> instance_;
 
   void LoadScenario();
 };

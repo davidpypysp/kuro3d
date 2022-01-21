@@ -10,6 +10,7 @@
 #include "src/utils/type_annotation.h"
 #include "src/utils/dependency_helper.h"
 #include "src/gui/imgui/gui_manager.h"
+#include "src/gui/imgui/context.h"
 #include "src/core/engine.h"
 
 namespace kuro {
@@ -33,6 +34,8 @@ class GuiSystem {
   void Loop();
 
   void Cleanup();
+
+  std::shared_ptr<Context> context_;
 
   GLFWwindow* gl_window_;
 };

@@ -6,7 +6,6 @@
 
 #include "src/utils/type_annotation.h"
 #include "src/utils/dependency_helper.h"
-#include "src/gui/imgui/gui_base.h"
 #include "src/gui/imgui/gui_store.h"
 #include "src/gui/imgui/scene_explorer.h"
 #include "src/gui/imgui/object_inspector.h"
@@ -19,17 +18,28 @@ namespace gui {
 using SceneManager = core::SceneManager;
 using Engine = core::Engine;
 
-class GuiManager : public GuiBase {
+class GuiManager {
  public:
   GuiManager();
 
   void Init();
+
+  void Draw();
 
   REGISTER_DEPENDENCY(GuiStore, gui_store_)
   REGISTER_DEPENDENCY(Engine, engine_)
 
  protected:
   void InitWindows();
+
+  template <class T>
+  std::shared_ptr<T> AddWindow(const std::string& name) {
+    std::shared_ptr<Window> window = std::make_shared<T>(name);
+    windows_.push_back(window);
+    return std::static_pointer_cast<T>(window);
+  }
+
+  std::vector<std::shared_ptr<Window>> windows_;
 
   std::shared_ptr<SceneExplorer> scene_explorer_;
   std::shared_ptr<ObjectInspector> object_inspector_;
