@@ -9,6 +9,7 @@
 #include "src/core/renderer/rendering_pipeline.h"
 
 namespace kuro {
+namespace core {
 
 class Renderer {
  public:
@@ -24,8 +25,10 @@ class Renderer {
   REGISTER_DEPENDENCY(SceneManager, scene_manager_)
 };
 
-REGISTER_TYPE_ANNOTATION(Renderer)
+}  // namespace core
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::Renderer)
+
+}  //  namespace kuro
 
 #endif  // CORE_RENDERER_RENDERER_H_

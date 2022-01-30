@@ -8,7 +8,9 @@
 #include "src/core/base/shader_handle.h"
 
 namespace kuro {
+namespace core {
 struct ShaderProgram {};
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

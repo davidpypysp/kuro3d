@@ -1,6 +1,7 @@
 #include "src/core/renderer/renderer.h"
 
 namespace kuro {
+namespace core {
 
 Renderer::Renderer() {}
 
@@ -13,4 +14,5 @@ void Renderer::RenderScene() {
                                  scene_manager_->camera_node());
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

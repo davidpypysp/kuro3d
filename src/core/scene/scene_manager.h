@@ -9,6 +9,7 @@
 #include "src/utils/type_annotation.h"
 
 namespace kuro {
+namespace core {
 
 typedef std::vector<std::shared_ptr<SceneNode>> SceneNodeList;
 
@@ -50,8 +51,10 @@ class SceneManager : public std::enable_shared_from_this<SceneManager> {
   uint32_t scene_node_id_max_ = 0;
 };
 
-REGISTER_TYPE_ANNOTATION(SceneManager)
+}  // namespace core
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::SceneManager)
+
+}  //  namespace kuro
 
 #endif  // CORE_SCENE_SCENE_MANAGER_H_

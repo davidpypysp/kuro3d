@@ -7,6 +7,7 @@
 #include <iostream>
 
 namespace kuro {
+namespace core {
 
 void CheckCompileErrors(GLuint shader, std::string type) {
   GLint success;
@@ -217,4 +218,5 @@ void GLRenderAPI::EnableTextureUnit(const unsigned int unit,
     glBindTexture(GL_TEXTURE_2D, gl_handle->id);
   }
 }
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

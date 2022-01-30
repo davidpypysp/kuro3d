@@ -5,6 +5,7 @@
 #include "src/core/base/shader.h"
 
 namespace kuro {
+namespace core {
 
 // pack could be render into world
 class VisualPack : public Pack {
@@ -15,6 +16,7 @@ class VisualPack : public Pack {
   virtual void Render() = 0;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_VISUAL_PACK_H_

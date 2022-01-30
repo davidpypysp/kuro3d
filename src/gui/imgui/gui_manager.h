@@ -6,7 +6,6 @@
 
 #include "src/utils/type_annotation.h"
 #include "src/utils/dependency_helper.h"
-#include "src/gui/imgui/gui_base.h"
 #include "src/gui/imgui/gui_store.h"
 #include "src/gui/imgui/scene_explorer.h"
 #include "src/gui/imgui/object_inspector.h"
@@ -16,11 +15,16 @@ namespace kuro {
 
 namespace gui {
 
-class GuiManager : public GuiBase {
+using SceneManager = core::SceneManager;
+using Engine = core::Engine;
+
+class GuiManager {
  public:
   GuiManager();
 
   void Init();
+
+  void Draw();
 
   REGISTER_DEPENDENCY(GuiStore, gui_store_)
   REGISTER_DEPENDENCY(Engine, engine_)
@@ -28,8 +32,14 @@ class GuiManager : public GuiBase {
  protected:
   void InitWindows();
 
-  std::shared_ptr<SceneExplorer> scene_explorer_;
-  std::shared_ptr<ObjectInspector> object_inspector_;
+  template <class T>
+  std::shared_ptr<T> AddWindow(const std::string& name) {
+    std::shared_ptr<Window> window = std::make_shared<T>(name);
+    windows_.push_back(window);
+    return std::static_pointer_cast<T>(window);
+  }
+
+  std::vector<std::shared_ptr<Window>> windows_;
 };
 
 }  // namespace gui

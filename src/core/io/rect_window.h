@@ -2,6 +2,7 @@
 #define CORE_IO_RECT_WINDOW_H_
 
 namespace kuro {
+namespace core {
 
 struct RectWindow {
   unsigned int width;
@@ -13,6 +14,7 @@ struct RectWindow {
   }
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

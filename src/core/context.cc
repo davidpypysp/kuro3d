@@ -1,37 +1,40 @@
 #include "src/core/context.h"
 
-#include "src/core/scene/scene_controller.h"
-#include "src/core/loader/loader_controller.h"
-#include "src/core/renderer/renderer_controller.h"
-
+#include "src/core/scene/scene_manager.h"
 #include "src/core/loader/model_loader.h"
 #include "src/core/io/rect_window.h"
 #include "src/core/renderer/renderer.h"
+#include "src/core/renderer/gl_render_api.h"
 
 namespace kuro {
+namespace core {
 
 Context::Context() {
-  auto scene_controller = Register<SceneController>();
-  auto renderer_controller = Register<RendererController>();
-  auto loader_controller = Register<LoaderController>();
+  // Init Scene
+  auto scene_manager = Register<SceneManager>();
+
+  // Init Renderer
+  auto shader_manager = Register<ShaderManager>();
+  auto render_api = Register<RenderAPI, GLRenderAPI>();
+  auto rendering_pipeline = Register<RenderingPipeline>();
+  rendering_pipeline->RegisterRenderAPI(render_api);
+  rendering_pipeline->RegisterShaderManager(shader_manager);
+  auto renderer = Register<Renderer>();
+  renderer->RegisterRenderingPipeline(rendering_pipeline);
+
+  // Init Loader
+  auto model_loader = Register<ModelLoader>();
+  auto texture_loader = Register<TextureLoader>();
+  model_loader->RegisterTextureLoader(texture_loader);
+
+  // Init IO
+  auto window = Register<RectWindow>();
 
   // resolve cross dependencies
-  auto texture_loader = loader_controller->Resolve<TextureLoader>();
-  auto model_loader = loader_controller->Resolve<ModelLoader>();
-  auto render_api = renderer_controller->Resolve<RenderAPI>();
-  auto scene_manager = scene_controller->Resolve<SceneManager>();
-  auto renderer = renderer_controller->Resolve<Renderer>();
-
   texture_loader->RegisterRenderAPI(render_api);
   model_loader->RegisterRenderAPI(render_api);
   renderer->RegisterSceneManager(scene_manager);
-
-  Register<RectWindow>();
-
-  Register<ModelLoader>(model_loader);
-  Register<SceneManager>(scene_manager);
-  Register<RenderAPI>(render_api);
-  Register<Renderer>(renderer);
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

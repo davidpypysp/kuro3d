@@ -3,6 +3,7 @@
 #include "src/core/base/shader.h"
 
 namespace kuro {
+namespace core {
 // Demonstrate some basic assertions.
 TEST(ShaderTest, BasicAssertions) {
   Shader shader("mesh.vert", "mesh_flat.frag");
@@ -12,4 +13,5 @@ TEST(ShaderTest, BasicAssertions) {
   EXPECT_EQ(7 * 6, 42);
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

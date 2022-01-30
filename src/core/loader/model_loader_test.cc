@@ -3,7 +3,9 @@
 #include "src/core/loader/model_loader.h"
 
 namespace kuro {
+namespace core {
 
 TEST(ModelLoaderTest, BasicAssertions) { ModelLoader model_loader; }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

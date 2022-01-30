@@ -2,6 +2,7 @@
 #include "src/core/engine.h"
 
 namespace kuro {
+namespace core {
 
 Shader::Shader(const char *vertex_path, const char *fragment_path,
                const char *geometry_path) {
@@ -21,4 +22,5 @@ void Shader::SetMat4(const std::string &name, const mat4 &mat) {
   Engine::GetRenderAPI()->SetShaderMat4Param(shader_program_, name, mat);
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

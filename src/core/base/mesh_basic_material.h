@@ -5,11 +5,12 @@
 #include "src/core/base/texture.h"
 
 namespace kuro {
+namespace core {
 
 struct MeshBasicMaterial : public Material {
   static std::shared_ptr<ShaderHandle> shader_handle;
 
-  std::shared_ptr<ShaderHandle> GetShaderHandle();
+  std::shared_ptr<ShaderHandle> GetShaderHandle() { return shader_handle; }
 
   std::shared_ptr<Texture> diffuse_map;
   std::shared_ptr<Texture> specular_map;
@@ -17,6 +18,7 @@ struct MeshBasicMaterial : public Material {
   std::shared_ptr<Texture> height_map;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

@@ -3,7 +3,9 @@
 #include "src/core/renderer/gl_render_api.h"
 
 namespace kuro {
+namespace core {
 
 TEST(GLRenderAPITest, BasicAssertions) { GLRenderAPI gl_render_api; }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

@@ -3,6 +3,7 @@
 #include "src/core/engine.h"
 
 namespace kuro {
+namespace core {
 
 MeshPack::MeshPack(std::shared_ptr<Geometry> geometry,
                    std::shared_ptr<Material> material)
@@ -26,4 +27,5 @@ void MeshPack::PrepareShader() {
   shader->SetMat4("model", scene_node_->WorldTransform());
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

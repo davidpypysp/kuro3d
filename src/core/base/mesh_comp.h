@@ -5,6 +5,7 @@
 #include "src/core/base/mesh_data.h"
 
 namespace kuro {
+namespace core {
 
 class MeshComp : public VisualComp {
  public:
@@ -20,6 +21,7 @@ class MeshComp : public VisualComp {
   MeshData mesh_data_;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

@@ -3,6 +3,7 @@
 #include "src/core/default_scenario.h"
 
 namespace kuro {
+namespace core {
 
 Engine::Engine() {
   context_ = std::make_shared<Context>();
@@ -20,4 +21,7 @@ void Engine::Init() {
 
 void Engine::Draw() { renderer_->RenderScene(); }
 
-}  // namespace kuro
+std::shared_ptr<Engine> Engine::instance_ = std::make_shared<Engine>();
+
+}  // namespace core
+}  //  namespace kuro

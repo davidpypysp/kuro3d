@@ -20,11 +20,17 @@ namespace kuro {
 
 namespace gui {
 
+using RectWindow = core::RectWindow;
+
 static void glfw_error_callback(int error, const char *description) {
   fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-GuiSystem::GuiSystem() {}
+GuiSystem::GuiSystem() {
+  context_ = std::make_shared<Context>();
+  engine_ = context_->Resolve<Engine>();
+  gui_manager_ = context_->Resolve<GuiManager>();
+}
 
 int GuiSystem::Init() {
   const unsigned int window_width = 3600, window_height = 1800;
@@ -68,7 +74,8 @@ int GuiSystem::Init() {
         std::cout << "framebuffer size = "
                   << "width=" << width << "height=" << height << std::endl;
         // TODO: figure out how to pass variable into this lambda
-        //  engine_window->SetSize(width, height);
+        auto engine_window = Engine::Instance()->GetInstance<RectWindow>();
+        engine_window->SetSize(width, height);
         glViewport(0, 0, width, height);
       });
 
@@ -106,7 +113,6 @@ int GuiSystem::Init() {
 
 int GuiSystem::Run() {
   Init();
-
   gui_manager_->Init();
 
   // Main loop
@@ -116,7 +122,22 @@ int GuiSystem::Run() {
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // Start the Dear ImGui frame
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    // 1. Show the big demo window (Most of the sample code is in
+    // ImGui::ShowDemoWindow()! You can browse its code to learn more about
+    // Dear ImGui!).
+    bool show_demo_window = true;
+    ImGui::ShowDemoWindow(&show_demo_window);
+
     Loop();
+
+    // Rendering
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
     glfwSwapBuffers(gl_window_);
   }
@@ -130,7 +151,11 @@ void GuiSystem::Loop() {
   gui_manager_->Draw();
 }
 
-GuiSystem::~GuiSystem() {}
+GuiSystem::~GuiSystem() {
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
+}
 }  // namespace gui
 
 }  // namespace kuro

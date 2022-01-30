@@ -5,6 +5,7 @@
 #include "src/core/scene/scene_node.h"
 
 namespace kuro {
+namespace core {
 
 class SceneNode;
 
@@ -22,6 +23,7 @@ class Pack {
   std::shared_ptr<SceneNode> scene_node_;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_BASE_PACK_H_

@@ -7,6 +7,7 @@
 #include "src/core/base/vertex.h"
 
 namespace kuro {
+namespace core {
 
 struct GeometryHandle {};
 
@@ -23,6 +24,7 @@ struct Geometry {
       : vertices(vertices), indices(indices) {}
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

@@ -4,12 +4,14 @@
 #include "src/utils/ioc_container.h"
 
 namespace kuro {
+namespace core {
 
 class Context : public IocContainer {
  public:
   Context();
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

@@ -6,18 +6,24 @@ namespace kuro {
 
 namespace gui {
 
-GuiManager::GuiManager() : GuiBase() {}
+GuiManager::GuiManager() {}
 
 void GuiManager::Init() { InitWindows(); }
 
-void GuiManager::InitWindows() {
-  scene_explorer_ = AddWindow<SceneExplorer>("Scene Explorer");
-  scene_explorer_->RegisterGuiStore(gui_store_);
-  auto scene_manager = engine_->GetInstance<SceneManager>();
-  scene_explorer_->RegisterSceneManager(scene_manager);
+void GuiManager::Draw() {
+  for (auto window : windows_) {
+    window->RenderFrame();
+  }
+}
 
-  object_inspector_ = AddWindow<ObjectInspector>("Object Inspector");
-  object_inspector_->RegisterGuiStore(gui_store_);
+void GuiManager::InitWindows() {
+  auto scene_explorer = AddWindow<SceneExplorer>("Scene Explorer");
+  scene_explorer->RegisterGuiStore(gui_store_);
+  auto scene_manager = engine_->GetInstance<SceneManager>();
+  scene_explorer->RegisterSceneManager(scene_manager);
+
+  auto object_inspector = AddWindow<ObjectInspector>("Object Inspector");
+  object_inspector->RegisterGuiStore(gui_store_);
 }
 
 }  // namespace gui

@@ -4,6 +4,7 @@
 #include "src/math/math.h"
 
 namespace kuro {
+namespace core {
 
 struct Vertex {
   vec3 position;
@@ -13,6 +14,7 @@ struct Vertex {
   vec3 bitangent;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

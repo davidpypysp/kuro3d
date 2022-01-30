@@ -6,9 +6,11 @@ add_subdirectory(scene)
 
 add_library(core.context context.cc)
 target_link_libraries(core.context
-	renderer.renderer_controller
-	loader.loader_controller
-	scene.scene_controller
+	scene.scene_manager
+	renderer.renderer
+	renderer.rendering_pipeline
+	renderer.gl_render_api
+	loader.model_loader
 )
 
 add_library(core.default_scenario default_scenario.cc)

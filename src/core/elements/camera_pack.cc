@@ -1,6 +1,7 @@
 #include "src/core/elements/camera_pack.h"
 
 namespace kuro {
+namespace core {
 
 // constructor with vectors
 CameraPack::CameraPack(const vec3 &up, const float yaw, const float pitch)

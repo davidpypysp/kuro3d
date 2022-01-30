@@ -3,7 +3,9 @@
 #include "src/core/renderer/shader_manager.h"
 
 namespace kuro {
+namespace core {
 
 TEST(ShaderManagerTest, BasicAssertions) { ShaderManager shader_manager; }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

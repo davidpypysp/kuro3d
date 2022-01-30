@@ -3,10 +3,9 @@
 #include "src/core/engine.h"
 
 namespace kuro {
+namespace core {
 // Demonstrate some basic assertions.
-TEST(EngineTest, BasicAssertions) {
-  Engine engine;
-  engine.Init();
-}
+TEST(EngineTest, BasicAssertions) { Engine::Instance()->Init(); }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

@@ -7,6 +7,7 @@
 #include "src/core/renderer/renderer.h"
 
 namespace kuro {
+namespace core {
 
 class Engine {
  public:
@@ -17,21 +18,27 @@ class Engine {
   void Init();
 
   template <class T>
-  std::shared_ptr<T> GetInstance() {
+  inline std::shared_ptr<T> GetInstance() {
     return context_->Resolve<T>();
   }
 
   void Draw();
 
+  static std::shared_ptr<Engine> Instance() { return Engine::instance_; }
+
  protected:
   std::shared_ptr<Context> context_;
   std::shared_ptr<Renderer> renderer_;
 
+  static std::shared_ptr<Engine> instance_;
+
   void LoadScenario();
 };
 
-REGISTER_TYPE_ANNOTATION(Engine)
+}  // namespace core
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::Engine)
+
+}  //  namespace kuro
 
 #endif  // CORE_ENGINE_H_

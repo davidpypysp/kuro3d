@@ -4,6 +4,7 @@
 #include <string>
 
 namespace kuro {
+namespace core {
 
 struct ShaderHandle {
   ShaderHandle(const std::string& name, const std::string& vertex_shader_path,
@@ -20,6 +21,7 @@ struct ShaderHandle {
   std::string geometry_shader_path;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

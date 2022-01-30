@@ -15,6 +15,7 @@
 #include "src/utils/type_annotation.h"
 
 namespace kuro {
+namespace core {
 
 class ModelLoader {
  public:
@@ -43,8 +44,10 @@ class ModelLoader {
       std::shared_ptr<SceneManager> scene_manager);
 };
 
-REGISTER_TYPE_ANNOTATION(ModelLoader)
+}  // namespace core
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::ModelLoader)
+
+}  //  namespace kuro
 
 #endif  // CORE_RENDERER_MODEL_LOADER_H_

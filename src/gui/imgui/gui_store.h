@@ -9,7 +9,7 @@ namespace kuro {
 namespace gui {
 
 struct GuiStore {
-  std::shared_ptr<SceneNode> selected_scene_node;
+  std::shared_ptr<core::SceneNode> selected_scene_node;
 };
 
 }  // namespace gui

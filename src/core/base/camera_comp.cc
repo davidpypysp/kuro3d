@@ -1,6 +1,7 @@
 #include "src/core/base/camera_comp.h"
 
 namespace kuro {
+namespace core {
 
 // constructor with vectors
 CameraComp::CameraComp(const vec3 &up, const float yaw, const float pitch)
@@ -38,4 +39,6 @@ void CameraComp::UpdateCameraVectors() {
   up_ = normalize(cross(right_, front_));
 }
 
-};  // namespace kuro
+}  // namespace core
+
+}  // namespace kuro

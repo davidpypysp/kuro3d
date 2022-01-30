@@ -5,6 +5,7 @@
 #include "src/core/base/camera_comp.h"
 
 namespace kuro {
+namespace core {
 
 void CreateDefaultScene(std::shared_ptr<Context> context) {
   auto scene_manager = context->Resolve<SceneManager>();
@@ -30,4 +31,5 @@ void CreateDefaultScene(std::shared_ptr<Context> context) {
   root_node->AddChildNode(model_node);
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

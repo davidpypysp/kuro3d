@@ -9,6 +9,7 @@
 #include "src/utils/type_annotation.h"
 
 namespace kuro {
+namespace core {
 
 class ShaderManager {
  public:
@@ -27,8 +28,10 @@ class ShaderManager {
       shader_map_;
 };
 
-REGISTER_TYPE_ANNOTATION(ShaderManager)
+}  // namespace core
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::ShaderManager)
+
+}  //  namespace kuro
 
 #endif  // CORE_RENDERER_SHADER_MANAGER_H_

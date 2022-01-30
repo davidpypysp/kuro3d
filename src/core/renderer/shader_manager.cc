@@ -4,6 +4,7 @@
 #include "src/core/base/mesh_basic_material.h"
 
 namespace kuro {
+namespace core {
 
 ShaderManager::ShaderManager() {}
 
@@ -17,4 +18,5 @@ void ShaderManager::SetShaderProgram(std::shared_ptr<ShaderHandle> handle,
   shader_map_[handle] = program;
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

@@ -7,6 +7,7 @@
 #include "src/core/base/component_base.h"
 
 namespace kuro {
+namespace core {
 
 // Default camera values
 const float default_yaw = -90.0;
@@ -50,6 +51,7 @@ class CameraComp : public ComponentBase {
   void UpdateCameraVectors();
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif

@@ -1,6 +1,7 @@
 #include "src/core/scene/scene_node.h"
 
 namespace kuro {
+namespace core {
 
 SceneNode::SceneNode(const std::string& name) : NodeBase(name) {
   SetLocalTransform(mat4(1.0));
@@ -84,4 +85,5 @@ void SceneNode::UpdateTransformComponents() {
   rotation_ = math::eulerAngles(rotation_quat);
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro

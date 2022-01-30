@@ -10,6 +10,7 @@
 #include "src/core/renderer/render_api.h"
 
 namespace kuro {
+namespace core {
 
 class RenderingPipeline {
  public:
@@ -37,8 +38,10 @@ class RenderingPipeline {
   std::vector<MeshData> mesh_data_list_;
 };
 
-REGISTER_TYPE_ANNOTATION(RenderingPipeline)
+}  // namespace core
 
-}  // namespace kuro
+REGISTER_TYPE_ANNOTATION(core::RenderingPipeline)
+
+}  //  namespace kuro
 
 #endif

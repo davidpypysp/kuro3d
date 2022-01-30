@@ -4,6 +4,7 @@
 #include "src/core/renderer/geometry.h"
 
 namespace kuro {
+namespace core {
 
 class CubeGeometry : public Geometry {
  public:
@@ -12,6 +13,7 @@ class CubeGeometry : public Geometry {
   void Setup();
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_CUBE_GEOMETRY_H_

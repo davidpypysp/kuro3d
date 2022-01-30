@@ -5,6 +5,7 @@
 #include "src/core/base/texture.h"
 
 namespace kuro {
+namespace core {
 
 class MeshBasicMaterial : public Material {
  public:
@@ -35,6 +36,7 @@ class MeshBasicMaterial : public Material {
   std::shared_ptr<Texture> height_map_;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_MESH_BASIC_MATERIAL_H_

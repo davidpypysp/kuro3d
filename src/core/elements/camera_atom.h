@@ -8,6 +8,7 @@
 #include "src/core/elements/camera_pack.h"
 
 namespace kuro {
+namespace core {
 
 class CameraAtom : public SceneAtom {
  public:
@@ -30,6 +31,7 @@ class CameraAtom : public SceneAtom {
   std::shared_ptr<CameraPack> camera_pack_;
 };
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
 
 #endif  // CORE_ELEMENTS_CAMERA_ATOM_H_

@@ -3,6 +3,7 @@
 #include "src/core/engine.h"
 
 namespace kuro {
+namespace core {
 
 MeshBasicMaterial::MeshBasicMaterial() {
   shader_ = Engine::GetShaderManager()->mesh_basic_shader();
@@ -32,4 +33,5 @@ void MeshBasicMaterial::Use() {
   }
 }
 
-}  // namespace kuro
+}  // namespace core
+}  //  namespace kuro
